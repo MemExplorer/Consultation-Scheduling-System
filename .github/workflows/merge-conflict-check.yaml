@@ -1,0 +1,30 @@
+# Checking for push conflicts between builds.
+name: Merge Conflict Check
+
+# Trigger on push request by collaborators.
+on:
+  push:
+    branches:
+      - '*'
+      
+# Create a task on trigger push to repository.
+jobs:
+  check_merge_conflicts:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Merge Conflict Check
+        run: |
+          git fetch
+          git diff --name-only origin/main...$GITHUB_REF | while read FILE; do
+            git diff origin/main...$GITHUB_REF -- $FILE
+            if [[ $? -eq 0 ]]; then
+              echo "✅ No merge conflict found in $FILE"
+            else
+              echo "❌ Merge conflict detected in $FILE"
+              exit 1
+            fi
+          done
