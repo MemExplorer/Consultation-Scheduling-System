@@ -19,7 +19,6 @@ jobs:
 
     - name: Update Changelog
       run: |
-        echo "## Changelog" >> CHANGELOG.md
         echo "- Commit: \${{ github.sha }}" >> CHANGELOG.md
-        echo "  Author: \${{ github.event.head_ommit.author.name }}" >> CHANGELOG.md
+        echo "  Author: \${{ github.event.head_commit.author.name }}" >> CHANGELOG.md
         echo "  Message: \${{ github.event.head_commit.message }}" >> CHANGELOG.md
