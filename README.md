@@ -1,4 +1,4 @@
-[![Build Status](https://img.shields.io/badge/build-passing-green.svg)](https://github.com/Tofuwuuu/Final_Project/tree/main)
+![Language](https://img.shields.io/badge/LANG-Python-blue?style=flat-square&logo=python) ![Server](https://img.shields.io/badge/MySQL-Build-blue?style=flat-square&logo=MySQl)
 
 # Final Project
 
