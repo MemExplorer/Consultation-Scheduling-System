@@ -1,0 +1,5 @@
+Python==3.11.3
+datetime
+customtkinter
+tk
+PyQT5
