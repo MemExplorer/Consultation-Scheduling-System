@@ -13,17 +13,23 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Update Changelog
-      uses: actions/github-script@v4
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const fs = require('fs');
-          const changelogPath = './CHANGELOG.md';
-          const commitAuthor = github.context.payload.head_commit.author.name;
-          const commitHash = github.context.sha;
-          const commitMessage = github.context.payload.head_commit.message;
-          const currentDate = new Date().toISOString().split('T')[0];
+      run: |
+        branch_name=${GITHUB_REF#refs/heads/}
+        changelog_file="CHANGELOG-${branch_name^^}.md"
 
-          const changelogContent = `- Author: ${commitAuthor}\n  Commit: ${commitHash}\n  Message: ${commitMessage}\n  Date: ${currentDate}\n`;
+        echo "## Changelog" > "$changelog_file"
+        echo "- Author: ${{ github.actor }}" >> "$changelog_file"
+        echo "  Commit: ${{ github.sha }}" >> "$changelog_file"
+        echo "  Message: ${{ github.event.head_commit.message }}" >> "$changelog_file"
+        echo "  Date: $(date +"%Y-%m-%d")" >> "$changelog_file"
+        cat "$changelog_file"
 
-          fs.appendFileSync(changelogPath, changelogContent);
+    - name: Commit and Push Changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        branch_name=${GITHUB_REF#refs/heads/}
+        changelog_file="CHANGELOG-${branch_name^^}.md"
+        git add "$changelog_file"
+        git commit -m "Update $changelog_file"
+        git push
