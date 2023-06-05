@@ -5,3 +5,4 @@ PyQT5==5.15.9
 PyQT5Designer==5.14.1
 customtkinter==0.3
 mysql-connector
+pyqt5-tools
