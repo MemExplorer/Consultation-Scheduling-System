@@ -13,6 +13,7 @@ See [Table of contents](#table-of-contents) for references.
     - [1.2 IDE of Choice](#you-decide-where-to-work-on-the-project)
     - [1.3 Using python virtual environment](#should-you-use-python-venv)
     - [1.4 Requirements](#requirements)
+    - [1.5 User Interface Designer](#pyqt5designer)
 * [2. Contributing](#contributing)
 * [3. Project Papers](#)
     - [3.1 Planning and Management](https://1drv.ms/w/s!AtjIPcaFwE3CgV4OqJ_29lvdOtQE?e=jBvQEl)
@@ -67,7 +68,7 @@ You can start watching the [tutorial for PyQt5Designer](https://www.youtube.com/
 ```git
 designer.exe
 ```
-on the local repo's directory.
+on the terminal of the local repo's directory.
 ### Contributing
 > What's next? See [CONTRIBUTING.md](https://github.com/Tofuwuuu/Final_Project/blob/main/CONTRIBUTING.md) for detailed development execution.
 ---
