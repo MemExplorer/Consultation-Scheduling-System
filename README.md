@@ -60,7 +60,7 @@ pip install -r requirements.txt
 ```
 This should install all the project dependencies and their respective versions.
 
-### PyQt5Designer
+## PyQt5Designer
 Upon installation of requirements, you'll have a module for PyQt5Designer.
 
 You can start watching the [tutorial for PyQt5Designer](https://www.youtube.com/watch?v=5K__zwBj_nY&t=227s) or jump into development by typing:
@@ -69,6 +69,16 @@ You can start watching the [tutorial for PyQt5Designer](https://www.youtube.com/
 designer.exe
 ```
 on the terminal of the local repo's directory.
+
+### Convert your designer.ui file into python file using:
+```git
+pyuic5 -x <filename>.ui -o <filename>.py
+```
+example:
+```git
+pyuic5 -x test.ui -o test.py
+```
+---
 ### Contributing
 > What's next? See [CONTRIBUTING.md](https://github.com/Tofuwuuu/Final_Project/blob/main/CONTRIBUTING.md) for detailed development execution.
 ---
