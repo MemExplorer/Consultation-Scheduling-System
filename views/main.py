@@ -52,13 +52,3 @@ class Ui_initialWindow(object):
         self.pushButton_2.setText(_translate("initialWindow", "Login"))
         self.pushButton_3.setText(_translate("initialWindow", "Forgot password?"))
         self.Title.setText(_translate("initialWindow", "Consultation System"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    initialWindow = QtWidgets.QMainWindow()
-    ui = Ui_initialWindow()
-    ui.setupUi(initialWindow)
-    initialWindow.show()
-    sys.exit(app.exec_())
