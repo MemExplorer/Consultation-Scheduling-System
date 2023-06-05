@@ -9,18 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checking changes
+    - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Creating environment
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-
     - name: Update Changelog
-      run: |
-        echo "- Commit: \${{ github.sha }}" >> CHANGELOG.md
-        echo "  Author: \${{ github.event.head_commit.author.name }}" >> CHANGELOG.md
-        echo "  Message: \${{ github.event.head_commit.message }}" >> CHANGELOG.md
-        echo "  Date: $(date +"%Y-%m-%d")" >> CHANGELOG.md
-        echo "" >> CHANGELOG.md
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const fs = require('fs');
+          const changelogPath = './CHANGELOG.md';
+          const commitAuthor = github.context.payload.head_commit.author.name;
+          const commitHash = github.context.sha;
+          const commitMessage = github.context.payload.head_commit.message;
+          const currentDate = new Date().toISOString().split('T')[0];
+
+          const changelogContent = `- Author: ${commitAuthor}\n  Commit: ${commitHash}\n  Message: ${commitMessage}\n  Date: ${currentDate}\n`;
+
+          fs.appendFileSync(changelogPath, changelogContent);
