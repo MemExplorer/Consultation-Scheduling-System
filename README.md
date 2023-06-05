@@ -48,8 +48,8 @@ python -m venv <name of your venv>
 
 To activate virtual env
 
-windows: source venv/Scripts/Activate
-macOS: source venv/bin/activate
+windows: source <name of your venv>/Scripts/Activate
+macOS: source <name of your venv>/bin/activate
 ```
 ### Requirements
 Once you have a local repository, run requirements.txt using this line of code in your `Git` terminal:
