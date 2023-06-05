@@ -60,7 +60,7 @@ pip install -r requirements.txt
 This should install all the project dependencies and their respective versions.
 
 ## **PyQt5Designer**
-Upon installation of requirements, you'll have a module for PyQt5Designer.
+Upon installation of the [requirementst.txt](#requirements), you'll have a module for PyQt5Designer.
 
 You can start watching the [tutorial for PyQt5Designer](https://www.youtube.com/watch?v=5K__zwBj_nY&t=227s) or jump into development by typing:
 

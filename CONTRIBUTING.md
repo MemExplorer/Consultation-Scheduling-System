@@ -21,7 +21,7 @@ You should have these applications and tools to develop, test, and debug the pro
 - MySQL
 - Python 3.11.3
 # Development
-Here is a conceptual development workflow for the system implementation:
+### Here is the general concept of the project implementation:
 
 ```mermaid
 flowchart TB
@@ -39,6 +39,44 @@ E --> F[Documentation]
 F --> G
 E --> G[Production]
 ```
+
+### Flowchart visualization of the **`account login`** implementation:
+
+```mermaid
+flowchart TB
+A([Start]) --> |Users| B[Prompt User Input]
+B --> |Input| C{Validator}
+C --> |Query Username| D[(Database)]
+D --> DA[/User Details/]
+DA --> C
+C --> CA{isValid?}
+CA --> |No| B
+CA --> |Yes| E{View Type?}
+E --> |Student| F[Student View]
+E --> |Teacher| FA[Teacher View]
+F --> G([End])
+FA --> G
+```
+
+### Representational diagram of signing up a user:
+
+```mermaid
+flowchart TB
+A([Start]) --> |New User| B[Prompt Require Fields]
+B --> |Input| C{Validator}
+C --> |Query Username| D[(Database)]
+D --> C
+C --> CA{isNameValid}
+CA --> |No| B
+CA --> |Yes| CB{arePasswordsMatched}
+CB --> |No| B
+CB --> |Yes| CC[Other Field Entries]
+CC --> CD[Encrypt User Details]
+CD --> |Insert Data| D
+CD --> E[Display Login View]
+E --> F([End])
+```
+
 
 > <span style="color:orange">NOTICE: </span> There are no detailed representations of the UI workflow, database guidelines, and their connections yet.
 
