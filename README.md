@@ -19,7 +19,6 @@ See [Table of contents](#table-of-contents) for references.
     - [3.1 Planning and Management](https://1drv.ms/w/s!AtjIPcaFwE3CgV4OqJ_29lvdOtQE?e=jBvQEl)
     - [3.2 Weekly Reports](https://onedrive.live.com/redir?resid=C24DC085C63DC8D8!250&authkey=!AHtkVxV8T1bHl_I&ithint=file%2cdocx&e=KqWprL)
     - [3.3 Presentation Canva](https://www.canva.com/design/DAFk6foNyY4/5QKvUlxNnoalFl-kVjquOg/edit?utm_content=DAFk6foNyY4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
-* [4. Documentation](#documentation)
 
 # Installation Guide
 
@@ -33,9 +32,9 @@ You can choose to fork the project to your local repo using:
    ```
 3. the `fork` button in github repo.
     > Not recommended as you need to do a pull request everytime you push new implementation.
-## You decide where to work on the project
+## **You decide where to work on the project**
 It can be PyCharm, VSCode, Visual Studio, or notepad. Albeit recommended to use PyCharm because of our course IDE of choice.
-## Should you use Python VENV?
+## **Should you use Python VENV?**
 
 Python Virtual environment allows you isolate the project dependencies from libraries installed in your computer. What goes in the VENV stays in the VENV. 
 
@@ -52,7 +51,7 @@ To activate virtual env
 windows: source <name of your venv>/Scripts/Activate
 macOS: source <name of your venv>/bin/activate
 ```
-### Requirements
+### **Requirements**
 Once you have a local repository, run requirements.txt using this line of code in your `Git` terminal:
 
 ```python
@@ -60,7 +59,7 @@ pip install -r requirements.txt
 ```
 This should install all the project dependencies and their respective versions.
 
-## PyQt5Designer
+## **PyQt5Designer**
 Upon installation of requirements, you'll have a module for PyQt5Designer.
 
 You can start watching the [tutorial for PyQt5Designer](https://www.youtube.com/watch?v=5K__zwBj_nY&t=227s) or jump into development by typing:
@@ -78,11 +77,5 @@ example:
 ```git
 pyuic5 -x test.ui -o test.py
 ```
----
-### Contributing
+## **Contributing**
 > What's next? See [CONTRIBUTING.md](https://github.com/Tofuwuuu/Final_Project/blob/main/CONTRIBUTING.md) for detailed development execution.
----
-### Testing
-To be discussed, *open for initial edits*.
-### Documentation
-In progress
