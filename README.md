@@ -70,12 +70,19 @@ designer.exe
 on the terminal of the local repo's directory.
 
 ### Convert your designer.ui file into python file using:
+By default, all `.ui` files are stored in `./interfaces` folder.
 ```git
-pyuic5 -x <filename>.ui -o <filename>.py
+pyuic5 -x <file_path>.ui -o ./views/<filename>.py
 ```
 example:
 ```git
-pyuic5 -x test.ui -o test.py
+pyuic5 -x ./interfaces/test.ui -o ./views/test.py
 ```
+
+Resources need compilation to work on, here is the code to compile your `<file>.qrc` into a `<file>.py`
+```git
+pyrcc5 <file_path>.qrc -o resource_rc.py
+```
+
 ## **Contributing**
 > What's next? See [CONTRIBUTING.md](https://github.com/Tofuwuuu/Final_Project/blob/main/CONTRIBUTING.md) for detailed development execution.
