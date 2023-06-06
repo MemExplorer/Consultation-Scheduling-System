@@ -2,5 +2,7 @@
   <qresource prefix="images">
     <file>images/test_background.jpg</file>
   </qresource>
-  <qresource prefix="icons"/>
+  <qresource prefix="icons">
+    <file>icons/svgs/solid/right-from-bracket.svg</file>
+  </qresource>
 </RCC>

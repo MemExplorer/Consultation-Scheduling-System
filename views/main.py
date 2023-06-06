@@ -13,55 +13,55 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_initialWindow(object):
     def setupUi(self, initialWindow):
-
         initialWindow.setObjectName("initialWindow")
         initialWindow.resize(626, 504)
         initialWindow.setMaximumSize(QtCore.QSize(626, 504))
         initialWindow.setDocumentMode(False)
-
         self.centralwidget = QtWidgets.QWidget(initialWindow)
         self.centralwidget.setObjectName("centralwidget")
-
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(130, 340, 171, 41))
-        self.pushButton.setObjectName("pushButton")
-
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(330, 340, 171, 41))
-        self.pushButton_2.setObjectName("pushButton_2")
-
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_3.setGeometry(QtCore.QRect(130, 400, 371, 41))
-        self.pushButton_3.setObjectName("pushButton_3")
-
         self.Title = QtWidgets.QLabel(self.centralwidget)
-        self.Title.setGeometry(QtCore.QRect(110, 40, 391, 51))
-
+        self.Title.setGeometry(QtCore.QRect(30, 160, 461, 71))
         font = QtGui.QFont()
-        font.setPointSize(28)
-
+        font.setPointSize(36)
         self.Title.setFont(font)
         self.Title.setTextFormat(QtCore.Qt.RichText)
         self.Title.setScaledContents(False)
         self.Title.setAlignment(QtCore.Qt.AlignCenter)
         self.Title.setObjectName("Title")
-
+        self.Title_2 = QtWidgets.QLabel(self.centralwidget)
+        self.Title_2.setGeometry(QtCore.QRect(80, 240, 311, 21))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.Title_2.setFont(font)
+        self.Title_2.setTextFormat(QtCore.Qt.RichText)
+        self.Title_2.setScaledContents(False)
+        self.Title_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.Title_2.setObjectName("Title_2")
+        self.loginButton = QtWidgets.QPushButton(self.centralwidget)
+        self.loginButton.setGeometry(QtCore.QRect(370, 10, 121, 31))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/svgs/solid/right-from-bracket.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.loginButton.setIcon(icon)
+        self.loginButton.setObjectName("loginButton")
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2.setGeometry(QtCore.QRect(500, 10, 111, 31))
+        self.pushButton_2.setSizeIncrement(QtCore.QSize(0, 0))
+        self.pushButton_2.setIcon(icon)
+        self.pushButton_2.setObjectName("pushButton_2")
         initialWindow.setCentralWidget(self.centralwidget)
-
         self.statusbar = QtWidgets.QStatusBar(initialWindow)
         self.statusbar.setObjectName("statusbar")
-
         initialWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(initialWindow)
-        
         QtCore.QMetaObject.connectSlotsByName(initialWindow)
 
     def retranslateUi(self, initialWindow):
         _translate = QtCore.QCoreApplication.translate
         initialWindow.setWindowTitle(_translate("initialWindow", "Consultation System"))
-        
-        self.pushButton.setText(_translate("initialWindow", "Sign up"))
-        self.pushButton_2.setText(_translate("initialWindow", "Login"))
-        self.pushButton_3.setText(_translate("initialWindow", "Forgot password?"))
         self.Title.setText(_translate("initialWindow", "Consultation System"))
+        self.Title_2.setText(_translate("initialWindow", "Manage your time for your students in just one click."))
+        self.loginButton.setText(_translate("initialWindow", "Login"))
+        self.pushButton_2.setText(_translate("initialWindow", "Sign Up"))
+
+import resource_rc
