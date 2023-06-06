@@ -1,4 +1,4 @@
-![Language](https://img.shields.io/badge/LANG-Python-blue?style=flat-square&logo=python) ![Server](https://img.shields.io/badge/MySQL-Build-blue?style=flat-square&logo=MySQl)
+![Language](https://img.shields.io/badge/LANG-Python-blue?style=flat-square&logo=python) ![Server](https://img.shields.io/badge/MySQL-Build-blue?style=flat-square&logo=MySQl) ![File Count](https://img.shields.io/github/directory-file-count/Tofuwuuu/Final_Project?color=green&logoColor=green&style=flat-square&logo=files) ![repo size](https://img.shields.io/github/repo-size/Tofuwuuu/Final_Project?color=pink&logoColor=pink&style=flat-square&logo=github)
 
 # Final Project
 
