@@ -76,7 +76,7 @@ pyuic5 -x ./interfaces/test.ui -o ./views/test.py
 
 Resources need compilation to work on, here is the code to compile your `<file>.qrc` into a `<file>.py`
 ```git
-pyrcc5 <file_path>.qrc -o resource_rc.py
+pyrcc5 <file_path>.qrc -o resources_rc.py
 ```
 
 ## **Contributing**

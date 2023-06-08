@@ -9,18 +9,39 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from .login import Ui_login
+from .signup import Ui_signup
 
 class Ui_initialWindow(object):
+
+    def toLogin(self):
+        self.login = QtWidgets.QMainWindow()
+        self.instance = Ui_login()
+        self.instance.setupUi(self.login)
+        self.login.show()
+
+    def toSignup(self):
+        self.signup = QtWidgets.QMainWindow()
+        self.instance = Ui_signup()
+        self.instance.setupUi(self.signup)
+        self.signup.show()
+
     def setupUi(self, initialWindow):
         initialWindow.setObjectName("initialWindow")
-        initialWindow.resize(626, 504)
-        initialWindow.setMaximumSize(QtCore.QSize(626, 504))
+        initialWindow.resize(625, 504)
+        initialWindow.setMinimumSize(QtCore.QSize(625, 504))
+        initialWindow.setMaximumSize(QtCore.QSize(625, 504))
         initialWindow.setDocumentMode(False)
-        self.centralwidget = QtWidgets.QWidget(initialWindow)
-        self.centralwidget.setObjectName("centralwidget")
-        self.Title = QtWidgets.QLabel(self.centralwidget)
-        self.Title.setGeometry(QtCore.QRect(30, 160, 461, 71))
+        self.mainframe = QtWidgets.QWidget(initialWindow)
+        self.mainframe.setObjectName("mainframe")
+        self.Title = QtWidgets.QLabel(self.mainframe)
+        self.Title.setGeometry(QtCore.QRect(100, 40, 461, 61))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.Title.sizePolicy().hasHeightForWidth())
+        self.Title.setSizePolicy(sizePolicy)
+        self.Title.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setPointSize(36)
         self.Title.setFont(font)
@@ -28,30 +49,35 @@ class Ui_initialWindow(object):
         self.Title.setScaledContents(False)
         self.Title.setAlignment(QtCore.Qt.AlignCenter)
         self.Title.setObjectName("Title")
-        self.Title_2 = QtWidgets.QLabel(self.centralwidget)
-        self.Title_2.setGeometry(QtCore.QRect(80, 240, 311, 21))
+        self.subtitle = QtWidgets.QLabel(self.mainframe)
+        self.subtitle.setGeometry(QtCore.QRect(180, 120, 311, 21))
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.Title_2.setFont(font)
-        self.Title_2.setTextFormat(QtCore.Qt.RichText)
-        self.Title_2.setScaledContents(False)
-        self.Title_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.Title_2.setObjectName("Title_2")
-        self.loginButton = QtWidgets.QPushButton(self.centralwidget)
-        self.loginButton.setGeometry(QtCore.QRect(370, 10, 121, 31))
+        self.subtitle.setFont(font)
+        self.subtitle.setTextFormat(QtCore.Qt.RichText)
+        self.subtitle.setScaledContents(False)
+        self.subtitle.setAlignment(QtCore.Qt.AlignCenter)
+        self.subtitle.setObjectName("subtitle")
+        self.loginButton = QtWidgets.QPushButton(self.mainframe)
+        self.loginButton.setGeometry(QtCore.QRect(180, 220, 291, 61))
+        self.loginButton.setStyleSheet("font-size: 20px;\n"
+"")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/icons/svgs/solid/right-from-bracket.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.loginButton.setIcon(icon)
         self.loginButton.setObjectName("loginButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(500, 10, 111, 31))
-        self.pushButton_2.setSizeIncrement(QtCore.QSize(0, 0))
-        self.pushButton_2.setIcon(icon)
-        self.pushButton_2.setObjectName("pushButton_2")
-        initialWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(initialWindow)
-        self.statusbar.setObjectName("statusbar")
-        initialWindow.setStatusBar(self.statusbar)
+        self.loginButton.clicked.connect(self.toLogin)
+        self.loginButton.clicked.connect(initialWindow.close)
+
+        self.registerButton = QtWidgets.QPushButton(self.mainframe)
+        self.registerButton.setGeometry(QtCore.QRect(180, 300, 291, 61))
+        self.registerButton.setSizeIncrement(QtCore.QSize(0, 0))
+        self.registerButton.setStyleSheet("font-size: 20px;")
+        self.registerButton.setIcon(icon)
+        self.registerButton.setObjectName("registerButton")
+        self.registerButton.clicked.connect(self.toSignup)
+        self.registerButton.clicked.connect(initialWindow.close)
+        initialWindow.setCentralWidget(self.mainframe)
 
         self.retranslateUi(initialWindow)
         QtCore.QMetaObject.connectSlotsByName(initialWindow)
@@ -60,8 +86,8 @@ class Ui_initialWindow(object):
         _translate = QtCore.QCoreApplication.translate
         initialWindow.setWindowTitle(_translate("initialWindow", "Consultation System"))
         self.Title.setText(_translate("initialWindow", "Consultation System"))
-        self.Title_2.setText(_translate("initialWindow", "Manage your time for your students in just one click."))
+        self.subtitle.setText(_translate("initialWindow", "Manage your time for your students in just one click."))
         self.loginButton.setText(_translate("initialWindow", "Login"))
-        self.pushButton_2.setText(_translate("initialWindow", "Sign Up"))
-
-import resource_rc
+        self.registerButton.setText(_translate("initialWindow", "Sign Up"))
+        
+import resources_rc

@@ -6,13 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>626</width>
+    <width>625</width>
     <height>504</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>625</width>
+    <height>504</height>
+   </size>
+  </property>
   <property name="maximumSize">
    <size>
-    <width>626</width>
+    <width>625</width>
     <height>504</height>
    </size>
   </property>
@@ -22,15 +28,27 @@
   <property name="documentMode">
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="centralwidget">
+  <widget class="QWidget" name="mainframe">
    <widget class="QLabel" name="Title">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>160</y>
+      <x>100</x>
+      <y>40</y>
       <width>461</width>
-      <height>71</height>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
     </property>
     <property name="font">
      <font>
@@ -50,11 +68,11 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="Title_2">
+   <widget class="QLabel" name="subtitle">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>240</y>
+      <x>180</x>
+      <y>120</y>
       <width>311</width>
       <height>21</height>
      </rect>
@@ -80,11 +98,15 @@
    <widget class="QPushButton" name="loginButton">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>10</y>
-      <width>121</width>
-      <height>31</height>
+      <x>180</x>
+      <y>220</y>
+      <width>291</width>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 20px;
+</string>
     </property>
     <property name="text">
      <string>Login</string>
@@ -94,13 +116,13 @@
       <normaloff>:/icons/icons/svgs/solid/right-from-bracket.svg</normaloff>:/icons/icons/svgs/solid/right-from-bracket.svg</iconset>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="registerButton">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>10</y>
-      <width>111</width>
-      <height>31</height>
+      <x>180</x>
+      <y>300</y>
+      <width>291</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="sizeIncrement">
@@ -108,6 +130,9 @@
       <width>0</width>
       <height>0</height>
      </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 20px;</string>
     </property>
     <property name="text">
      <string>Sign Up</string>
@@ -118,7 +143,6 @@
     </property>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
   <include location="../resources/resources.qrc"/>
