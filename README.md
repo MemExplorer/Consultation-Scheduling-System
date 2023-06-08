@@ -14,10 +14,6 @@ See [Table of contents](#table-of-contents) for references.
     - [1.4 Requirements](#requirements)
     - [1.5 User Interface Designer](#pyqt5designer)
 * [2. Contributing](#contributing)
-* [3. Project Papers](#)
-    - [3.1 Planning and Management](https://1drv.ms/w/s!AtjIPcaFwE3CgV4OqJ_29lvdOtQE?e=jBvQEl)
-    - [3.2 Weekly Reports](https://onedrive.live.com/redir?resid=C24DC085C63DC8D8!250&authkey=!AHtkVxV8T1bHl_I&ithint=file%2cdocx&e=KqWprL)
-    - [3.3 Presentation Canva](https://www.canva.com/design/DAFk6foNyY4/5QKvUlxNnoalFl-kVjquOg/edit?utm_content=DAFk6foNyY4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 # Installation Guide
 
