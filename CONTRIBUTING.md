@@ -5,13 +5,32 @@ See [Table of contents](#tables) for references.
 
 ## Table of content <a name="tables"></a>
 - [1. Development](#development)
-  - [1.1 Requirements](#requirements)
-  - [1.2 Development Flow](#development)
-  - [1.3 Timeline](#time)
+  - [1.1 File System](#file-system)
+  - [1.2 Requirements](#requirements)
+  - [1.3 Development Flow](#development)
+  - [1.4 Timeline](#time)
 - [2. Testing](##testing)
   - [2.1 Debugging](#debug)
   - [2.1 Linting](#lnit)
 - [3. Documentation](#doc)
+  
+# File System
+Overview of the project file system, as of 06/09/2023.
+
+![File System](./resources/images/contributing_filesystem.png)
+
+## File system heirarchies:
+
+* `auth` : Contains all `.py files` required for the project database authentications.
+
+* `models` : Contains all `.py files` required for database modelling.
+
+* `resources` : Contains all sub-folder for `audio, fonts, icons, images`.
+
+* `venv` : python virtual environment folder. Do not modify.
+  
+* `run.py` : Project runner file only. Reference to the main.py view.
+* `markdowns` : Related markdowns or `.md` files like `Contributing.md` and `README.md`.
 
 # Requirements
 You should have these applications and tools to develop, test, and debug the project.
@@ -40,45 +59,11 @@ F --> G
 E --> G[Production]
 ```
 
-### Flowchart visualization of the **`account login`** implementation:
+> <span style="color:orange">NOTICE: </span> There are no detailed representations of the UI workflow, database guidelines, and their connections
 
-```mermaid
-flowchart TB
-A([Start]) --> |Users| B[Prompt User Input]
-B --> |Input| C{Validator}
-C --> |Query Username| D[(Database)]
-D --> DA[/User Details/]
-DA --> C
-C --> CA{isValid?}
-CA --> |No| B
-CA --> |Yes| E{View Type?}
-E --> |Student| F[Student View]
-E --> |Teacher| FA[Teacher View]
-F --> G([End])
-FA --> G
-```
+## Sequence Diagram of Account Login/Signup
 
-### Representational diagram of signing up a user:
-
-```mermaid
-flowchart TB
-A([Start]) --> |New User| B[Prompt Require Fields]
-B --> |Input| C{Validator}
-C --> |Query Username| D[(Database)]
-D --> C
-C --> CA{isNameValid}
-CA --> |No| B
-CA --> |Yes| CB{arePasswordsMatched}
-CB --> |No| B
-CB --> |Yes| CC[Other Field Entries]
-CC --> CD[Encrypt User Details]
-CD --> |Insert Data| D
-CD --> E[Display Login View]
-E --> F([End])
-```
-
-
-> <span style="color:orange">NOTICE: </span> There are no detailed representations of the UI workflow, database guidelines, and their connections yet.
+![Account Starting Sequence](./resources/images/contributing_diagram.png)
 
 ## Timeline Constraints
 The project has a short timeline for development and testing that is why we must meet the timeline deadline as soon as possible. Here is a gantt chart representation based on [Project Paper - Gantt Chart](https://1drv.ms/w/s!AtjIPcaFwE3CgV4OqJ_29lvdOtQE?e=jBvQEl):
