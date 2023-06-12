@@ -1,29 +1,14 @@
+""" 
+This file is modified to run using a runner file defined in the run.py file.
+If you wish to test this file change all import paths to its relative path.
+
+Because this file imports are based on the run.py relative paths, you cannot run this file as a "__main__".
+"""
+
+
 import customtkinter as ctk
-from _login import LogInFrame
-
-# Class inside the window space
-class MainFrame(ctk.CTkFrame):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        
-        #Python Routing Methods
-        def ToLogin():
-            self.destroy()
-            app.configure(fg_color="pink")
-            app.LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
-
-        def ToSignUp():
-            app.destroy() # Change this on _signup.py
-
-        #Log In Button
-        self.LogIn_btn = ctk.CTkButton(self, text="Login", command=ToLogin)
-        self.LogIn_btn.grid(row=14, column=0, padx=10, pady=15)
-
-        #Sign Up Button
-        self.SignUp_btn = ctk.CTkButton(self, text="Sign up", command=ToSignUp)
-        self.SignUp_btn.grid(row=14, column=1, padx=10, pady=15)
-
-
+from views._main import MainFrame
+from views._login import LogInFrame # Based on the run.py path, you cannot run this file alone.
 
 
 # Initial frame class for each window
