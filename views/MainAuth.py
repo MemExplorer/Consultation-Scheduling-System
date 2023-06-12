@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from login import LogInFrame
+from _login import LogInFrame
 
 # Class inside the window space
 class MainFrame(ctk.CTkFrame):
@@ -13,7 +13,7 @@ class MainFrame(ctk.CTkFrame):
             app.LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         def ToSignUp():
-            app.destroy()
+            app.destroy() # Change this on _signup.py
 
         #Log In Button
         self.LogIn_btn = ctk.CTkButton(self, text="Login", command=ToLogin)
@@ -53,7 +53,7 @@ class App(ctk.CTk):
         self.MainFrame.place(relx=0.5, rely=0.5, anchor="center")
         self.MainFrame.configure(fg_color="white")
 
-        #Configure Log In Frame
+        #Configure Log In Frame. Login frame generated from the _login.py, _file.py means that it is a ctk frame.
         self.LogIn_frame = LogInFrame(master=self)
         self.LogIn_frame.configure(fg_color="white")
 
