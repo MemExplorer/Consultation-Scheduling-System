@@ -1,4 +1,4 @@
-from views import main_init
+from views import init_app
 
 if __name__ == "__main__":
-    main_init.app.mainloop() # Runner file for the main_init app. Do not modify unless required.
+    init_app.app.mainloop() # Runner file for the main_init app. Do not modify unless required.

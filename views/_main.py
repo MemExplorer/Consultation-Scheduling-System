@@ -1,10 +1,10 @@
-""" 
+""" CTK Frame Module
 This is a frame file. You can't run this file as a "__main__".
 Reference frame for main_init.py
 """
 
 import customtkinter as ctk
-from views import main_init
+from views import init_app
 
 class MainFrame(ctk.CTkFrame):
     def __init__(self, *args, **kwargs):
@@ -13,11 +13,11 @@ class MainFrame(ctk.CTkFrame):
         #Python Routing Methods
         def ToLogin():
             self.destroy()
-            main_init.app.configure(fg_color="pink")
-            main_init.app.LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
+            init_app.app.configure(fg_color="pink")
+            init_app.app.LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         def ToSignUp():
-            main_init.app.destroy() # Change this on _signup.py
+            init_app.app.destroy() # Change this on _signup.py
 
         #Log In Button
         self.LogIn_btn = ctk.CTkButton(self, text="Login", command=ToLogin)

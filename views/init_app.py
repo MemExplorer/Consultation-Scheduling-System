@@ -1,8 +1,13 @@
-""" 
+""" Application Interface Module
+
 This file is modified to run using a runner file defined in the run.py file.
 If you wish to test this file change all import paths to its relative path.
 
 Because this file imports are based on the run.py relative paths, you cannot run this file as a "__main__".
+
+
+File definition:
+init_app is the application interface for login/signup window before the user authenticate/register into the database.
 """
 
 
@@ -19,12 +24,12 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        
         #Configure Window
         self.geometry(f"{self.width}x{self.height}")
         self.title("CvSU-Carmona Campus Consultation Scheduling System")
 
         self.configure(fg_color="black")
+
         """""
         image_path = os.path.join(os.path.dirname(os.path.realpath("./resources/images/")), "images")
         

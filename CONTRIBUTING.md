@@ -29,7 +29,7 @@ Overview of the project file system, as of 06/09/2023.
 
 * `venv` : python virtual environment folder. Do not modify.
   
-* `run.py` : Project runner file only. Reference to the main.py view.
+* `run.py` : Project runner file only. Reference to the main.py views.
 * `markdowns` : Related markdowns or `.md` files like `Contributing.md` and `README.md`.
 
 # Requirements
