@@ -1,5 +1,4 @@
 import customtkinter as ctk
-import main
 from PIL import ImageTk, Image
 import os
 
@@ -13,8 +12,7 @@ class LogInFrame(ctk.CTkFrame):
         
         #Destroys the Log In module, and opens the Main module
         def button_event():
-            app.destroy()
-            main.app.mainloop()
+            pass # No function yet
 
         #space 
         self.spaces = ctk.CTkLabel(self, text=" ")
@@ -61,33 +59,3 @@ class LogInFrame(ctk.CTkFrame):
         self.SignUp = ctk.CTkLabel(self, text="Don't have an account? Sign Up here.")
         self.SignUp.grid(row=12, column=0, padx=10, pady=15)
 
-
-class App(ctk.CTk):
-    width = 900
-    height = 600
-
-    def __init__(self):
-        super().__init__()
-
-        
-        #Configure Window
-        self.geometry(f"{self.width}x{self.height}")
-        self.title("CvSU-Carmona Campus Consultation Scheduling System")
-
-        self.configure(fg_color="pink")
-        """""
-        image_path = os.path.join(os.path.dirname(os.path.realpath("./resources/images/")), "images")
-        
-        self.Bg_Img = ctk.CTkImage(Image.open(os.path.join(image_path, "pyimage1.png")), size=(self.width, self.height))
-        self.Bg_Label = ctk.CTkLabel(self, text="", image = self.Bg_Img)
-        self.Bg_Label.pack()
-        """""
-
-        #Configure Log In Frame
-        self.LogIn_frame = LogInFrame(master=self)
-        self.LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
-        self.LogIn_frame.configure(fg_color="white")
-
-if __name__ == "__main__":
-    app = App()
-    app.mainloop()
