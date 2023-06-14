@@ -15,7 +15,7 @@ class LogInFrame(ctk.CTkFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
-        #Destroys the Log In module, and opens the Main module
+        # Frame Methods
         def button_event():
             pass # No function yet
 

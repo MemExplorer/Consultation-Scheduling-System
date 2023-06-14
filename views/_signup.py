@@ -6,70 +6,57 @@ Reference frame for main_init.py
 import customtkinter as ctk
 import tkinter as tk
 
-ctk.set_appearance_mode("Dark")  # Change appearance mode to "Dark"
-ctk.set_default_color_theme("blue")  # Change color theme to "blue"
 
-appWidth, appHeight = 600, 700
-
-class App(ctk.CTk):
+class SignUpFrame(ctk.CTkFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.title("Sign Up")
-        self.geometry(f"{appWidth}x{appHeight}")
+
+        # Frame Methods
+        def confirm(self):
+            pass
 
         # Title Label
         self.titleLabel = ctk.CTkLabel(self, text="Sign Up", font=("Roboto", 24, "bold"))
-        self.titleLabel.place(relx=0.5, rely=0.1, anchor="center")
+        self.titleLabel.grid(rowspan=1, columnspan=5, padx=10, pady=50, sticky="nsew")
 
         # Name Label
         self.nameLabel = ctk.CTkLabel(self, text="Name")
-        self.nameLabel.place(relx=0.5, rely=0.2, anchor="center")
+        self.nameLabel.grid(row=1, column=0, padx=10, pady=10)
 
         # Name Entry Field
         self.nameEntry = ctk.CTkEntry(self, placeholder_text="Teja")
-        self.nameEntry.place(relx=0.5, rely=0.25, anchor="center")
+        self.nameEntry.grid(row=1, column=1, padx=10, pady=10)
 
         # Password Label
         self.passwordLabel = ctk.CTkLabel(self, text="Password")
-        self.passwordLabel.place(relx=0.5, rely=0.35, anchor="center")
+        self.passwordLabel.grid(row=2, column=0, padx=10, pady=10)
 
         # Password Entry Field
         self.passwordEntry = ctk.CTkEntry(self, show="*", placeholder_text="Password")
-        self.passwordEntry.place(relx=0.5, rely=0.4, anchor="center")
+        self.passwordEntry.grid(row=2, column=1, padx=10, pady=10)
 
         # Email Label
         self.emailLabel = ctk.CTkLabel(self, text="Email")
-        self.emailLabel.place(relx=0.5, rely=0.5, anchor="center")
+        self.emailLabel.grid(row=3, column=0, padx=10, pady=10)
 
         # Email Entry Field
         self.emailEntry = ctk.CTkEntry(self, placeholder_text="example@example.com")
-        self.emailEntry.place(relx=0.5, rely=0.55, anchor="center")
+        self.emailEntry.grid(row=3, column=1, padx=10, pady=10)
 
         # Role Label
         self.roleLabel = ctk.CTkLabel(self, text="Role")
-        self.roleLabel.place(relx=0.5, rely=0.65, anchor="center")
+        self.roleLabel.grid(row=4, column=0, padx=10, pady=10)
 
         # Role Radio Buttons
         self.roleVar = tk.StringVar(value="Student")
 
         self.teacherRadioButton = ctk.CTkRadioButton(self, text="Teacher", variable=self.roleVar, value="Teacher")
-        self.teacherRadioButton.place(relx=0.4, rely=0.7, anchor="center")
+        self.teacherRadioButton.grid(row=4, column=1, padx=10, pady=10)
 
         self.studentRadioButton = ctk.CTkRadioButton(self, text="Student", variable=self.roleVar, value="Student")
-        self.studentRadioButton.place(relx=0.6, rely=0.7, anchor="center")
+        self.studentRadioButton.grid(row=4, column=2, padx=10, pady=10)
 
         # Confirm Button
-        self.confirmButton = ctk.CTkButton(self, text="Confirm", command=self.confirm)
-        self.confirmButton.place(relx=0.5, rely=0.8, anchor="center")
-
-    def confirm(self):
-        name = self.nameEntry.get()
-        password = self.passwordEntry.get()
-        email = self.emailEntry.get()
-        role = self.roleVar.get()
-        print(f"Name: {name}, Password: {password}, Email: {email}, Role: {role}")
-
-if __name__ == "__main__":
-    app = App()
-    app.mainloop()
+        self.confirmButton = ctk.CTkButton(self, text="Confirm", command=confirm)
+        self.confirmButton.grid(row=5, columnspan=4, padx=10, pady=10, sticky="nsew")

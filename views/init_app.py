@@ -14,6 +14,7 @@ init_app is the application interface for login/signup window before the user au
 import customtkinter as ctk
 from views._main import MainFrame
 from views._login import LogInFrame # Based on the run.py path, you cannot run this file alone.
+from views._signup import SignUpFrame # Based on the run.py path, you cannot run this file alone.
 
 
 # Initial frame class for each window
@@ -46,6 +47,10 @@ class App(ctk.CTk):
         #Configure Log In Frame. Login frame generated from the _login.py, _file.py means that it is a ctk frame.
         self.LogIn_frame = LogInFrame(master=self)
         self.LogIn_frame.configure(fg_color="white")
+
+        #Configure Log In Frame. Sign up frame generated from the _signup.py, _file.py means that it is a ctk frame.
+        self.SignUp_frame = SignUpFrame(master=self)
+        self.SignUp_frame.configure(fg_color="white")
 
 app = App()
 
