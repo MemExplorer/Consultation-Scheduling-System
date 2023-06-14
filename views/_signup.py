@@ -11,11 +11,6 @@ class SignUpFrame(ctk.CTkFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-
-        # Frame Methods
-        def confirm(self):
-            pass
-
         # Title Label
         self.titleLabel = ctk.CTkLabel(self, text="Sign Up", font=("Roboto", 24, "bold"))
         self.titleLabel.grid(rowspan=1, columnspan=5, padx=10, pady=50, sticky="nsew")
@@ -58,5 +53,13 @@ class SignUpFrame(ctk.CTkFrame):
         self.studentRadioButton.grid(row=4, column=2, padx=10, pady=10)
 
         # Confirm Button
-        self.confirmButton = ctk.CTkButton(self, text="Confirm", command=confirm)
+        self.confirmButton = ctk.CTkButton(self, text="Confirm", command=self.confirm)
         self.confirmButton.grid(row=5, columnspan=4, padx=10, pady=10, sticky="nsew")
+
+    # Frame Methods
+    def confirm(self):
+        name = self.nameEntry.get()
+        password = self.passwordEntry.get()
+        email = self.emailEntry.get()
+        role = self.roleVar.get()
+        print(f"Name: {name}, Password: {password}, Email: {email}, Role: {role}")
