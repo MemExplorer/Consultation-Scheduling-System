@@ -45,12 +45,10 @@ class App(ctk.CTk):
         self.MainFrame.configure(fg_color="white")
 
         #Configure Log In Frame. Login frame generated from the _login.py, _file.py means that it is a ctk frame.
-        self.LogIn_frame = LogInFrame(master=self)
-        self.LogIn_frame.configure(fg_color="white")
+        self.LogIn_frame = LogInFrame(master=self, fg_color="white")
 
         #Configure Log In Frame. Sign up frame generated from the _signup.py, _file.py means that it is a ctk frame.
-        self.SignUp_frame = SignUpFrame(master=self)
-        self.SignUp_frame.configure(fg_color="white")
+        self.SignUp_frame = SignUpFrame(master=self, fg_color="#161616")
 
 app = App()
 

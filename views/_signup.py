@@ -11,12 +11,18 @@ class SignUpFrame(ctk.CTkFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+
+        # Frame Methods
+        def RegisterUser():
+            self.register_name = self.nameEntry.get()
+            print(f"{self.register_name}")
+
         # Title Label
-        self.titleLabel = ctk.CTkLabel(self, text="Sign Up", font=("Roboto", 24, "bold"))
+        self.titleLabel = ctk.CTkLabel(self, text="Sign Up", font=("Roboto", 24, "bold"), text_color="white")
         self.titleLabel.grid(rowspan=1, columnspan=5, padx=10, pady=50, sticky="nsew")
 
         # Name Label
-        self.nameLabel = ctk.CTkLabel(self, text="Name")
+        self.nameLabel = ctk.CTkLabel(self, text="Name", text_color="white")
         self.nameLabel.grid(row=1, column=0, padx=10, pady=10)
 
         # Name Entry Field
@@ -24,7 +30,7 @@ class SignUpFrame(ctk.CTkFrame):
         self.nameEntry.grid(row=1, column=1, padx=10, pady=10)
 
         # Password Label
-        self.passwordLabel = ctk.CTkLabel(self, text="Password")
+        self.passwordLabel = ctk.CTkLabel(self, text="Password", text_color="white")
         self.passwordLabel.grid(row=2, column=0, padx=10, pady=10)
 
         # Password Entry Field
@@ -32,7 +38,7 @@ class SignUpFrame(ctk.CTkFrame):
         self.passwordEntry.grid(row=2, column=1, padx=10, pady=10)
 
         # Email Label
-        self.emailLabel = ctk.CTkLabel(self, text="Email")
+        self.emailLabel = ctk.CTkLabel(self, text="Email", text_color="white")
         self.emailLabel.grid(row=3, column=0, padx=10, pady=10)
 
         # Email Entry Field
@@ -40,16 +46,16 @@ class SignUpFrame(ctk.CTkFrame):
         self.emailEntry.grid(row=3, column=1, padx=10, pady=10)
 
         # Role Label
-        self.roleLabel = ctk.CTkLabel(self, text="Role")
+        self.roleLabel = ctk.CTkLabel(self, text="Role", text_color="white")
         self.roleLabel.grid(row=4, column=0, padx=10, pady=10)
 
         # Role Radio Buttons
         self.roleVar = tk.StringVar(value="Student")
 
-        self.teacherRadioButton = ctk.CTkRadioButton(self, text="Teacher", variable=self.roleVar, value="Teacher")
+        self.teacherRadioButton = ctk.CTkRadioButton(self, text="Teacher", variable=self.roleVar, value="Teacher", text_color="white")
         self.teacherRadioButton.grid(row=4, column=1, padx=10, pady=10)
 
-        self.studentRadioButton = ctk.CTkRadioButton(self, text="Student", variable=self.roleVar, value="Student")
+        self.studentRadioButton = ctk.CTkRadioButton(self, text="Student", variable=self.roleVar, value="Student", text_color="white")
         self.studentRadioButton.grid(row=4, column=2, padx=10, pady=10)
 
         # Confirm Button
@@ -63,3 +69,5 @@ class SignUpFrame(ctk.CTkFrame):
         email = self.emailEntry.get()
         role = self.roleVar.get()
         print(f"Name: {name}, Password: {password}, Email: {email}, Role: {role}")
+        self.confirmButton = ctk.CTkButton(self, text="Confirm", command=RegisterUser)
+        self.confirmButton.grid(row=5, columnspan=4, padx=10, pady=10, sticky="nsew")

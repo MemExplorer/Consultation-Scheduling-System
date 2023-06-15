@@ -18,7 +18,6 @@ class MainFrame(ctk.CTkFrame):
 
         def ToSignUp():
             self.destroy()
-            init_app.app.configure(fg_color="#161616")
             init_app.app.SignUp_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         #Log In Button
