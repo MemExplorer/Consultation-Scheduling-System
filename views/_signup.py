@@ -59,5 +59,15 @@ class SignUpFrame(ctk.CTkFrame):
         self.studentRadioButton.grid(row=4, column=2, padx=10, pady=10)
 
         # Confirm Button
+        self.confirmButton = ctk.CTkButton(self, text="Confirm", command=self.confirm)
+        self.confirmButton.grid(row=5, columnspan=4, padx=10, pady=10, sticky="nsew")
+
+    # Frame Methods
+    def confirm(self):
+        name = self.nameEntry.get()
+        password = self.passwordEntry.get()
+        email = self.emailEntry.get()
+        role = self.roleVar.get()
+        print(f"Name: {name}, Password: {password}, Email: {email}, Role: {role}")
         self.confirmButton = ctk.CTkButton(self, text="Confirm", command=RegisterUser)
         self.confirmButton.grid(row=5, columnspan=4, padx=10, pady=10, sticky="nsew")
