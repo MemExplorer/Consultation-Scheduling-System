@@ -13,12 +13,12 @@ class SignUpFrame(ctk.CTkFrame):
 
 
         # Frame Methods
-        def RegisterUser():
+        def RegisterUser() -> None:
             self.register_name = self.nameEntry.get()
             print(f"{self.register_name}")
 
         # Title Label
-        self.titleLabel = ctk.CTkLabel(self, text="Sign Up", font=("Roboto", 24, "bold"), text_color="white")
+        self.titleLabel = ctk.CTkLabel(self, text="Sign Up", font=("Roboto", 60, "bold"), text_color="white")
         self.titleLabel.grid(rowspan=1, columnspan=5, padx=10, pady=50, sticky="nsew")
 
         # Name Label

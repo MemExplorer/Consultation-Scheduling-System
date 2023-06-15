@@ -11,7 +11,7 @@ CREATE TABLE tbl_accounts (
     last_name VARCHAR(255) NOT NULL,
     username VARCHAR(60) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    password VARCHAR(30) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     category CHAR(1)
 );
 
@@ -30,8 +30,8 @@ ended_on DATETIME);
 
 -- Test values for tbl_accounts
 INSERT INTO tbl_accounts (first_name, last_name, username, email, password, category)
-VALUES ('John', 'Doe', 'John Doe', 'johndoe@gmail.com', 'test', 'S'),
-       ('Teacher', 'Doe', 'Teacher Doe', 'teacherdoe@gmail.com', 'test', 'T');
+VALUES ('John', 'Doe', 'John Doe', 'johndoe@gmail.com', 'gAAAAABkiu7KLSH2YDUY_iRwx_NwyfhyWpdVFwSd2FNvmqpZJDuSpNsBh6HLrKLn-1uRjVDHtljQxWK1McSITP4mieqNI3jvNA==', 'S'),
+       ('Teacher', 'Doe', 'Teacher Doe', 'teacherdoe@gmail.com', 'gAAAAABkiu7KLSH2YDUY_iRwx_NwyfhyWpdVFwSd2FNvmqpZJDuSpNsBh6HLrKLn-1uRjVDHtljQxWK1McSITP4mieqNI3jvNA==', 'T');
        
 -- Test values for tbl_history
 INSERT INTO tbl_history (task_name, task_description, created_by, requested_to, created_on, status, ended_on)

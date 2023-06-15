@@ -6,24 +6,32 @@ Reference frame for main_init.py
 import customtkinter as ctk
 from views import init_app
 
-class MainFrame(ctk.CTkFrame):
+class TitleFrame(ctk.CTkFrame):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Title Label
+        self.titleLabel = ctk.CTkLabel(self, text="Consultation System", font=("Roboto", 80, "bold"), text_color="Black")
+        self.titleLabel.grid(rowspan=5, columnspan=3, padx=10, pady=10, sticky="nsew")
+
+class OptionFrame(ctk.CTkFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
         #Python Routing Methods
         def ToLogin():
             self.destroy()
-            init_app.app.configure(fg_color="black")
+            init_app.app.TitleFrame.destroy()
             init_app.app.LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         def ToSignUp():
             self.destroy()
+            init_app.app.TitleFrame.destroy()
             init_app.app.SignUp_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         #Log In Button
         self.LogIn_btn = ctk.CTkButton(self, text="Login", command=ToLogin)
-        self.LogIn_btn.grid(row=14, column=0, padx=10, pady=15)
-
+        self.LogIn_btn.grid(row=0, column=0, padx=5, pady=5, sticky="ne")
         #Sign Up Button
         self.SignUp_btn = ctk.CTkButton(self, text="Sign up", command=ToSignUp)
-        self.SignUp_btn.grid(row=14, column=1, padx=10, pady=15)
+        self.SignUp_btn.grid(row=0, column=1, padx=5, pady=5, sticky="ne")
