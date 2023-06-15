@@ -40,6 +40,24 @@ class SignUpFrame(ctk.CTkFrame):
         self.passwordEntry = ctk.CTkEntry(self, show="*", placeholder_text="Password")
         self.passwordEntry.grid(row=2, column=1, padx=10, pady=10)
 
+        # Last Name Label
+        self.lastNameLabel = ctk.CTkLabel(self, text="Last Name", text_color="white")
+        self.lastNameLabel.grid(row=1, column=2, padx=10, pady=10)
+
+        # Last Name Entry Field
+        self.lastNameEntry = ctk.CTkEntry(self, placeholder_text="Doe")
+        self.lastNameEntry.grid(row=1, column=3, padx=10, pady=10)
+
+        # Confirm Password Label
+        self.confirmPasswordLabel = ctk.CTkLabel(self, text="Confirm Password", text_color="white")
+        self.confirmPasswordLabel.grid(row=2, column=2, padx=10, pady=10)
+
+        # Confirm Password Entry Field
+        self.confirmPasswordEntry = ctk.CTkEntry(self, show="*", placeholder_text="Confirm Password")
+        self.confirmPasswordEntry.grid(row=2, column=3, padx=10, pady=10)
+
+
+
         # Email Label
         self.emailLabel = ctk.CTkLabel(self, text="Email", text_color="white")
         self.emailLabel.grid(row=3, column=0, padx=10, pady=10)

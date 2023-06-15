@@ -83,11 +83,15 @@ class App(customtkinter.CTk):
         # add a label to the second frame
         self.second_frame_label = customtkinter.CTkLabel(self.second_frame, text="This is the second frame",
                                                           font=customtkinter.CTkFont(size=20, weight="bold"))
-        self.second_frame_label.grid(row=0, column=0, padx=30, pady=(140, 155))
+        self.second_frame_label.grid(row=0, column=0, padx=30, pady=(140, 290))
+        self.second_frame_label.place(relx=0.5, rely=0.15, anchor="center")
 
         # add a button to the second frame
         self.second_frame_button = customtkinter.CTkButton(self.second_frame, text="Click me", command=self.second_frame_button_click, width=200)
-        self.second_frame_button.grid(row=1, column=0, padx=30, pady=(15,155))
+        self.second_frame_button.grid(row=1, column=0, padx=30, pady=(15,200), sticky="nsew")
+
+        #anchoring in the center
+        self.second_frame_button.place(relx=0.5, rely=0.5, anchor="center")
 
         # create third frame
         self.third_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
