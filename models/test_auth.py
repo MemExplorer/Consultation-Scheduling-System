@@ -8,16 +8,16 @@ from mysql.connector import Error
 # Database connection protocol
 db = mysql.connector.connect(
     host="localhost",
-    database="test",
+    database="db_csystem",
     user="root",
-    passwd=""
+    passwd="test"
 )
 
 # Handle error on queries
 try:
 
     # SQL Query
-    query = "SELECT * FROM tbl_test"
+    query = "SELECT * FROM tbl_accounts"
 
     # Database connection using cursor. I don't know how it work, but it works.
     cursor = db.cursor()
