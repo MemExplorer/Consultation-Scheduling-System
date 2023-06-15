@@ -80,17 +80,4 @@ class SignUpFrame(ctk.CTkFrame):
         confirmPassword = self.confirmPasswordEntry.get()
         role = self.roleVar.get()
         print(f"Name: {name}, Password: {password}, Email: {email}, Role: {role}")
-        self.RegisterUser()  # Call the RegisterUser method
 
-    def RegisterUser(self):
-        self.register_name = self.nameEntry.get()
-        print(f"{self.register_name}")
-
-
-# Creating an instance of the SignUpFrame
-root = tk.Tk()
-frame = SignUpFrame(root)
-frame.pack()
-
-# Running the main loop
-root.mainloop()
