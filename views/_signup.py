@@ -14,18 +14,15 @@ class SignUpFrame(ctk.CTkFrame):
 
         # Frame Methods
         def RegisterUser():
-            self.name = self.nameEntry.get()
-            self.password = self.passwordEntry.get()
-            self.email = self.emailEntry.get()
-            self.role = self.roleVar.get()
-            print(f"Name: {self.name}, Password: {self.password}, Email: {self.email}, Role: {self.role}")
+            self.register_name = self.nameEntry.get()
+            print(f"{self.register_name}")
 
         # Title Label
         self.titleLabel = ctk.CTkLabel(self, text="Sign Up", font=("Roboto", 24, "bold"), text_color="white")
         self.titleLabel.grid(rowspan=1, columnspan=5, padx=10, pady=50, sticky="nsew")
 
         # Name Label
-        self.nameLabel = ctk.CTkLabel(self, text="Name", text_color="white")
+        self.nameLabel = ctk.CTkLabel(self, text="First Name", text_color="white")
         self.nameLabel.grid(row=1, column=0, padx=10, pady=10)
 
         # Name Entry Field
@@ -49,7 +46,7 @@ class SignUpFrame(ctk.CTkFrame):
         self.lastNameEntry.grid(row=1, column=3, padx=10, pady=10)
 
         # Confirm Password Label
-        self.confirmPasswordLabel = ctk.CTkLabel(self, text="Confirm Password", text_color="white")
+        self.confirmPasswordLabel = ctk.CTkLabel(self, text="Confirm Password", text_color="white", command=self.confirm)
         self.confirmPasswordLabel.grid(row=2, column=2, padx=10, pady=10)
 
         # Confirm Password Entry Field
@@ -80,6 +77,20 @@ class SignUpFrame(ctk.CTkFrame):
         self.studentRadioButton.grid(row=4, column=2, padx=10, pady=10)
 
         # Confirm Button
-        self.confirmButton = ctk.CTkButton(self, text="Confirm", command=RegisterUser)
+        self.confirmButton = ctk.CTkButton(self, text="Confirm", command=self.confirm)
         self.confirmButton.grid(row=5, columnspan=4, padx=10, pady=10, sticky="nsew")
 
+    def confirm(self):
+            name = self.nameEntry.get()
+            lastName = self.lastNameEntry.get()
+            password = self.passwordEntry.get()
+            email = self.emailEntry.get()
+            confirmPassword = self.confirmPasswordEntry.get()
+            role = self.roleVar.get()
+            print(f"Name: {name}, Password: {password}, Email: {email}, Role: {role}")
+            self.confirmButton = ctk.CTkButton(self, text="Confirm", command=self.RegisterUser)  # Updated command
+            self.confirmButton.grid(row=5, columnspan=4, padx=10, pady=10, sticky="nsew")
+            
+    def RegisterUser(self):
+            self.register_name = self.nameEntry.get()  # Fixed typo
+            print(f"{self.register_name}")
