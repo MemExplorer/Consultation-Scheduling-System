@@ -13,7 +13,7 @@ class App(customtkinter.CTk):
         super().__init__()
 
         self.title("image_example.py")
-        self.geometry("700x450")
+        self.geometry("900x600")
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
@@ -83,11 +83,12 @@ class App(customtkinter.CTk):
         # add a label to the second frame
         self.second_frame_label = customtkinter.CTkLabel(self.second_frame, text="This is the second frame",
                                                           font=customtkinter.CTkFont(size=20, weight="bold"))
-        self.second_frame_label.grid(row=0, column=0, padx=30, pady=(30, 15))
+        self.second_frame_label.grid(row=0, column=0, padx=30, pady=(140, 155))
 
         # add a button to the second frame
         self.second_frame_button = customtkinter.CTkButton(self.second_frame, text="Click me", command=self.second_frame_button_click, width=200)
-        self.second_frame_button.grid(row=1, column=0, padx=30, pady=(15, 15))
+        self.second_frame_button.grid(row=1, column=0, padx=30, pady=(15,155))
+
         # create third frame
         self.third_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
 
