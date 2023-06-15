@@ -5,6 +5,7 @@ Reference frame for main_init.py
 
 import customtkinter as ctk
 from PIL import ImageTk, Image
+from views import init_app
 import os
 
 ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
@@ -16,6 +17,10 @@ class LogInFrame(ctk.CTkFrame):
         super().__init__(*args, **kwargs)
         
         # Frame Methods
+        def ToSignUp():
+            self.destroy()
+            init_app.app.SignUp_frame.place(relx=0.5, rely=0.5, anchor="center")
+        
         def button_event():
             pass # No function yet
 
@@ -61,6 +66,6 @@ class LogInFrame(ctk.CTkFrame):
         self.LogIn_btn.grid(row=11, column=0, padx=10, pady=15)
         
         #Sign Up Label
-        self.SignUp = ctk.CTkLabel(self, text="Don't have an account? Sign Up here.")
+        self.SignUp = ctk.CTkButton(self, text="Don't have an account? Sign Up here.", background_corner_colors=None, command=ToSignUp)
         self.SignUp.grid(row=12, column=0, padx=10, pady=15)
 
