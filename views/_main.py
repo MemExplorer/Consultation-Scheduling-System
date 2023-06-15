@@ -13,7 +13,7 @@ class MainFrame(ctk.CTkFrame):
         #Python Routing Methods
         def ToLogin():
             self.destroy()
-            init_app.app.configure(fg_color="pink")
+            init_app.app.configure(fg_color="black")
             init_app.app.LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         def ToSignUp():

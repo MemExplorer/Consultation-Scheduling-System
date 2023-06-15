@@ -19,6 +19,8 @@ from views._signup import SignUpFrame # Based on the run.py path, you cannot run
 
 # Initial frame class for each window
 class App(ctk.CTk):
+
+    # Window size
     width = 900
     height = 600
 
