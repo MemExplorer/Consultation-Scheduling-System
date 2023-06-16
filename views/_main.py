@@ -21,13 +21,13 @@ class OptionFrame(ctk.CTkFrame):
         #Python Routing Methods
         def ToLogin():
             self.destroy()
-            init_app.app.TitleFrame.destroy()
-            init_app.app.LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
+            init_app.init.TitleFrame.destroy()
+            init_app.init.LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         def ToSignUp():
             self.destroy()
-            init_app.app.TitleFrame.destroy()
-            init_app.app.SignUp_frame.place(relx=0.5, rely=0.5, anchor="center")
+            init_app.init.TitleFrame.destroy()
+            init_app.init.SignUp_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         #Log In Button
         self.LogIn_btn = ctk.CTkButton(self, text="Login", command=ToLogin)

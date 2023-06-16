@@ -6,7 +6,7 @@ Reference frame for main_init.py
 import customtkinter as ctk
 from PIL import ImageTk, Image
 from views import init_app
-from views import student_app
+from views.student import student_app
 from models.db_system import DBSystem
 from models._cryptography import Security
 import os
@@ -23,7 +23,7 @@ class LogInFrame(ctk.CTkFrame):
         # Frame Methods
         def ToSignUp() -> None:
             self.destroy()
-            init_app.app.SignUp_frame.place(relx=0.5, rely=0.5, anchor="center")
+            init_app.init.SignUp_frame.place(relx=0.5, rely=0.5, anchor="center")
         
         # Validate if user email and password is the same as the query data. bool = True | False.
         def ValidateUser(email: str, password: str) -> None:
@@ -37,14 +37,15 @@ class LogInFrame(ctk.CTkFrame):
 
             if user_password == password:
                 if user_data[-1] == 'S':
-                    init_app.app.destroy()
+                    init_app.init.destroy()
 
-                    # Creating an instance to the  student app with user authenticated data.
-                    app = student_app.StudentApp(user_data=user_data)
-                    app.mainloop()
+                    # Callable instance of the student class
+                    _instance_student = student_app._dangerouslyInit(userdata=user_data)
+                    _instance_student.select_frame_by_name("home")
+                    _instance_student.mainloop()
                     
                 else:
-                    init_app.app.destroy()
+                    init_app.init.destroy()
 
 
         #space 

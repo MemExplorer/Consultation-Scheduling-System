@@ -55,4 +55,4 @@ class App(ctk.CTk):
         #Configure Log In Frame. Sign up frame generated from the _signup.py, _file.py means that it is a ctk frame.
         self.SignUp_frame = SignUpFrame(master=self, fg_color="#161616")
 
-app = App()
+init = App()
