@@ -30,8 +30,8 @@ ended_on DATETIME);
 
 -- Test values for tbl_accounts
 INSERT INTO tbl_accounts (first_name, last_name, username, email, password, category)
-VALUES ('John', 'Doe', 'John Doe', 'johndoe@gmail.com', 'gAAAAABkiu7KLSH2YDUY_iRwx_NwyfhyWpdVFwSd2FNvmqpZJDuSpNsBh6HLrKLn-1uRjVDHtljQxWK1McSITP4mieqNI3jvNA==', 'S'),
-       ('Teacher', 'Doe', 'Teacher Doe', 'teacherdoe@gmail.com', 'gAAAAABkiu7KLSH2YDUY_iRwx_NwyfhyWpdVFwSd2FNvmqpZJDuSpNsBh6HLrKLn-1uRjVDHtljQxWK1McSITP4mieqNI3jvNA==', 'T');
+VALUES ('John', 'Doe', 'John Doe', 'johndoe@gmail.com', 'Z0FBQUFBQmtpOGFPWE1jel8xcHJJWlMzRXptZFE4dThLVjhyNmJ3NDdjMjVTbDhhVHV1eFpyTWlkc3A0NVN3VkdPSkVKRkRQZmk1VkJkRUFIdUlBclIwRW9wR2lFYVhyTWc9PQ==', 'S'),
+       ('Teacher', 'Doe', 'Teacher Doe', 'teacherdoe@gmail.com', 'Z0FBQUFBQmtpOGFPWE1jel8xcHJJWlMzRXptZFE4dThLVjhyNmJ3NDdjMjVTbDhhVHV1eFpyTWlkc3A0NVN3VkdPSkVKRkRQZmk1VkJkRUFIdUlBclIwRW9wR2lFYVhyTWc9PQ==', 'T');
        
 -- Test values for tbl_history
 INSERT INTO tbl_history (task_name, task_description, created_by, requested_to, created_on, status, ended_on)

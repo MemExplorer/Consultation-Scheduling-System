@@ -5,19 +5,16 @@ Reference frame for main_init.py
 
 import customtkinter as ctk
 import re
+import base64
 import tkinter as tk
-from models.cryptography import Security
+from models._cryptography import Security
 from models.db_system import DBSystem
+from views import init_app
 
 class SignUpFrame(ctk.CTkFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-
-        # Frame Methods
-        def RegisterUser() -> None:
-            self.register_name = self.nameEntry.get()
-            print(f"{self.register_name}")
 
         # Title Label
         self.titleLabel = ctk.CTkLabel(self, text="Sign Up", font=("Roboto", 60, "bold"), text_color="white")
@@ -102,6 +99,7 @@ class SignUpFrame(ctk.CTkFrame):
         # Lambda expressions for simple functions needed for this method
         get_role = lambda: "S" if self.roleVar.get() == "Student" else "T"
         valid_email = lambda: True if re.fullmatch(regex, email) else False
+        format_str = lambda: (fname.title(), lname.title(), username.title())
 
         fname = self.firstNameEntry.get()
         lname = self.lastNameEntry.get()
@@ -111,18 +109,22 @@ class SignUpFrame(ctk.CTkFrame):
         email = self.emailEntry.get()
         role = get_role()
 
-
-
+        # Format String Completion
+        format_str()
+        
+        # Check if all fields are filled.
         isData_Filled = (fname != '' and lname != '' and username != '' and password != '' and password == cpass and email != '' and valid_email())
-
-        print(valid_email())
-        print(isData_Filled)
 
         if isData_Filled:
 
-            # Password encryption
-            crypted_pass = _crypt.Encrypt(password)
+            # Password encryption algorithms defined in _cryptography.py
+            fernet_encryption = _crypt.Encrypt(password)
+            base64_encryption = base64.b64encode(fernet_encryption).decode()
 
             # Commit to the database
-            _dbsystem.RegisterUserAccount(fname=fname,lname=lname, username=username, email=email, password=crypted_pass, role=role)
+            _dbsystem.RegisterUserAccount(fname=fname,lname=lname, username=username, email=email, password=base64_encryption, role=role)
             print(_dbsystem.QueryAccountData())
+
+            # redirecting to the login frame
+            init_app.SignUpFrame.destroy()
+            init_app.LogInFrame.place(relx=0.5, rely=0.5, anchor="center")

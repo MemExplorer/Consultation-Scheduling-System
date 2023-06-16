@@ -8,7 +8,8 @@ from PIL import ImageTk, Image
 from views import init_app
 from views.student import student_app
 from models.db_system import DBSystem
-from models.cryptography import Security
+from models._cryptography import Security
+import base64
 import os
 
 ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
@@ -33,7 +34,8 @@ class LogInFrame(ctk.CTkFrame):
             self.crypt = Security()
             # Throws error on null fetching of models/db_system.py - DBSystem cursor.
             user_data = self.auth_instance.SearchUser(email=email)
-            user_password = self.crypt.Decrypt(user_data[5])
+            base64_to_fernet_encryption = base64.b64decode(user_data[5]).decode()
+            user_password = self.crypt.Decrypt(base64_to_fernet_encryption)
 
             if user_password == password:
                 if user_data[-1] == 'S':

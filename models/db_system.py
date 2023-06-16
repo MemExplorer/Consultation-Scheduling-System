@@ -45,9 +45,9 @@ class DBSystem(DBConnect):
     def RegisterUserAccount(self, fname: str, lname: str, username:str, email: str, password: str, role: str) -> None:
             
             with self.db.cursor() as cursor:
-                 
+
                 # SQL Query
-                self.insert_query = f"INSERT INTO tbl_accounts (first_name, last_name, username, email, password, category) VALUES ({fname}, {lname}, {username}, {email}, {password}, {role})"
+                self.insert_query = f"INSERT INTO tbl_accounts (first_name, last_name, username, email, password, category) VALUES ('{fname}', '{lname}', '{username}', '{email}', '{password}', '{role}')"
 
                 cursor.execute(self.insert_query)
                 self.db.commit()
