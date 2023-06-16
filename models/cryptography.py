@@ -16,7 +16,7 @@ class Security(Fernet):
 
     def Encrypt(self, text:str) -> str:
         encrypt = self.encrypt(text.encode())
-        return encrypt
+        return str(encrypt)
     
     def Decrypt(self, text:str) -> str:
         decode = self.decrypt(text).decode()

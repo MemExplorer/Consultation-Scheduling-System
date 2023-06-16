@@ -37,11 +37,20 @@ class DBSystem(DBConnect):
         
         with self.db.cursor() as cursor:
             # SQL Query
-            query = "SELECT * FROM tbl_accounts"
-            cursor.execute(query)
+            self.search_sql = "SELECT * FROM tbl_accounts"
+            cursor.execute(self.search_sql)
             results = cursor.fetchall()
             return results
         
+    def RegisterUserAccount(self, fname: str, lname: str, username:str, email: str, password: str, role: str) -> None:
+            
+            with self.db.cursor() as cursor:
+                 
+                # SQL Query
+                self.insert_query = f"INSERT INTO tbl_accounts (first_name, last_name, username, email, password, category) VALUES ({fname}, {lname}, {username}, {email}, {password}, {role})"
+
+                cursor.execute(self.insert_query)
+                self.db.commit()
 
 
 # Testing purposes

@@ -8,7 +8,7 @@ from PIL import ImageTk, Image
 from views import init_app
 from views.student import student_app
 from models.db_system import DBSystem
-from models._cryptography import Security
+from models.cryptography import Security
 import os
 
 ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
