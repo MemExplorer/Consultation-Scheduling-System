@@ -35,10 +35,11 @@ Overview of the project file system, as of 06/09/2023.
 # Requirements
 You should have these applications and tools to develop, test, and debug the project.
 
-- XAMPP 8.2.4
-- IDE/Editor
-- MySQL
-- Python 3.11.3
+- [XAMPP 8.2.4](https://www.apachefriends.org/download.html)
+- [Python/Connector](https://dev.mysql.com/downloads/connector/python/)
+- IDE/Editor of your choice
+- [MySQL](https://dev.mysql.com/downloads/installer/)
+- [Python 3.11.3](https://www.python.org/downloads/)
 # Development
 ### Here is the general concept of the project implementation:
 
@@ -85,7 +86,4 @@ gantt
 ## Testing 
 ### Debugging
 ### Testing Environment
-
-
 ## Documentation
-In progress
