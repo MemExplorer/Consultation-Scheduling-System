@@ -18,13 +18,18 @@ ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark
 #Log In Frame class
 class LogInFrame(ctk.CTkFrame):
 
+    # Frame Methods
+    def ToSignUp(self) -> None:
+        self.destroy()
+
+        # New instance created because of the destroy() destroying the defined value of SignIn_frame in the init_app
+        _signupframe = init_app.SignUpFrame(master=init_app.init, fg_color="#161616")
+        _signupframe.place(relx=0.5, rely=0.5, anchor="center")
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
-        # Frame Methods
-        def ToSignUp() -> None:
-            self.destroy()
-            init_app.init.SignUp_frame.place(relx=0.5, rely=0.5, anchor="center")
+
         
         # Validate if user email and password is the same as the query data.    
         def ValidateUser(email: str, password: str) -> None:
@@ -33,14 +38,15 @@ class LogInFrame(ctk.CTkFrame):
             self.crypt = Security()
 
             # Fetch user data from the database
-            user_data = self.auth_instance.SearchUser(email=email)
+            user_data = self.auth_instance.SearchUserByEmail(email=email)
 
             if user_data is False:
-                self.err_label.configure(text="Username doesn't exist")
+                self.err_label.configure(text="Email address doesn't exist")
             else:
                 # Decrypt and compare the user's password with the provided password
-                base64_to_fernet_encryption = base64.b64decode(user_data[5]).decode()
-                user_password = self.crypt.Decrypt(base64_to_fernet_encryption)
+
+                user_password = self.crypt.Decrypt(base64.b64decode(user_data[5]).decode())
+
 
                 if user_password == password:
                     if user_data[-1] == 'S':
@@ -95,6 +101,6 @@ class LogInFrame(ctk.CTkFrame):
         self.LogIn_btn.grid(row=12, column=0, padx=5, pady=5)
         
         #Sign Up Label
-        self.SignUp = ctk.CTkButton(self, text="Don't have an account? Sign Up here", command=ToSignUp, fg_color="transparent", hover=False, text_color="black", font=ctk.CTkFont(underline=True))
+        self.SignUp = ctk.CTkButton(self, text="Don't have an account? Sign Up here", command=self.ToSignUp, fg_color="transparent", hover=False, text_color="black", font=ctk.CTkFont(underline=True))
         self.SignUp.grid(row=13, column=0, padx=10, pady=15)
 

@@ -23,13 +23,31 @@ class DBSystem(DBConnect):
     def __init__(self) -> None:
         super().__init__()
 
-    def SearchUser(self, email:str) -> list | bool:
+    def SearchUserByEmail(self, email:str) -> list | bool:
     
             # Get existing user information if any, returns False on error attempt.
             try:
-                 return [list(data) for data in self.QueryAccountData() if any(email in data for data in self.QueryAccountData())][0]
+                 return [list(data) for data in self.QueryAccountData() if email in data][0]
             except:
                  return False
+            
+    def SearchIfExistsByEmail(self, email:str) -> list | bool:
+
+        # Get existing user information if any, returns False on error attempt.
+        try:
+                result = [list(data) for data in self.QueryAccountData() if email in data][0]
+                return True
+        except:
+                return False
+            
+    def SearchIfExistsByUsername(self, username:str) -> list | bool:
+
+        # Get existing user information if any, returns False on error attempt.
+        try:
+                result = [list(data) for data in self.QueryAccountData() if email in data][0]
+                return True
+        except:
+                return False
 
         
 
@@ -57,6 +75,5 @@ class DBSystem(DBConnect):
 
 if __name__ == "__main__":
     db_instance = DBSystem()
-    print(db_instance.QueryAccountData()) # passed
-    print(db_instance.SearchUser("teacherdoe@gmail.com")) # passed
-    print(db_instance.SearchUser("teacherdoe@gmaisl.com")) # passed
+    print(db_instance.SearchUserByEmail("teacherdoe@gmail.com")) # passed
+    print(db_instance.SearchUserByEmail("johndoe@gmail.com")) # passed
