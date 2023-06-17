@@ -23,7 +23,7 @@ class DBSystem(DBConnect):
     def __init__(self) -> None:
         super().__init__()
 
-    def SearchUser(self, email:str) -> list:
+    def SearchUser(self, email:str) -> list | bool:
     
             # Get existing user information if any, returns False on error attempt.
             try:

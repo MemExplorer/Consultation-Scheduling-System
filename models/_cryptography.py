@@ -25,7 +25,6 @@ class Security(Fernet):
 
 
 # Manual Testing
-
 if __name__ == "__main__":
     _instance = Security()
     _encrypted = _instance.Encrypt("test")

@@ -1,3 +1,8 @@
+""" Pre-defined Database Design
+
+This is a pre-defined design for the database structure so you can write sql code in the "./csystem.sql" file.
+"""
+
 import mysql.connector
 
 try:
