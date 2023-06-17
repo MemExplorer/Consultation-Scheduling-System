@@ -4,8 +4,8 @@ try:
     # Connect to the database
     db = mysql.connector.connect(
         host="localhost",
-        user="root",
-        password="test"
+        user="root", # Change this based on your MySQL configuration
+        password="test" # Change this based on your MySQL configuration
     )
 
     # Create a cursor object
@@ -27,6 +27,6 @@ try:
     db.close()
 
     print("Database initialization completed successfully.")
-    
+
 except mysql.connector.Error as error:
     print(f"Error during database initialization: {error}")

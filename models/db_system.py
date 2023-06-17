@@ -12,8 +12,8 @@ class DBConnect:
         self.db = mysql.connector.connect(
             host="localhost",
             database="db_csystem",
-            user="root",
-            passwd="test"
+            user="root", # Change this based on your MySQL configuration
+            passwd="test" # Change this based on your MySQL configuration
         )
 
 
