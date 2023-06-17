@@ -6,3 +6,4 @@ typing-extensions~=4.4.0
 ttkthemes
 cryptography
 pyinstaller
+pillow
