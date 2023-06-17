@@ -6,6 +6,10 @@ Reference frame for main_init.py
 import customtkinter as ctk
 from PIL import ImageTk, Image
 from views import init_app
+from views.student import student_app
+from models.db_system import DBSystem
+from models._cryptography import Security
+import base64
 import os
 
 ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
@@ -13,16 +17,37 @@ ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark
 
 #Log In Frame class
 class LogInFrame(ctk.CTkFrame):
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
         # Frame Methods
-        def ToSignUp():
+        def ToSignUp() -> None:
             self.destroy()
-            init_app.app.SignUp_frame.place(relx=0.5, rely=0.5, anchor="center")
+            init_app.init.SignUp_frame.place(relx=0.5, rely=0.5, anchor="center")
         
-        def button_event():
-            pass # No function yet
+        # Validate if user email and password is the same as the query data. bool = True | False.
+        def ValidateUser(email: str, password: str) -> None:
+
+
+            self.auth_instance = DBSystem()
+            self.crypt = Security()
+            # Throws error on null fetching of models/db_system.py - DBSystem cursor.
+            user_data = self.auth_instance.SearchUser(email=email)
+            base64_to_fernet_encryption = base64.b64decode(user_data[5]).decode()
+            user_password = self.crypt.Decrypt(base64_to_fernet_encryption)
+
+            if user_password == password:
+                if user_data[-1] == 'S':
+                    init_app.init.destroy()
+
+                    # Callable instance of the student class
+                    _instance_student = student_app._dangerouslyInit(userdata= user_data)
+                    _instance_student.mainloop()
+                    
+                else:
+                    init_app.init.destroy()
+
 
         #space 
         self.spaces = ctk.CTkLabel(self, text=" ")
@@ -51,18 +76,14 @@ class LogInFrame(ctk.CTkFrame):
         self.Password.grid(row=7, column=0, padx=10, pady=0)
         self.ForgotPass = ctk.CTkLabel(self, text="Forgot Password?", font=('Arial', 10))
         self.ForgotPass.grid(row=8, column=0, padx=55, pady=0, sticky="e")
-        
-        #User OptionMenu
-        self.Users = ctk.CTkOptionMenu(self, values=["Student", "Faculty"])
-        self.Users.grid(row=9, column=0, pady=10, padx=10)
-        self.Users.set("User")
+    
 
         #Remember Me CheckBox
         self.RememberMe = ctk.CTkCheckBox(self, text="Remember Me", checkbox_height=17, checkbox_width=17, border_width=2, corner_radius=1)
         self.RememberMe.grid(row=10, column=0, padx=55, pady=0, sticky="w")
         
         #Log In Button
-        self.LogIn_btn = ctk.CTkButton(self, text="Log In", command=button_event)
+        self.LogIn_btn = ctk.CTkButton(self, text="Log In", command=lambda: ValidateUser(self.Email.get(), self.Password.get()))
         self.LogIn_btn.grid(row=11, column=0, padx=10, pady=15)
         
         #Sign Up Label

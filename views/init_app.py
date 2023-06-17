@@ -12,7 +12,7 @@ init_app is the application interface for login/signup window before the user au
 
 
 import customtkinter as ctk
-from views._main import MainFrame
+from views._main import *
 from views._login import LogInFrame # Based on the run.py path, you cannot run this file alone.
 from views._signup import SignUpFrame # Based on the run.py path, you cannot run this file alone.
 
@@ -41,10 +41,13 @@ class App(ctk.CTk):
         self.Bg_Label.pack()
         """""
 
-        #Configure Main Frame
-        self.MainFrame = MainFrame(master=self)
-        self.MainFrame.place(relx=0.5, rely=0.5, anchor="center")
-        self.MainFrame.configure(fg_color="white")
+        #Configure _main - TitleFrame
+        self.TitleFrame = TitleFrame(master=self, fg_color="white")
+        self.TitleFrame.place(relx=0.5, rely=0.5, anchor="center")
+
+        #Configure _main - OptionFrame
+        self.OptionFrame = OptionFrame(master=self, fg_color="white")
+        self.OptionFrame.place(relx=0.98, rely=0.02, anchor="ne")
 
         #Configure Log In Frame. Login frame generated from the _login.py, _file.py means that it is a ctk frame.
         self.LogIn_frame = LogInFrame(master=self, fg_color="white")
@@ -52,8 +55,4 @@ class App(ctk.CTk):
         #Configure Log In Frame. Sign up frame generated from the _signup.py, _file.py means that it is a ctk frame.
         self.SignUp_frame = SignUpFrame(master=self, fg_color="#161616")
 
-app = App()
-
-# On instance run as main file. To test the program file only, not accessible as a module reference.
-if __name__ == "__main__":
-    app.mainloop()
+init = App()
