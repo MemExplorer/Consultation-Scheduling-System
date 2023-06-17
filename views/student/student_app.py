@@ -8,18 +8,12 @@ import os
 from PIL import Image
 
 
-class StudentApp(customtkinter.CTk):
-    WIDTH = 900
-    HEIGHT = 600
-
-    def __init__(self, user_data: list):
+class App(customtkinter.CTk):
+    def __init__(self):
         super().__init__()
 
-        # Student data passed on the window
-        self.user_data = user_data
-
-        self.title(f"Welcome, {self.user_data[3]}!")
-        self.geometry(f"{self.WIDTH}xP{self.HEIGHT}")
+        self.title("image_example.py")
+        self.geometry("900x600")
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
@@ -28,9 +22,9 @@ class StudentApp(customtkinter.CTk):
         # load images with light and dark mode image
         image_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))),"resources")
         self.logo_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "CustomTkinter_logo_single.png")), size=(26, 26))
-        self.large_test_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "large_test_image.png")), size=(500, 150))
+        self.large_test_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "Poster.png")), size=(500, 150))
         self.image_icon_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "image_icon_light.png")), size=(20, 20))
-        self.home_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "home_dark.png")), 
+        self.home_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "home_dark.png")),
                                                  dark_image=Image.open(os.path.join(image_path, "home_light.png")), size=(20, 20))
         self.chat_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "chat_dark.png")),
                                                  dark_image=Image.open(os.path.join(image_path, "chat_light.png")), size=(20, 20))
@@ -70,6 +64,7 @@ class StudentApp(customtkinter.CTk):
         self.home_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
         self.home_frame.grid_columnconfigure(0, weight=1)
 
+        # label 
         self.home_frame_large_image_label = customtkinter.CTkLabel(self.home_frame, text="", image=self.large_test_image)
         self.home_frame_large_image_label.grid(row=0, column=0, padx=20, pady=10)
 
@@ -89,16 +84,11 @@ class StudentApp(customtkinter.CTk):
         # add a label to the second frame
         self.second_frame_label = customtkinter.CTkLabel(self.second_frame, text="This is the second frame",
                                                           font=customtkinter.CTkFont(size=20, weight="bold"))
-        self.second_frame_label.grid(row=0, column=0, padx=30, pady=(140, 290))
-        self.second_frame_label.place(relx=0.5, rely=0.15, anchor="center")
+        self.second_frame_label.grid(row=0, column=0, padx=30, pady=(30, 15))
 
         # add a button to the second frame
         self.second_frame_button = customtkinter.CTkButton(self.second_frame, text="Click me", command=self.second_frame_button_click, width=200)
-        self.second_frame_button.grid(row=1, column=0, padx=30, pady=(15,200), sticky="nsew")
-
-        #anchoring in the center
-        self.second_frame_button.place(relx=0.5, rely=0.5, anchor="center")
-
+        self.second_frame_button.grid(row=1, column=0, padx=30, pady=(15, 15))
         # create third frame
         self.third_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
 
@@ -141,12 +131,8 @@ class StudentApp(customtkinter.CTk):
     def change_appearance_mode_event(self, new_appearance_mode):
         customtkinter.set_appearance_mode(new_appearance_mode)
 
-def _dangerouslyInit(userdata: list) -> StudentApp:
-    init = StudentApp(userdata)
-    return init
 
-
-# for testing this module file only
 if __name__ == "__main__":
-    _instance = _dangerouslyInit([1,'john','doe','John Doe', 'johndoe@gmail.com', 'S'])
-    _instance.mainloop()
+    app = App()
+    app.mainloop()
+
