@@ -28,7 +28,7 @@ def display_date():
 
 window = ThemedTk(theme="arc")
 window.title("Teacher Dashboard")
-window.geometry('800x600')
+window.geometry('900x600')
 
 name_label = ttk.Label(window, text="Teacher's Name:")
 name_label.grid(column=0, row=0, padx=10, pady=10)
