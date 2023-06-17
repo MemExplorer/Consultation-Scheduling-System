@@ -44,7 +44,7 @@ class DBSystem(DBConnect):
 
         # Get existing user information if any, returns False on error attempt.
         try:
-                result = [list(data) for data in self.QueryAccountData() if email in data][0]
+                result = [list(data) for data in self.QueryAccountData() if username in data][0]
                 return True
         except:
                 return False

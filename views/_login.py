@@ -53,7 +53,7 @@ class LogInFrame(ctk.CTkFrame):
                         init_app.init.destroy()
 
                         # Callable instance of the student class
-                        _instance_student = student_app._dangerouslyInit(userdata=user_data)
+                        _instance_student = student_app._dangerouslyInit(user_data=user_data)
                         _instance_student.mainloop()
 
                     else:

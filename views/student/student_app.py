@@ -8,12 +8,18 @@ import os
 from PIL import Image
 
 
-class App(customtkinter.CTk):
-    def __init__(self):
+class StudentApp(customtkinter.CTk):
+    
+    WIDTH = 900
+    HEIGHT = 600
+
+    def __init__(self, user_data: list):
         super().__init__()
 
-        self.title("image_example.py")
-        self.geometry("900x600")
+        self.user_data = user_data
+
+        self.title(f"Welcome, {self.user_data[3]}.")
+        self.geometry(f"{self.WIDTH}x{self.HEIGHT}")
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
@@ -132,7 +138,8 @@ class App(customtkinter.CTk):
         customtkinter.set_appearance_mode(new_appearance_mode)
 
 
-if __name__ == "__main__":
-    app = App()
-    app.mainloop()
 
+# This is used to initialize the student application window in the login method -> ValidateUser
+def _dangerouslyInit(user_data: list) -> None:
+    app = StudentApp(user_data=user_data)
+    app.mainloop()
