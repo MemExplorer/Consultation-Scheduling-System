@@ -50,11 +50,14 @@ class LogInFrame(ctk.CTkFrame):
 
                 if user_password == password:
                     if user_data[-1] == 'S':
-                        init_app.init.destroy()
 
+                        init_app.init.destroy()
+                        
                         # Callable instance of the student class
                         _instance_student = student_app._dangerouslyInit(user_data=user_data)
                         _instance_student.mainloop()
+                        
+                        
 
                     else:
                         init_app.init.destroy()
