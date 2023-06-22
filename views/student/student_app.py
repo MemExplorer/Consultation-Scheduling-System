@@ -30,7 +30,7 @@ class StudentApp(customtkinter.CTk):
         """ File directory pathing for images
         Need image fixing, should use svg icons for icons due to resolution stretching when scaling. No error found.
         """
-        image_path = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "..", "resources", "images"))
+        image_path = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images"))
 
         self.logo_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "CustomTkinter_logo_single.png")), size=(26, 26))
         self.large_test_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "Poster.png")), size=(500, 150))
@@ -149,3 +149,7 @@ class StudentApp(customtkinter.CTk):
 def _dangerouslyInit(user_data: list) -> None:
     app = StudentApp(user_data=user_data)
     app.mainloop()
+
+
+if __name__ == "__main__":
+    pass
