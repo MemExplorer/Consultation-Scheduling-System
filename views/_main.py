@@ -6,14 +6,6 @@ Reference frame for main_init.py
 import customtkinter as ctk
 from views import init_app
 
-class TitleFrame(ctk.CTkFrame):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # Title Label
-        self.titleLabel = ctk.CTkLabel(self, text="Consultation System", font=("Roboto", 80, "bold"), text_color="Black")
-        self.titleLabel.grid(rowspan=5, columnspan=3, padx=10, pady=10, sticky="nsew")
-
 class OptionFrame(ctk.CTkFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -22,7 +14,8 @@ class OptionFrame(ctk.CTkFrame):
         def ToLogin():
             self.destroy()
             init_app.init.TitleFrame.destroy()
-            init_app.init.LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
+            init_app.init.LogIn_frame = ctk.CTkFrame(master=self, width=450, height=600)
+            init_app.init.LogIn_frame.place(relx=0, rely=0.5, anchor="w")
 
         def ToSignUp():
             self.destroy()
