@@ -32,7 +32,7 @@ class App(ctk.CTk):
         self.geometry(f"{self.width}x{self.height}")
         self.title("CvSU-Carmona Campus Consultation Scheduling System")
 
-        self.configure(fg_color="black")
+        self.configure(fg_color="white")
 
         
         #File directory pathing for images
@@ -48,7 +48,7 @@ class App(ctk.CTk):
         #screen_width = App.winfo_screenwidth()
         #window_width = App.winfo_width(self)
         #y = (window_width//2)
-        self.LogIn_frame = LogInFrame(master=self, fg_color="white", corner_radius=0)
+        self.LogIn_frame = LogInFrame(master=self, fg_color="#Fdf0d5", corner_radius=0)
         self.LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         #Configure Log In Frame. Sign up frame generated from the _signup.py, _file.py means that it is a ctk frame.
