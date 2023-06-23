@@ -37,8 +37,8 @@ class App(ctk.CTk):
         
         #File directory pathing for images
         
-        image_path = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "Final_Project", "resources", "images"))
-        self.logo_image = ctk.CTkImage(Image.open(os.path.join(image_path, "login_bg.png")), size=(900, 600))
+        image_path = "./resources/images/login_bg.png"
+        self.logo_image = ctk.CTkImage(Image.open(image_path), size=(900, 600))
 
         #Background Image
         self.bg = ctk.CTkLabel(self, text="", image=self.logo_image)  

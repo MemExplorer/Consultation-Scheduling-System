@@ -1,6 +1,6 @@
 from views import init_app
-from models import init_db
-
+import models.setup.init_db as dbsetup
 if __name__ == "__main__":
-    init_db # Initialize a pre-defined database in the models/csystem.sql
-    init_app.init.mainloop() # Runner file for the main_init app. Do not modify unless required.
+    if(dbsetup.initialize_database()):
+        print("Database initialization completed successfully.")
+        init_app.init.mainloop() # Runner file for the main_init app. Do not modify unless required.
