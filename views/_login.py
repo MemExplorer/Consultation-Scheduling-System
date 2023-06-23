@@ -4,13 +4,11 @@ Reference frame for main_init.py
 """
 
 import customtkinter as ctk
-from PIL import ImageTk, Image
 from views import init_app
 from views.student import student_app
 from models.db_system import DBSystem
 from models._cryptography import Security
 import base64
-import os
 
 ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
 ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
@@ -61,8 +59,7 @@ class LogInFrame(ctk.CTkFrame):
                         init_app.init.destroy()
                         
                         # Callable instance of the student class
-                        _instance_student = student_app._dangerouslyInit(user_data=user_data)
-                        _instance_student.mainloop()
+                        student_app._dangerouslyInit(user_data=user_data)
                         
                         
 
