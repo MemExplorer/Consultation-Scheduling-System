@@ -6,6 +6,7 @@ Reference frame for main_init.py
 import customtkinter as ctk
 from PIL import ImageTk, Image
 from views import init_app
+from views.teacher import teacher_app
 from views.student import student_app
 from models.db_system import DBSystem
 from models._cryptography import Security
@@ -64,10 +65,13 @@ class LogInFrame(ctk.CTkFrame):
                         _instance_student = student_app._dangerouslyInit(user_data=user_data)
                         _instance_student.mainloop()
                         
-                        
+               
 
                     else:
                         init_app.init.destroy()
+                        _instance_teacher = teacher_app._dangerouslyInit(user_data=user_data)
+                        _instance_teacher.mainloop()
+                        
                 else:
                     self.err_label.configure(text="Username or password is incorrect.")
 
@@ -77,9 +81,9 @@ class LogInFrame(ctk.CTkFrame):
         self.space1.grid(row=0, column=0, padx=0, pady=3)
 
         #Create Header
-        self.header = ctk.CTkLabel(self, text="CvSU-Carmona Campus", font=('Poppins', 13))
+        self.header = ctk.CTkLabel(self, text="CvSU-Carmona Campus", text_color="#55A630", font=('Roboto', 13))
         self.header.grid(row=1, column=0, padx=120, pady=0, sticky="nsew")
-        self.header = ctk.CTkLabel(self, text="Consultation Scheduling System", font=('Poppins', 11))
+        self.header = ctk.CTkLabel(self, text="Consultation Scheduling System", text_color="#55A630", font=('Roboto', 11))
         self.header.grid(row=2, column=0, padx=120, pady=0, sticky="nsew")
 
         #space
@@ -87,7 +91,7 @@ class LogInFrame(ctk.CTkFrame):
         self.space2.grid(row=3, column=0, padx=0, pady=10)
 
         #Welcome Greeting
-        self.welcomeg = ctk.CTkLabel(self, text="Welcome!", font=ctk.CTkFont('Poppins', 16, weight='bold'))
+        self.welcomeg = ctk.CTkLabel(self, text="Welcome!", text_color="#2B9348", font=ctk.CTkFont('Roboto', 16, weight='bold'))
         self.welcomeg.grid(row=4, column=0, padx=55, pady=10, sticky="w")
        
         #Email Label and Entry
@@ -117,7 +121,7 @@ class LogInFrame(ctk.CTkFrame):
         self.space3.grid(row=11, column=0, padx=0, pady=7)
 
         #Log In Button
-        self.LogIn_btn = ctk.CTkButton(self, text="Log In", command=lambda: ValidateUser(self.Email.get(), self.Password.get()))
+        self.LogIn_btn = ctk.CTkButton(self, text="Log In", fg_color="#2B9348", command=lambda: ValidateUser(self.Email.get(), self.Password.get()))
         self.LogIn_btn.grid(row=12, column=0, padx=5, pady=5)
         
         #space 
