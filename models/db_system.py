@@ -4,16 +4,18 @@ Ignore on build.
 """
 import mysql.connector
 from mysql.connector import Error
+from .setup.init_db import *
 
 class DBConnect:
 
     def __init__(self):
         # Database connection protocol
         self.db = mysql.connector.connect(
-            host="localhost",
-            database="db_csystem",
-            user="root", # Change this based on your MySQL configuration
-            passwd="test" # Change this based on your MySQL configuration
+            host = sql_dbconfig.g_host,
+            port = sql_dbconfig.g_port,
+            user = sql_dbconfig.g_user,
+            password = sql_dbconfig.g_password,
+            database = sql_dbconfig.g_defaultdb
         )
 
 
