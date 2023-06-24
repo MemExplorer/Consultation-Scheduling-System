@@ -4,11 +4,14 @@ Reference frame for main_auth.py
 """
 
 import customtkinter as ctk
+import os
+from PIL import Image
 from ._dashboard import DashboardFrame
 from ._faculty import FacultyFrame
 from ._calendar import CalendarFrame
 from ._consultation import ConsultationFrame
 from ._settings import SettingFrame
+from .. import init_app
 import models.resources as res
 
 ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
@@ -16,23 +19,23 @@ ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark
 
 class StudentApp(ctk.CTk):
 
-
     # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
     THEME_GREEN = ("#95D5B2", "#081c15")
     THEME_DARKGREEN = ("#80B699", "#1F664D")
     THEME_BLACK = (0, 0) # None yet
     THEME_WHITE = (0, 0) # None yet
-
+    
     def __init__(self, user_data: list):
         super().__init__()
 
+        self.isMinimized = False
         # What is going on?
         self.user_data = user_data
 
         # Window Configurations
         self.title(f"Welcome, {self.user_data[3]}.")
         self.iconbitmap(res.images.window_icon)
-        self.geometry(f"{res.constants.WIN_WIDTH}x{res.constants.WIN_HEIGHT}")
+        self.geometry(f"{res.constants.WIN_HEIGHT}x{res.constants.WIN_HEIGHT}")
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
@@ -57,33 +60,31 @@ class StudentApp(ctk.CTk):
         self.SlidePanel.grid_columnconfigure(1, weight=1)
 
         # Slide Panel | Burger as Label
-        self.AndoksLechonManok = ctk.CTkButton(self.SlidePanel, text=None, image=self.MenuSliderImage, compound="right", fg_color=self.THEME_GREEN, width=3, bg_color=self.THEME_GREEN, )
-        self.AndoksLechonManok.grid(row=0, column=0, pady=5, padx=5, sticky="e")
-
+        self.BurgerBtn = ctk.CTkButton(self.SlidePanel, text=None, image=self.MenuSliderImage, fg_color=self.THEME_GREEN, width=3, bg_color=self.THEME_GREEN, command=lambda: self.ToggleBurgerMenu())
+        self.BurgerBtn.grid(row=0, column=0, sticky="e")
 
         # Slide Panel | Title as Label
-        self.SlidePanelTitle = ctk.CTkLabel(self.SlidePanel, text=" CvSU Consult ", image=self.LogoImage, compound="left", font=ctk.CTkFont(size=15, weight="bold"))
+        self.SlidePanelTitle = ctk.CTkLabel(self.SlidePanel, width=10, text=" CvSU Consult ", image=self.LogoImage, compound="left", font=ctk.CTkFont(size=15, weight="bold"))
         self.SlidePanelTitle.grid(row=1, column=0, padx=20, pady=20, sticky="nw")
 
-
         # Slide panel | Dashboard/Home Button
-        self.ToDashboard = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Dashboard", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.HomeImage, anchor="w", command=lambda: self.SelectedPanel("dashboard"))
+        self.ToDashboard = ctk.CTkButton(self.SlidePanel, corner_radius=0, width=10, height=40, border_spacing=10, text="Dashboard", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.HomeImage, anchor="w", command=lambda: self.SelectedPanel("dashboard"))
         self.ToDashboard.grid(row=2, column=0, sticky="ew")
         
         # Slide panel | Faculty Member Button
-        self.ToFaculty = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Faculty Schedules", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.FacultyImage, anchor="w", command=lambda: self.SelectedPanel("faculty"))
+        self.ToFaculty = ctk.CTkButton(self.SlidePanel, corner_radius=0, width=10, height=40, border_spacing=10, text="Faculty Schedules", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.FacultyImage, anchor="w", command=lambda: self.SelectedPanel("faculty"))
         self.ToFaculty.grid(row=3, column=0, sticky="ew")
 
         # Slide panel | Calendar Button
-        self.ToCalendar = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Calendar", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.CalendarImage, anchor="w", command=lambda: self.SelectedPanel("calendar"))
+        self.ToCalendar = ctk.CTkButton(self.SlidePanel, corner_radius=0, width=10, height=40, border_spacing=10, text="Calendar", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.CalendarImage, anchor="w", command=lambda: self.SelectedPanel("calendar"))
         self.ToCalendar.grid(row=4, column=0, sticky="ew")
 
         # Slide panel | Consultations Button
-        self.ToConsultation = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="My Consultations", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.ConsultationImage, anchor="w", command=lambda: self.SelectedPanel("consultation"))
+        self.ToConsultation = ctk.CTkButton(self.SlidePanel, corner_radius=0, width=10, height=40, border_spacing=10, text="My Consultations", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.ConsultationImage, anchor="w", command=lambda: self.SelectedPanel("consultation"))
         self.ToConsultation.grid(row=5, column=0, sticky="ew")
 
         # Slide panel | Settings Button
-        self.ToSettings = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Settings", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.SettingImage, anchor="w", command=lambda: self.SelectedPanel("settings"))
+        self.ToSettings = ctk.CTkButton(self.SlidePanel, corner_radius=0, width=10, height=40, border_spacing=10, text="Settings", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.SettingImage, anchor="w", command=lambda: self.SelectedPanel("settings"))
         self.ToSettings.grid(row=6, column=0, sticky="ew")
 
         # Slide panel | Theme Dropdown
@@ -91,7 +92,7 @@ class StudentApp(ctk.CTk):
         self.ThemeMode.grid(row=7, column=0, padx=5, pady=5, sticky="s")
 
         # Slide panel | Logout Button
-        self.Logout = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=10, border_spacing=10, text="Logout", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), anchor="w", command=lambda: self.SelectedPanel("settings"))
+        self.Logout = ctk.CTkButton(self.SlidePanel, width=10, corner_radius=0, height=10, border_spacing=10, text="Logout", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), anchor="w", command=lambda: self.logout_handler())
         self.Logout.grid(row=8, column=0, pady=5, padx=5, sticky="s")
 
         # Dashboard | Home Panel - Implementation and Configurations on ./_dashboard.py
@@ -107,6 +108,43 @@ class StudentApp(ctk.CTk):
 
         # Default Window Frame on load
         self.SelectedPanel("dashboard")
+
+    #There's probably no proper way to achieve this in python
+    def ToggleBurgerMenu(self):
+        if(self.isMinimized):
+            self.BurgerBtn.grid(row=0, column=0, sticky="e")
+            self.SlidePanelTitle.configure(text=" CvSU Consult ", anchor="center")
+            self.ToDashboard.configure(text="Dashboard", anchor="w")
+            self.ToFaculty.configure(text="Faculty Schedules", anchor="w")
+            self.ToCalendar.configure(text="Calendar", anchor="w")
+            self.ToConsultation.configure(text="My Consultations", anchor="w")
+            self.ToSettings.configure(text="Settings", anchor="w")
+            self.Logout.configure(text="Logout", anchor="w")
+            self.Logout.grid(row=8, column=0, pady=5, padx=5, sticky="s")
+
+            self.ThemeMode.configure(values=["Light", "Dark"])
+            self.ThemeMode.grid(row=7, column=0, padx=5, pady=5, sticky="s")
+            self.isMinimized = False
+        else:
+            self.BurgerBtn.grid(row=0, column=0, sticky="ew")
+            self.SlidePanelTitle.configure(text="", anchor="center")
+            self.ToDashboard.configure(text=None, anchor="center")
+            self.ToFaculty.configure(text=None, anchor="center")
+            self.ToCalendar.configure(text=None, anchor="center")
+            self.ToConsultation.configure(text=None, anchor="center")
+            self.ToSettings.configure(text=None, anchor="center")
+            self.Logout.configure(text=None, anchor="center")
+            self.Logout.grid_forget()
+
+            self.ThemeMode.configure(values=[])
+            self.ThemeMode.grid_forget()
+            self.isMinimized = True
+
+
+    def logout_handler(self):
+        self.destroy()
+        init_app.init = init_app.App()
+        init_app.init.mainloop()
 
     # method for changing panel views
     def SelectedPanel(self, name):
