@@ -109,7 +109,7 @@ class LogInFrame(ctk.CTkFrame):
     
 
         #Remember Me CheckBox
-        self.RememberMe = ctk.CTkCheckBox(self, text="Remember Me", checkbox_height=17, checkbox_width=17, border_width=2, corner_radius=1)
+        self.RememberMe = ctk.CTkCheckBox(self, text="Remember Me", checkbox_height=17, checkbox_width=17, border_width=2, corner_radius=1, hover_color="#2B9348")
         self.RememberMe.grid(row=10, column=0, padx=55, pady=0, sticky="w")
         
         #space 
@@ -117,7 +117,7 @@ class LogInFrame(ctk.CTkFrame):
         self.space3.grid(row=11, column=0, padx=0, pady=7)
 
         #Log In Button
-        self.LogIn_btn = ctk.CTkButton(self, text="Log In", fg_color="#2B9348", command=lambda: ValidateUser(self.Email.get(), self.Password.get()))
+        self.LogIn_btn = ctk.CTkButton(self, text="Log In", fg_color="#2B9348", hover_color="#55A630", command=lambda: ValidateUser(self.Email.get(), self.Password.get()))
         self.LogIn_btn.grid(row=12, column=0, padx=5, pady=5)
         
         #space 

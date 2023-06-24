@@ -29,7 +29,6 @@ class App(ctk.CTk):
         super().__init__()
 
         #Configure Window
-
         self.geometry(f"{self.width}x{self.height}")
         self.title("CvSU-Carmona Campus Consultation Scheduling System")
         self.iconbitmap('./resources/images/window-icon.ico')
