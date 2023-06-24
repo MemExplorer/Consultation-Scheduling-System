@@ -29,7 +29,10 @@ class DBSystem(DBConnect):
     
             # Get existing user information if any, returns False on error attempt.
             try:
-                 return [list(data) for data in self.QueryAccountData() if email in data][0]
+                grouped_data = self.QueryAccountData()
+                for idx in range(len(grouped_data)):
+                     if grouped_data[idx]["email"] == email:
+                          return grouped_data[idx]
             except:
                  return False
             
@@ -59,7 +62,16 @@ class DBSystem(DBConnect):
             # SQL Query
             self.search_sql = "SELECT * FROM tbl_accounts"
             cursor.execute(self.search_sql)
-            results = cursor.fetchall()
+            findings = cursor.fetchall()
+
+            #  Get the column names
+            legend = [column[0] for column in cursor.description]
+
+            # Making a list of dictionaries to represent data
+            results = []
+            for data in findings:
+                row_dict = dict(zip(legend, data))
+                results.append(row_dict)
             return results
         
     def RegisterUserAccount(self, fname: str, lname: str, username:str, email: str, password: str, role: str) -> None:
@@ -67,14 +79,13 @@ class DBSystem(DBConnect):
             with self.db.cursor() as cursor:
 
                 # SQL Query
-                self.insert_query = f"INSERT INTO tbl_accounts (first_name, last_name, username, email, password, category) VALUES ('{fname}', '{lname}', '{username}', '{email}', '{password}', '{role}')"
+                self.insert_query = f"INSERT INTO tbl_accounts (first_name, last_name, username, email, password, role) VALUES ('{fname}', '{lname}', '{username}', '{email}', '{password}', '{role}')"
 
                 cursor.execute(self.insert_query)
                 self.db.commit()
 
 
 # Testing purposes
-
 if __name__ == "__main__":
     db_instance = DBSystem()
     print(db_instance.SearchUserByEmail("teacherdoe@gmail.com")) # passed

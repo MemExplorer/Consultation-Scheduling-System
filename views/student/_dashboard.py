@@ -10,23 +10,25 @@ from PIL import ImageTk, Image
 
 class DashboardFrame(ctk.CTkFrame):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, master, *args, **kwargs):
+        super().__init__(master, *args, **kwargs)
+        self.user_data = self.master.user_data
 
+        # load images with light and dark mode image
         """ File directory pathing for images """
 
         image_path = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images"))
-        nav_icons = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images", "nav-icons"))
+        slider_images = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images", "nav-icons"))
 
         self.LogoImage = ctk.CTkImage(Image.open(os.path.join(image_path, "CvSU Consult Logo.png")), size=(30, 30))
-        self.HomeImage = ctk.CTkImage(light_image=Image.open(os.path.join(nav_icons, "home-dark.png")), dark_image=Image.open(os.path.join(nav_icons, "home-light.png")), size=(20, 20))
-        self.FacultyImage = ctk.CTkImage(light_image=Image.open(os.path.join(nav_icons, "faculty-dark.png")), dark_image=Image.open(os.path.join(nav_icons, "faculty-light.png")), size=(20, 20))
-        self.CalendarImage = ctk.CTkImage(light_image=Image.open(os.path.join(nav_icons, "calendar-dark.png")), dark_image=Image.open(os.path.join(nav_icons, "calendar-light.png")), size=(20, 20))
-        self.ConsultationImage = ctk.CTkImage(light_image=Image.open(os.path.join(nav_icons, "consultation-dark.png")), dark_image=Image.open(os.path.join(nav_icons, "consultation-light.png")), size=(20, 20))
-        self.SettingImage = ctk.CTkImage(light_image=Image.open(os.path.join(nav_icons, "settings-dark.png")), dark_image=Image.open(os.path.join(nav_icons, "settings-light.png")), size=(20, 20))
-
+        self.HomeImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "home-dark.png")), dark_image=Image.open(os.path.join(slider_images, "home-light.png")), size=(20, 20))
+        self.FacultyImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "faculty-dark.png")), dark_image=Image.open(os.path.join(slider_images, "faculty-light.png")), size=(20, 20))
+        self.CalendarImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "calendar-dark.png")), dark_image=Image.open(os.path.join(slider_images, "calendar-light.png")), size=(20, 20))
+        self.ConsultationImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "consultation-dark.png")), dark_image=Image.open(os.path.join(slider_images, "consultation-light.png")), size=(20, 20))
+        self.SettingImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "settings-dark.png")), dark_image=Image.open(os.path.join(slider_images, "settings-light.png")), size=(20, 20))
+        self.MenuSliderImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "menu-dark.png")), dark_image=Image.open(os.path.join(slider_images, "menu-light.png")), size=(20, 20))
         """ End of resource pathing """
 
         # Dashboard title
-        self.DashboardTitle = ctk.CTkLabel(self, text="DashboardPanel")
+        self.DashboardTitle = ctk.CTkLabel(self, text=f"Welcome, {self.user_data['username']}")
         self.DashboardTitle.grid(row=0, column=0, sticky = "nsew")

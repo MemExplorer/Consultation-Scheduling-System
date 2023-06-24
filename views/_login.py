@@ -51,19 +51,16 @@ class LogInFrame(ctk.CTkFrame):
             else:
                 # Decrypt and compare the user's password with the provided password
 
-                user_password = self.crypt.Decrypt(base64.b64decode(user_data[5]).decode())
+                user_password = self.crypt.Decrypt(base64.b64decode(user_data["password"]).decode())
 
 
                 if user_password == password:
-                    if user_data[-1] == 'S':
+                    if user_data["role"] == 'S':
 
                         init_app.init.destroy()
                         
                         # Callable instance of the student class
                         student_app._dangerouslyInit(user_data=user_data)
-                        
-               
-
                     else:
                         init_app.init.destroy()
                         teacher_app._dangerouslyInit(user_data=user_data)
