@@ -26,8 +26,7 @@ class StudentApp(ctk.CTk):
         self.iconbitmap('./resources/images/window-icon.ico')
         self.geometry(f"{self.WIDTH}x{self.HEIGHT}")
 
-        # Default Window Frame on load
-        self.SelectedPanel("dashboard")
+
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
@@ -35,109 +34,119 @@ class StudentApp(ctk.CTk):
 
         # load images with light and dark mode image
 
-        """ File directory pathing for images
-        Need image fixing, should use svg icons for icons due to resolution stretching when scaling. No error found.
-        """
+        """ File directory pathing for images """
         image_path = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images"))
+        slider_images = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images", "nav-icons"))
 
-        self.logo_image = ctk.CTkImage(Image.open(os.path.join(image_path, "CvSU Consult Logo.png")), size=(30, 30))
-        self.large_test_image = ctk.CTkImage(Image.open(os.path.join(image_path, "Poster.png")), size=(500, 150))
-        self.image_icon_image = ctk.CTkImage(Image.open(os.path.join(image_path, "image_icon_light.png")), size=(20, 20))
-        self.home_image = ctk.CTkImage(light_image=Image.open(os.path.join(image_path, "home_dark.png")),
-                                                 dark_image=Image.open(os.path.join(image_path, "home_light.png")), size=(20, 20))
-        self.chat_image = ctk.CTkImage(light_image=Image.open(os.path.join(image_path, "chat_dark.png")),
-                                                 dark_image=Image.open(os.path.join(image_path, "chat_light.png")), size=(20, 20))
-        self.add_user_image = ctk.CTkImage(light_image=Image.open(os.path.join(image_path, "add_user_dark.png")),
-                                                     dark_image=Image.open(os.path.join(image_path, "add_user_light.png")), size=(20, 20))
+        self.LogoImage = ctk.CTkImage(Image.open(os.path.join(image_path, "CvSU Consult Logo.png")), size=(30, 30))
+        self.HomeImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "home-dark.png")), dark_image=Image.open(os.path.join(slider_images, "home-light.png")), size=(20, 20))
+        self.FacultyImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "faculty-dark.png")), dark_image=Image.open(os.path.join(slider_images, "faculty-light.png")), size=(20, 20))
+        self.CalendarImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "calendar-dark.png")), dark_image=Image.open(os.path.join(slider_images, "calendar-light.png")), size=(20, 20))
+        self.ConsultationImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "consultation-dark.png")), dark_image=Image.open(os.path.join(slider_images, "consultation-light.png")), size=(20, 20))
+        self.SettingImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "settings-dark.png")), dark_image=Image.open(os.path.join(slider_images, "settings-light.png")), size=(20, 20))
 
         """ End of resource pathing """
     
         # Slide Panel | Navigation - Implementation and Configurations
         self.SlidePanel = ctk.CTkFrame(self, corner_radius=0, fg_color=("#95D5B2", "#081c15"))
         self.SlidePanel.grid(row=0, column=0, sticky="nsew")
-        self.SlidePanel.grid_rowconfigure(4, weight=1)
+        self.SlidePanel.grid_rowconfigure(6, weight=1)
 
         # Slide Panel | Title as Label
-        self.SlidePanelTitle = ctk.CTkLabel(self.SlidePanel, text="CvSU Consult", image=self.logo_image, compound="left", font=ctk.CTkFont(size=15, weight="bold"))
+        self.SlidePanelTitle = ctk.CTkLabel(self.SlidePanel, text=" CvSU Consult ", image=self.LogoImage, compound="left", font=ctk.CTkFont(size=15, weight="bold"))
         self.SlidePanelTitle.grid(row=0, column=0, padx=20, pady=40, sticky="nw")
 
         # Slide panel | Dashboard/Home Button
-        self.ToDashboard = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Dashboard", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.home_image, anchor="w", command=self.home_button_event)
+        self.ToDashboard = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Dashboard", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.HomeImage, anchor="w", command=lambda: self.SelectedPanel("dashboard"))
         self.ToDashboard.grid(row=1, column=0, sticky="ew")
         
         # Slide panel | Faculty Member Button
-        self.ToFaculty = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Calendar", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.chat_image, anchor="w", command=self.frame_2_button_event)
+        self.ToFaculty = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Faculty Schedules", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.FacultyImage, anchor="w", command=lambda: self.SelectedPanel("dashboard"))
         self.ToFaculty.grid(row=2, column=0, sticky="ew")
 
+        # Slide panel | Calendar Button
+        self.ToCalendar = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Calendar", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.CalendarImage, anchor="w", command=lambda: self.SelectedPanel("dashboard"))
+        self.ToCalendar.grid(row=3, column=0, sticky="ew")
+
         # Slide panel | Consultations Button
-        self.ToConsultation = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="My Consultations", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.add_user_image, anchor="w", command=self.frame_3_button_event)
-        self.ToConsultation.grid(row=3, column=0, sticky="ew")
+        self.ToConsultation = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="My Consultations", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.ConsultationImage, anchor="w", command=lambda: self.SelectedPanel("dashboard"))
+        self.ToConsultation.grid(row=4, column=0, sticky="ew")
 
         # Slide panel | Settings Button
-        self.ToSettings = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Settings", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.add_user_image, anchor="w", command=self.frame_3_button_event)
-        self.ToSettings.grid(row=3, column=0, sticky="ew")
+        self.ToSettings = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Settings", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.SettingImage, anchor="w", command=lambda: self.SelectedPanel("dashboard"))
+        self.ToSettings.grid(row=5, column=0, sticky="ew")
 
         # Slide panel | Theme Dropdown
-        self.ThemeMode = ctk.CTkOptionMenu(self.SlidePanel, values=["Light", "Dark"], command=self.change_appearance_mode_event, fg_color="#2B9348")
+        self.ThemeMode = ctk.CTkOptionMenu(self.SlidePanel, values=["Light", "Dark"], command=lambda mode: ctk.set_appearance_mode(mode), fg_color="#2B9348")
         self.ThemeMode.grid(row=6, column=0, padx=20, pady=20, sticky="s")
         
 
         # Dashboard | Home Panel - Implementation and Configurations
-        self.HomePanel = ctk.CTkFrame(self, corner_radius=0, fg_color=("white", "black"))
-        self.HomePanel.grid_columnconfigure(0, weight=1)
+        self.DashboardPanel = ctk.CTkFrame(self, corner_radius=0, fg_color=("white", "black"))
+        self.DashboardPanel.grid(row=0, column=0, sticky="nsew")
 
         # Faculty | Faculty Schedule Panel - Implementation and Configurations
         self.FacultyPanel = ctk.CTkFrame(self, corner_radius=0, fg_color="transparent")
         self.FacultyPanel.grid(row=0, column=0, sticky="nsew")
 
         # Calendar | Calendar Panel - Implementation and Configurations
-        self.Calendar = ctk.CTkFrame(self, corner_radius=0, fg_color="transparent")
-        self.Calendar.grid(row=0, column=0, sticky="nsew")
+        self.CalendarPanel = ctk.CTkFrame(self, corner_radius=0, fg_color="transparent")
+        self.CalendarPanel.grid(row=0, column=0, sticky="nsew")
 
         # Consultation | Consultation Panel - Implementation and Configurations
-        self.Consultation = ctk.CTkFrame(self, corner_radius=0, fg_color="transparent")
-        self.Consultation.grid(row=0, column=0, sticky="nsew")
+        self.ConsultationPanel = ctk.CTkFrame(self, corner_radius=0, fg_color="transparent")
+        self.ConsultationPanel.grid(row=0, column=0, sticky="nsew")
 
         # Settings | Settings Panel - Implementation and Configurations
-        self.Settings = ctk.CTkFrame(self, corner_radius=0, fg_color="transparent")
-        self.Settings.grid(row=0, column=0, sticky="nsew")
+        self.SettingsPanel = ctk.CTkFrame(self, corner_radius=0, fg_color="transparent")
+        self.SettingsPanel.grid(row=0, column=0, sticky="nsew")
 
+        # Default Window Frame on load
+        self.SelectedPanel("dashboard")
+
+    # method for changing panel views
     def SelectedPanel(self, name):
-        # set button color for selected button
-        self.ToDashboard.configure(fg_color=("gray75", "gray25") if name == "dashboard" else "transparent")
-        self.ToFaculty.configure(fg_color=("gray75", "gray25") if name == "frame_2" else "transparent")
-        self.ToCalendar.configure(fg_color=("gray75", "gray25") if name == "frame_3" else "transparent")
+        # Display selected frame
 
-        # show selected frame
         if name == "dashboard":
-            self.HomePanel.grid(row=0, column=1, sticky="nsew")
+                # Display
+                self.DashboardPanel.grid(row=0, column=1, sticky="nsew")
+                # Show as "selected button"
+                self.ToDashboard.configure(fg_color=("gray75", "gray25"))
         else:
-            self.home_frame.grid_forget()
-        if name == "frame_2":
-            self.second_frame.grid(row=0, column=1, sticky="nsew")
+            self.DashboardPanel.grid_forget()
+
+        if name == "faculty":
+                # Display
+                self.FacultyPanel.grid(row=0, column=1, sticky="nsew")
+                # Show as "selected button"
+                self.ToFaculty.configure(fg_color=("gray75", "gray25"))
         else:
-            self.second_frame.grid_forget()
-        if name == "frame_3":
-            self.third_frame.grid(row=0, column=1, sticky="nsew")
+            self.FacultyPanel.grid_forget()
+
+        if name == "calendar":
+                # Display
+                self.CalendarPanel.grid(row=0, column=1, sticky="nsew")
+                # Show as "selected button"
+                self.ToCalendar.configure(fg_color=("gray75", "gray25"))
         else:
-            self.third_frame.grid_forget()
+            self.CalendarPanel.grid_forget()
 
-    def home_button_event(self):
-        self.select_frame_by_name("home")
+        if name == "consultation":
+                # Display
+                self.ConsultationPanel.grid(row=0, column=1, sticky="nsew")
+                # Show as "selected button"
+                self.ToConsultation.configure(fg_color=("gray75", "gray25"))
+        else:
+            self.ConsultationPanel.grid_forget()
 
-    def frame_2_button_event(self):
-        self.select_frame_by_name("frame_2")
-
-    def frame_3_button_event(self):
-        self.select_frame_by_name("frame_3")
-
-    def second_frame_button_click(self):
-        print("Second frame button clicked")
-
-
-    def change_appearance_mode_event(self, new_appearance_mode):
-        ctk.set_appearance_mode(new_appearance_mode)
-
+        if name == "settings":
+                # Display
+                self.SettingsPanel.grid(row=0, column=1, sticky="nsew")
+                # Show as "selected button"
+                self.ToSettings.configure(fg_color=("gray75", "gray25"))
+        else:
+            self.SettingsPanel.grid_forget()
 
 
 # This is used to initialize the student application window in the login method -> ValidateUser
