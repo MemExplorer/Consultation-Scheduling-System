@@ -31,7 +31,8 @@ if __name__ == "__main__":
     _decrypted = _instance.Decrypt(_encrypted)
     _64encrypted = base64.b64encode(_encrypted).decode()
     _64decrpyted = base64.b64decode(_64encrypted).decode()
-    print()
+
+    
     print(f"Static Key Generated: {_key}")
     print(f"Encrypted Password using only Fernet Cryptography (byte): {_encrypted}") # passed
     print(f"Decrpyted Password using only Fernet Cryptography (str): {_decrypted}") # passed
