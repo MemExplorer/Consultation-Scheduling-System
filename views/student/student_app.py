@@ -7,6 +7,8 @@ import customtkinter
 import os
 from PIL import Image
 
+customtkinter.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
+customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 class StudentApp(customtkinter.CTk):
     
@@ -16,9 +18,12 @@ class StudentApp(customtkinter.CTk):
     def __init__(self, user_data: list):
         super().__init__()
 
+        # What is going on?
         self.user_data = user_data
 
+        # Window Configurations
         self.title(f"Welcome, {self.user_data[3]}.")
+        self.iconbitmap('./resources/images/window-icon.ico')
         self.geometry(f"{self.WIDTH}x{self.HEIGHT}")
 
         # set grid layout 1x2
@@ -44,32 +49,19 @@ class StudentApp(customtkinter.CTk):
 
         """ End of resource pathing """
     
-        # create navigation frame
-        self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color=("#95D5B2", "#081c15"))
-        self.navigation_frame.grid(row=0, column=0, sticky="nsew")
-        self.navigation_frame.grid_rowconfigure(4, weight=1)
-
-        self.navigation_frame_label = customtkinter.CTkLabel(self.navigation_frame, text="CvSU Consult", image=self.logo_image,
-                                                             compound="left", font=customtkinter.CTkFont(size=15, weight="bold"))
-        self.navigation_frame_label.grid(row=0, column=0, padx=20, pady=40, sticky="nw")
-
-        self.home_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Dashboard",
-                                                   fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
-                                                   image=self.home_image, anchor="w", command=self.home_button_event)
-        self.home_button.grid(row=1, column=0, sticky="ew")
-
-        self.frame_2_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Calendar",
-                                                      fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
-                                                      image=self.chat_image, anchor="w", command=self.frame_2_button_event)
+        # Slide Panel | Navigation  Implementation and Configuration
+        self.slide_panel = customtkinter.CTkFrame(self, corner_radius=0, fg_color=("#95D5B2", "#081c15"))
+        self.slide_panel.grid(row=0, column=0, sticky="nsew")
+        self.slide_panel.grid_rowconfigure(4, weight=1)
+        self.slide_panel = customtkinter.CTkLabel(self.slide_panel, text="CvSU Consult", image=self.logo_image, compound="left", font=customtkinter.CTkFont(size=15, weight="bold"))
+        self.slide_panel_label.grid(row=0, column=0, padx=20, pady=40, sticky="nw")
+        self.dashboard = customtkinter.CTkButton(self.slide_panel, corner_radius=0, height=40, border_spacing=10, text="Dashboard", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.home_image, anchor="w", command=self.home_button_event)
+        self.dashboard.grid(row=1, column=0, sticky="ew")
+        self.frame_2_button = customtkinter.CTkButton(self.slide_panel, corner_radius=0, height=40, border_spacing=10, text="Calendar", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.chat_image, anchor="w", command=self.frame_2_button_event)
         self.frame_2_button.grid(row=2, column=0, sticky="ew")
-
-        self.frame_3_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="My Consultations",
-                                                      fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
-                                                      image=self.add_user_image, anchor="w", command=self.frame_3_button_event)
+        self.frame_3_button = customtkinter.CTkButton(self.slide_panel, corner_radius=0, height=40, border_spacing=10, text="My Consultations", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.add_user_image, anchor="w", command=self.frame_3_button_event)
         self.frame_3_button.grid(row=3, column=0, sticky="ew")
-
-        self.appearance_mode_menu = customtkinter.CTkOptionMenu(self.navigation_frame, values=["Light", "Dark"],
-                                                                command=self.change_appearance_mode_event, fg_color="#2B9348")
+        self.appearance_mode_menu = customtkinter.CTkOptionMenu(self.slide_panel, values=["Light", "Dark"], command=self.change_appearance_mode_event, fg_color="#2B9348")
         self.appearance_mode_menu.grid(row=6, column=0, padx=20, pady=20, sticky="s")
 
         # create home frame
@@ -151,5 +143,8 @@ def _dangerouslyInit(user_data: list) -> None:
     app.mainloop()
 
 
+
+
+
 if __name__ == "__main__":
-    pass
+    _dangerouslyInit([0, "admin", "admin", "adminadmin", "admin@gmail.com", "password", "S"])
