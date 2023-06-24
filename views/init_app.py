@@ -31,7 +31,6 @@ class App(ctk.CTk):
         #Configure Window
         self.geometry(f"{self.width}x{self.height}")
         self.title("CvSU-Carmona Campus Consultation Scheduling System")
-
         self.configure(fg_color="white")
 
         
