@@ -33,9 +33,9 @@ class StudentApp(ctk.CTk):
         self.user_data = user_data
 
         # Window Configurations
+        self.geometry(f"{res.constants.WIN_WIDTH}x{res.constants.WIN_HEIGHT}")
         self.title(f"Welcome, {self.user_data['username']}.")
         self.iconbitmap(res.images.window_icon)
-        self.geometry(f"{res.constants.WIN_HEIGHT}x{res.constants.WIN_HEIGHT}")
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
