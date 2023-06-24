@@ -4,22 +4,18 @@ Reference frame for main_auth.py
 """
 
 import customtkinter as ctk
-import os
-from PIL import Image
 from ._dashboard import DashboardFrame
 from ._faculty import FacultyFrame
 from ._calendar import CalendarFrame
 from ._consultation import ConsultationFrame
 from ._settings import SettingFrame
-
+import models.resources as res
 
 ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
 ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 class StudentApp(ctk.CTk):
-    
-    WIDTH = 900
-    HEIGHT = 600
+
 
     # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
     THEME_GREEN = ("#95D5B2", "#081c15")
@@ -35,10 +31,8 @@ class StudentApp(ctk.CTk):
 
         # Window Configurations
         self.title(f"Welcome, {self.user_data[3]}.")
-        self.iconbitmap('./resources/images/window-icon.ico')
-        self.geometry(f"{self.WIDTH}x{self.HEIGHT}")
-
-
+        self.iconbitmap(res.images.window_icon)
+        self.geometry(f"{res.constants.WIN_WIDTH}x{res.constants.WIN_HEIGHT}")
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
@@ -47,16 +41,13 @@ class StudentApp(ctk.CTk):
         # load images with light and dark mode image
         """ File directory pathing for images """
 
-        image_path = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images"))
-        slider_images = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images", "nav-icons"))
-
-        self.LogoImage = ctk.CTkImage(Image.open(os.path.join(image_path, "CvSU Consult Logo.png")), size=(30, 30))
-        self.HomeImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "home-dark.png")), dark_image=Image.open(os.path.join(slider_images, "home-light.png")), size=(20, 20))
-        self.FacultyImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "faculty-dark.png")), dark_image=Image.open(os.path.join(slider_images, "faculty-light.png")), size=(20, 20))
-        self.CalendarImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "calendar-dark.png")), dark_image=Image.open(os.path.join(slider_images, "calendar-light.png")), size=(20, 20))
-        self.ConsultationImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "consultation-dark.png")), dark_image=Image.open(os.path.join(slider_images, "consultation-light.png")), size=(20, 20))
-        self.SettingImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "settings-dark.png")), dark_image=Image.open(os.path.join(slider_images, "settings-light.png")), size=(20, 20))
-        self.MenuSliderImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "menu-dark.png")), dark_image=Image.open(os.path.join(slider_images, "menu-light.png")), size=(20, 20))
+        self.LogoImage = ctk.CTkImage(res.fetch_image(res.images.cvsu_consult_logo), size=(30, 30))
+        self.HomeImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.home_dark), dark_image=res.fetch_image(res.images.nav_ico.home_light), size=(20, 20))
+        self.FacultyImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.faculty_dark), dark_image=res.fetch_image(res.images.nav_ico.faculty_light), size=(20, 20))
+        self.CalendarImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.calendar_dark), dark_image=res.fetch_image(res.images.nav_ico.calendar_light), size=(20, 20))
+        self.ConsultationImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.consultation_dark), dark_image=res.fetch_image(res.images.nav_ico.consultation_light), size=(20, 20))
+        self.SettingImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.settings_dark), dark_image=res.fetch_image(res.images.nav_ico.settings_light), size=(20, 20))
+        self.MenuSliderImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.menu_dark), dark_image=res.fetch_image(res.images.nav_ico.menu_light), size=(20, 20))
         """ End of resource pathing """
     
         # Slide Panel | Navigation - Implementation and Configurations

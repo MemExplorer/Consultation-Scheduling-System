@@ -4,9 +4,7 @@ Reference frame for main_init.py
 """
 
 import customtkinter as ctk
-import tkinter as tk
-import os
-from PIL import ImageTk, Image
+import models.resources as res
 
 class DashboardFrame(ctk.CTkFrame):
 
@@ -15,15 +13,12 @@ class DashboardFrame(ctk.CTkFrame):
 
         """ File directory pathing for images """
 
-        image_path = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images"))
-        nav_icons = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images", "nav-icons"))
-
-        self.LogoImage = ctk.CTkImage(Image.open(os.path.join(image_path, "CvSU Consult Logo.png")), size=(30, 30))
-        self.HomeImage = ctk.CTkImage(light_image=Image.open(os.path.join(nav_icons, "home-dark.png")), dark_image=Image.open(os.path.join(nav_icons, "home-light.png")), size=(20, 20))
-        self.FacultyImage = ctk.CTkImage(light_image=Image.open(os.path.join(nav_icons, "faculty-dark.png")), dark_image=Image.open(os.path.join(nav_icons, "faculty-light.png")), size=(20, 20))
-        self.CalendarImage = ctk.CTkImage(light_image=Image.open(os.path.join(nav_icons, "calendar-dark.png")), dark_image=Image.open(os.path.join(nav_icons, "calendar-light.png")), size=(20, 20))
-        self.ConsultationImage = ctk.CTkImage(light_image=Image.open(os.path.join(nav_icons, "consultation-dark.png")), dark_image=Image.open(os.path.join(nav_icons, "consultation-light.png")), size=(20, 20))
-        self.SettingImage = ctk.CTkImage(light_image=Image.open(os.path.join(nav_icons, "settings-dark.png")), dark_image=Image.open(os.path.join(nav_icons, "settings-light.png")), size=(20, 20))
+        self.LogoImage = ctk.CTkImage(res.fetch_image(res.images.cvsu_consult_logo), size=(30, 30))
+        self.HomeImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.home_dark), dark_image=res.fetch_image(res.images.nav_ico.home_light), size=(20, 20))
+        self.FacultyImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.faculty_dark), dark_image=res.fetch_image(res.images.nav_ico.faculty_light), size=(20, 20))
+        self.CalendarImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.calendar_dark), dark_image=res.fetch_image(res.images.nav_ico.calendar_light), size=(20, 20))
+        self.ConsultationImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.consultation_dark), dark_image=res.fetch_image(res.images.nav_ico.consultation_light), size=(20, 20))
+        self.SettingImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.settings_dark), dark_image=res.fetch_image(res.images.nav_ico.settings_light), size=(20, 20))
 
         """ End of resource pathing """
 

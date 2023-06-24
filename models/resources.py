@@ -1,0 +1,76 @@
+"""
+Everything in this file contains path/data from resources folder.
+The developer must write everything resource-related here.
+"""
+import os
+from PIL import Image
+
+#base paths for different types of resources
+_font_path = os.path.abspath("./resources/fonts") + "\\"
+_icon_path = os.path.abspath("./resources/icons") + "\\"
+_image_path = os.path.abspath("./resources/images") + "\\"
+_image_nav_path = _image_path + "nav-icons\\"
+
+#global vars for caching resources that can be loaded
+__image_cache = {}
+
+class constants:
+    WIN_WIDTH = 900
+    WIN_HEIGHT = 600
+
+class fonts:
+    pass
+
+class icons:
+    pass
+
+class images:
+
+    class nav_ico:
+        home_dark = _image_nav_path + "home-dark.png"
+        faculty_dark = _image_nav_path + "faculty-dark.png"
+        calendar_dark = _image_nav_path + "calendar-dark.png"
+        consultation_dark = _image_nav_path + "consultation-dark.png"
+        settings_dark = _image_nav_path + "settings-dark.png"
+        menu_dark = _image_nav_path + "menu-dark.png"
+        home_light = _image_nav_path + "home-light.png"
+        faculty_light = _image_nav_path + "faculty-light.png"
+        calendar_light = _image_nav_path + "calendar-light.png"
+        consultation_light = _image_nav_path + "consultation-light.png"
+        settings_light = _image_nav_path + "settings-light.png"
+        menu_light =_image_nav_path +  "menu-light.png"
+
+    #ico
+    window_icon = _image_path + "window-icon.ico"
+
+    #png
+    customtkinter_logo_single = _image_path + "CustomTkinter_logo_single.png"
+    poster = _image_path + "Poster.png"
+    image_icon_light = _image_path + "image_icon_light.png"
+    home_dark = _image_path + "home_dark.png"
+    home_light = _image_path + "home_light.png"
+    chat_dark = _image_path + "chat_dark.png"
+    chat_light = _image_path + "chat_light.png"
+    add_user_dark = _image_path + "add_user_dark.png"
+    add_user_light = _image_path + "add_user_light.png"
+    cvsu_consult_logo = _image_path + "CvSU Consult Logo.png"
+    login_bg = _image_path + "login_bg.png"
+
+def fetch_image(path: str) -> Image:
+    """
+    Fetch Image using path as a key. If the image is already loaded,
+    the loaded image will be returned instead of loading another instance
+    the image.
+    """
+    #check whether image is in cache or not
+    if(path not in __image_cache):
+        __image_cache[path] = Image.open(path)
+        __image_cache[path].load()  #load image
+
+    return __image_cache[path]
+    
+def Dispose():
+    for k in __image_cache:
+        __image_cache[k].close()
+
+    __image_cache.clear()

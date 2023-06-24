@@ -15,8 +15,7 @@ import customtkinter as ctk
 from views._login import LogInFrame # Based on the run.py path, you cannot run this file alone.
 from views._signup import SignUpFrame # Based on the run.py path, you cannot run this file alone.
 from PIL import ImageTk, Image
-import os
-
+import models.resources as res
 
 ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
 ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
@@ -24,24 +23,19 @@ ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark
 # Initial frame class for each window
 class App(ctk.CTk):
 
-    # Window size
-    width = 900
-    height = 600
-
     def __init__(self):
         super().__init__()
 
         #Configure Window
-        self.geometry(f"{self.width}x{self.height}")
+        self.geometry(f"{res.constants.WIN_WIDTH}x{res.constants.WIN_HEIGHT}")
         self.title("CvSU-Carmona Campus Consultation Scheduling System")
-        self.iconbitmap('./resources/images/window-icon.ico')
+        self.iconbitmap(res.images.window_icon)
         self.configure(fg_color="white")
 
         
         #File directory pathing for images
         
-        image_path = "./resources/images/login_bg.png"
-        self.logo_image = ctk.CTkImage(Image.open(image_path), size=(900, 600))
+        self.logo_image = ctk.CTkImage(res.fetch_image(res.images.login_bg), size=(res.constants.WIN_WIDTH, res.constants.WIN_HEIGHT))
 
         #Background Image
         self.bg = ctk.CTkLabel(self, text="", image=self.logo_image)  
