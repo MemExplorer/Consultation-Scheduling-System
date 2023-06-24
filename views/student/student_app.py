@@ -56,7 +56,7 @@ class StudentApp(ctk.CTk):
         # Slide Panel | Navigation - Implementation and Configurations
         self.SlidePanel = ctk.CTkFrame(self, corner_radius=0, fg_color= self.THEME_GREEN)
         self.SlidePanel.grid(row=0, column=0, sticky="nsw")
-        self.SlidePanel.grid_rowconfigure(6, weight=1)
+        self.SlidePanel.grid_rowconfigure(7, weight=1)
         self.SlidePanel.grid_columnconfigure(1, weight=1)
 
         # Slide Panel | Burger as Label
@@ -89,7 +89,7 @@ class StudentApp(ctk.CTk):
 
         # Slide panel | Theme Dropdown
         self.ThemeMode = ctk.CTkOptionMenu(self.SlidePanel, values=["Light", "Dark"], command=lambda mode: ctk.set_appearance_mode(mode), fg_color=self.THEME_DARKGREEN, dropdown_fg_color=self.THEME_DARKGREEN, button_color=self.THEME_DARKGREEN, button_hover_color=self.THEME_DARKGREEN, text_color=("black", "white"))
-        self.ThemeMode.grid(row=6, column=0, padx=5, pady=5, sticky="s")
+        self.ThemeMode.grid(row=7, column=0, padx=5, pady=5, sticky="s")
 
         # Slide panel | Logout Button
         self.Logout = ctk.CTkButton(self.SlidePanel, width=10, corner_radius=0, height=10, border_spacing=10, text="Logout", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), anchor="w", command=lambda: self.logout_handler())
