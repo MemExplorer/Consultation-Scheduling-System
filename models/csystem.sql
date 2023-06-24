@@ -12,7 +12,7 @@ CREATE TABLE tbl_accounts (
     username VARCHAR(60) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    category CHAR(1)
+    role CHAR(1)
 );
 
 ALTER TABLE tbl_accounts AUTO_INCREMENT = 100000;
@@ -29,7 +29,7 @@ ended_on DATETIME);
 
 
 -- Test values for tbl_accounts
-INSERT INTO tbl_accounts (first_name, last_name, username, email, password, category)
+INSERT INTO tbl_accounts (first_name, last_name, username, email, password, role)
 VALUES ('John', 'Doe', 'John Doe', 'johndoe@gmail.com', 'Z0FBQUFBQmtpOGFPWE1jel8xcHJJWlMzRXptZFE4dThLVjhyNmJ3NDdjMjVTbDhhVHV1eFpyTWlkc3A0NVN3VkdPSkVKRkRQZmk1VkJkRUFIdUlBclIwRW9wR2lFYVhyTWc9PQ==', 'S'),
        ('Teacher', 'Doe', 'Teacher Doe', 'teacherdoe@gmail.com', 'Z0FBQUFBQmtpOGFPWE1jel8xcHJJWlMzRXptZFE4dThLVjhyNmJ3NDdjMjVTbDhhVHV1eFpyTWlkc3A0NVN3VkdPSkVKRkRQZmk1VkJkRUFIdUlBclIwRW9wR2lFYVhyTWc9PQ==', 'T');
        
