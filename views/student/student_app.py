@@ -6,11 +6,11 @@ Reference frame for main_auth.py
 import customtkinter as ctk
 import os
 from PIL import Image
-from _dashboard import DashboardFrame
-from _faculty import FacultyFrame
-from _calendar import CalendarFrame
-from _consultation import ConsultationFrame
-from _settings import SettingFrame
+from ._dashboard import DashboardFrame
+from ._faculty import FacultyFrame
+from ._calendar import CalendarFrame
+from ._consultation import ConsultationFrame
+from ._settings import SettingFrame
 
 
 ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
@@ -20,6 +20,12 @@ class StudentApp(ctk.CTk):
     
     WIDTH = 900
     HEIGHT = 600
+
+    # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
+    THEME_GREEN = ("#95D5B2", "#081c15")
+    THEME_DARKGREEN = ("#80B699", "#1F664D")
+    THEME_BLACK = (0, 0) # None yet
+    THEME_WHITE = (0, 0) # None yet
 
     def __init__(self, user_data: list):
         super().__init__()
@@ -39,8 +45,8 @@ class StudentApp(ctk.CTk):
         self.grid_columnconfigure(1, weight=1)
 
         # load images with light and dark mode image
-
         """ File directory pathing for images """
+
         image_path = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images"))
         slider_images = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images", "nav-icons"))
 
@@ -50,41 +56,52 @@ class StudentApp(ctk.CTk):
         self.CalendarImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "calendar-dark.png")), dark_image=Image.open(os.path.join(slider_images, "calendar-light.png")), size=(20, 20))
         self.ConsultationImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "consultation-dark.png")), dark_image=Image.open(os.path.join(slider_images, "consultation-light.png")), size=(20, 20))
         self.SettingImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "settings-dark.png")), dark_image=Image.open(os.path.join(slider_images, "settings-light.png")), size=(20, 20))
-
+        self.MenuSliderImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "menu-dark.png")), dark_image=Image.open(os.path.join(slider_images, "menu-light.png")), size=(20, 20))
         """ End of resource pathing """
     
         # Slide Panel | Navigation - Implementation and Configurations
-        self.SlidePanel = ctk.CTkFrame(self, corner_radius=0, fg_color=("#95D5B2", "#081c15"))
+        self.SlidePanel = ctk.CTkFrame(self, corner_radius=0, fg_color= self.THEME_GREEN)
         self.SlidePanel.grid(row=0, column=0, sticky="nsew")
-        self.SlidePanel.grid_rowconfigure(6, weight=1)
+        self.SlidePanel.grid_rowconfigure(7, weight=1)
+        self.SlidePanel.grid_columnconfigure(1, weight=1)
+
+        # Slide Panel | Burger as Label
+        self.AndoksLechonManok = ctk.CTkButton(self.SlidePanel, text=None, image=self.MenuSliderImage, compound="right", fg_color=self.THEME_GREEN, width=3, bg_color=self.THEME_GREEN, )
+        self.AndoksLechonManok.grid(row=0, column=0, pady=5, padx=5, sticky="e")
+
 
         # Slide Panel | Title as Label
         self.SlidePanelTitle = ctk.CTkLabel(self.SlidePanel, text=" CvSU Consult ", image=self.LogoImage, compound="left", font=ctk.CTkFont(size=15, weight="bold"))
-        self.SlidePanelTitle.grid(row=0, column=0, padx=20, pady=40, sticky="nw")
+        self.SlidePanelTitle.grid(row=1, column=0, padx=20, pady=20, sticky="nw")
+
 
         # Slide panel | Dashboard/Home Button
         self.ToDashboard = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Dashboard", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.HomeImage, anchor="w", command=lambda: self.SelectedPanel("dashboard"))
-        self.ToDashboard.grid(row=1, column=0, sticky="ew")
+        self.ToDashboard.grid(row=2, column=0, sticky="ew")
         
         # Slide panel | Faculty Member Button
         self.ToFaculty = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Faculty Schedules", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.FacultyImage, anchor="w", command=lambda: self.SelectedPanel("faculty"))
-        self.ToFaculty.grid(row=2, column=0, sticky="ew")
+        self.ToFaculty.grid(row=3, column=0, sticky="ew")
 
         # Slide panel | Calendar Button
         self.ToCalendar = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Calendar", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.CalendarImage, anchor="w", command=lambda: self.SelectedPanel("calendar"))
-        self.ToCalendar.grid(row=3, column=0, sticky="ew")
+        self.ToCalendar.grid(row=4, column=0, sticky="ew")
 
         # Slide panel | Consultations Button
         self.ToConsultation = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="My Consultations", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.ConsultationImage, anchor="w", command=lambda: self.SelectedPanel("consultation"))
-        self.ToConsultation.grid(row=4, column=0, sticky="ew")
+        self.ToConsultation.grid(row=5, column=0, sticky="ew")
 
         # Slide panel | Settings Button
         self.ToSettings = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Settings", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.SettingImage, anchor="w", command=lambda: self.SelectedPanel("settings"))
-        self.ToSettings.grid(row=5, column=0, sticky="ew")
+        self.ToSettings.grid(row=6, column=0, sticky="ew")
 
         # Slide panel | Theme Dropdown
-        self.ThemeMode = ctk.CTkOptionMenu(self.SlidePanel, values=["Light", "Dark"], command=lambda mode: ctk.set_appearance_mode(mode), fg_color=("#80B699", "#1F664D"), dropdown_fg_color=("#80B699", "#1F664D"), button_color=("#80B699", "#1F664D"), button_hover_color=("#80B699", "#1F664D"), text_color=("black", "white"))
-        self.ThemeMode.grid(row=6, column=0, padx=20, pady=20, sticky="s")
+        self.ThemeMode = ctk.CTkOptionMenu(self.SlidePanel, values=["Light", "Dark"], command=lambda mode: ctk.set_appearance_mode(mode), fg_color=self.THEME_DARKGREEN, dropdown_fg_color=self.THEME_DARKGREEN, button_color=self.THEME_DARKGREEN, button_hover_color=self.THEME_DARKGREEN, text_color=("black", "white"))
+        self.ThemeMode.grid(row=7, column=0, padx=5, pady=5, sticky="s")
+
+        # Slide panel | Logout Button
+        self.Logout = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=10, border_spacing=10, text="Logout", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), anchor="w", command=lambda: self.SelectedPanel("settings"))
+        self.Logout.grid(row=8, column=0, pady=5, padx=5, sticky="s")
 
         # Dashboard | Home Panel - Implementation and Configurations on ./_dashboard.py
         self.DashboardPanel = DashboardFrame(master=self, corner_radius=0, fg_color="transparent")

@@ -5,7 +5,8 @@ Reference frame for main_init.py
 
 import customtkinter as ctk
 import tkinter as tk
-
+import os
+from PIL import ImageTk, Image
 class FacultyFrame(ctk.CTkFrame):
 
     def __init__(self, *args, **kwargs):

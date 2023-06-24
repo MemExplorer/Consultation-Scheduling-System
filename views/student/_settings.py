@@ -5,6 +5,8 @@ Reference frame for main_init.py
 
 import customtkinter as ctk
 import tkinter as tk
+import os
+from PIL import ImageTk, Image
 
 class SettingFrame(ctk.CTkFrame):
 
