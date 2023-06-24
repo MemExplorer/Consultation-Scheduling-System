@@ -11,6 +11,8 @@ from models.db_system import DBSystem
 from models._cryptography import Security
 import base64
 
+ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
+ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 #Log In Frame class
 class LogInFrame(ctk.CTkFrame):
@@ -20,7 +22,7 @@ class LogInFrame(ctk.CTkFrame):
         self.destroy()
 
         # New instance created because of the destroy() destroying the defined value of SignIn_frame in the init_app
-        _signupframe = init_app.SignUpFrame(master=init_app.init)
+        _signupframe = init_app.SignUpFrame(master=init_app.init, fg_color="#161616")
         _signupframe.place(relx=0.5, rely=0.5, anchor="center")
 
     # Frame Methods
