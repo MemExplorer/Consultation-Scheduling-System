@@ -11,12 +11,15 @@ from models._cryptography import Security
 from models.db_system import DBSystem
 from views import init_app
 
+ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
+ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+
 class SignUpFrame(ctk.CTkFrame):
 
     # Methods defined
     def ToLogin(self):
         self.destroy()
-        _LogIn_frame = init_app.LogInFrame(master=init_app.init, fg_color="white")
+        _LogIn_frame = init_app.LogInFrame(master=init_app.init, fg_color="#Fdf0d5")
         _LogIn_frame.place(relx=0.5, rely=0.5, anchor="center")
 
 
@@ -24,7 +27,7 @@ class SignUpFrame(ctk.CTkFrame):
         super().__init__(*args, **kwargs)
 
         # Title Label
-        self.titleLabel = ctk.CTkLabel(self, text="Create an Account", font=("Roboto", 40, "bold"), text_color="white")
+        self.titleLabel = ctk.CTkLabel(self, text="Create an Account", font=("Roboto", 40, "bold"), text_color=("black", "#2B9348"))
         self.titleLabel.grid(rowspan=1, columnspan=5, padx=10, pady=20, sticky="nsew")
 
                 # Name Label
@@ -32,7 +35,7 @@ class SignUpFrame(ctk.CTkFrame):
         self.err_label.grid(row=2, columnspan=5, padx=5, pady=20, sticky="nsew")
 
         # Name Label
-        self.firstNameLabel = ctk.CTkLabel(self, text="First Name", text_color="white")
+        self.firstNameLabel = ctk.CTkLabel(self, text="First Name", text_color=("black", "#2B9348"))
         self.firstNameLabel.grid(row=3, column=0, padx=10, pady=10)
 
         # Name Entry Field
@@ -40,7 +43,7 @@ class SignUpFrame(ctk.CTkFrame):
         self.firstNameEntry.grid(row=3, column=1, padx=10, pady=10)
 
         # Last Name Label
-        self.lastNameLabel = ctk.CTkLabel(self, text="Last Name", text_color="white")
+        self.lastNameLabel = ctk.CTkLabel(self, text="Last Name", text_color=("black", "#2B9348"))
         self.lastNameLabel.grid(row=3, column=2, padx=10, pady=10)
 
         # Last Name Entry Field
@@ -48,7 +51,7 @@ class SignUpFrame(ctk.CTkFrame):
         self.lastNameEntry.grid(row=3, column=3, padx=10, pady=10)
 
         # Username Label
-        self.usernameLabel = ctk.CTkLabel(self, text="Username", text_color="white")
+        self.usernameLabel = ctk.CTkLabel(self, text="Username", text_color=("black", "#2B9348"))
         self.usernameLabel.grid(row=4, column=0, padx=10, pady=10)
 
         # Username Field
@@ -56,7 +59,7 @@ class SignUpFrame(ctk.CTkFrame):
         self.usernameEntry.grid(row=4, column=1, columnspan=3, padx=10, pady=10, sticky="nsew")
 
         # Email Label
-        self.emailLabel = ctk.CTkLabel(self, text="Email", text_color="white")
+        self.emailLabel = ctk.CTkLabel(self, text="Email", text_color=("black", "#2B9348"))
         self.emailLabel.grid(row=5, column=0, padx=10, pady=10)
 
         # Email Entry Field
@@ -64,7 +67,7 @@ class SignUpFrame(ctk.CTkFrame):
         self.emailEntry.grid(row=5, column=1, columnspan=3, padx=10, pady=10, sticky="nsew")
 
         # Password Label
-        self.passwordLabel = ctk.CTkLabel(self, text="Password", text_color="white")
+        self.passwordLabel = ctk.CTkLabel(self, text="Password", text_color=("black", "#2B9348"))
         self.passwordLabel.grid(row=6, column=0, padx=10, pady=10)
 
         # Password Entry Field
@@ -72,7 +75,7 @@ class SignUpFrame(ctk.CTkFrame):
         self.passwordEntry.grid(row=6, column=1, padx=10, pady=10)
 
         # Confirm Password Label
-        self.confirmPasswordLabel = ctk.CTkLabel(self, text="Confirm Password", text_color="white")
+        self.confirmPasswordLabel = ctk.CTkLabel(self, text="Confirm Password", text_color=("black", "#2B9348"))
         self.confirmPasswordLabel.grid(row=6, column=2, padx=10, pady=10)
 
         # Confirm Password Entry Field
@@ -81,24 +84,24 @@ class SignUpFrame(ctk.CTkFrame):
 
 
         # Role Label
-        self.roleLabel = ctk.CTkLabel(self, text="Role", text_color="white")
+        self.roleLabel = ctk.CTkLabel(self, text="Role", text_color=("black", "#2B9348"))
         self.roleLabel.grid(row=8, column=0, padx=10, pady=10)
 
         # Role Radio Buttons
         self.roleVar = tk.StringVar(value="Student")
 
-        self.teacherRadioButton = ctk.CTkRadioButton(self, text="Teacher", variable=self.roleVar, value="Teacher", text_color="white")
+        self.teacherRadioButton = ctk.CTkRadioButton(self, text="Teacher", variable=self.roleVar, value="Teacher", text_color=("black", "#2B9348"))
         self.teacherRadioButton.grid(row=8, column=1, padx=10, pady=10)
 
-        self.studentRadioButton = ctk.CTkRadioButton(self, text="Student", variable=self.roleVar, value="Student", text_color="white")
+        self.studentRadioButton = ctk.CTkRadioButton(self, text="Student", variable=self.roleVar, value="Student", text_color=("black", "#2B9348"))
         self.studentRadioButton.grid(row=8, column=2, padx=10, pady=10)
 
         # Confirm Button
-        self.confirmButton = ctk.CTkButton(self, text="Confirm", command=self.confirm)
+        self.confirmButton = ctk.CTkButton(self, text="Confirm", command=self.confirm, bg_color=("#2B9348", "#2B9348"), fg_color=("#2B9348", "#2B9348"), hover=("#2B9348", "#2B9348"))
         self.confirmButton.grid(row=9, columnspan=4, padx=10, pady=50, sticky="nsew")
         
         #Sign Up Label
-        self.SignUp = ctk.CTkButton(self, text="Already have an account? Login here.", command=self.ToLogin, fg_color="transparent", hover=False, text_color="white", font=ctk.CTkFont(underline=True))
+        self.SignUp = ctk.CTkButton(self, text="Already have an account? Login here.", command=self.ToLogin, fg_color="transparent", hover=False, text_color=("black", "#2B9348"), font=ctk.CTkFont(underline=True))
         self.SignUp.grid(row=10, columnspan=5, padx=5, pady=10, sticky="nsew")
 
     # Frame Methods
