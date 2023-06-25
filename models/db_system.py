@@ -28,13 +28,12 @@ class DBSystem(DBConnect):
     def SearchUserByEmail(self, email:str) -> list | bool:
     
             # Get existing user information if any, returns False on error attempt.
-            try:
-                grouped_data = self.QueryAccountData()
-                for idx in range(len(grouped_data)):
-                     if grouped_data[idx]["email"] == email:
-                          return grouped_data[idx]
-            except:
-                 return False
+            # returns {grouped_data: dict, None}
+            grouped_data = self.QueryAccountData()
+            for idx in range(len(grouped_data)):
+                    if grouped_data[idx]["email"] == email:
+                        return grouped_data[idx]
+
             
     def SearchIfExistsByEmail(self, email:str) -> list | bool:
 
@@ -88,5 +87,5 @@ class DBSystem(DBConnect):
 # Testing purposes
 if __name__ == "__main__":
     db_instance = DBSystem()
-    print(db_instance.SearchUserByEmail("teacherdoe@gmail.com")) # passed
+    print(db_instance.SearchUserByEmail("teacherdo.com")) # passed
     print(db_instance.SearchUserByEmail("johndoe@gmail.com")) # passed

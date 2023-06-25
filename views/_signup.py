@@ -150,7 +150,7 @@ class SignUpFrame(ctk.CTkFrame):
 
         if valid_account:
             # Remove error label
-            self.err_label.configure(text=" ")
+            self.err_label.configure(text=None)
 
             # Password encryption algorithms defined in _cryptography.py
             fernet_encryption = _crypt.Encrypt(password)
