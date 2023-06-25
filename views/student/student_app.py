@@ -17,13 +17,6 @@ ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
 ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 class StudentApp(ctk.CTk):
-
-
-    # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
-    THEME_GREEN = ("#95D5B2", "#081c15")
-    THEME_DARKGREEN = ("#80B699", "#1F664D")
-    THEME_BLACK = (0, 0) # None yet
-    THEME_WHITE = (0, 0) # None yet
     
     def __init__(self, user_data: list):
       
@@ -56,7 +49,7 @@ class StudentApp(ctk.CTk):
 
         # Window Configurations
         self.geometry(f"{res.constants.WIN_WIDTH}x{res.constants.WIN_HEIGHT}")
-        self.title(f"Welcome, {self.user_data['username']}.")
+        self.title(f"CvSU Consult - Welcome, {self.user_data['username']}.")
         self.iconbitmap(res.images.window_icon)
 
         # set grid layout 1x2

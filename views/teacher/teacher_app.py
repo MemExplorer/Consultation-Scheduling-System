@@ -6,9 +6,8 @@ import customtkinter as ctk
 import os
 from PIL import Image
 from ._dashboard import DashboardFrame
-from ._faculty import FacultyFrame
 from ._calendar import CalendarFrame
-from ._consultation import ConsultationFrame
+from ._history import HistoryFrame
 from ._settings import SettingFrame
 from .. import init_app
 import models.resources as res
@@ -18,13 +17,6 @@ ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark
 
 class StudentApp(ctk.CTk):
 
-
-    # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
-    THEME_GREEN = ("#95D5B2", "#081c15")
-    THEME_DARKGREEN = ("#80B699", "#1F664D")
-    THEME_BLACK = (0, 0) # None yet
-    THEME_WHITE = (0, 0) # None yet
-    
     def __init__(self, user_data: list):
       
         super().__init__()
@@ -46,9 +38,8 @@ class StudentApp(ctk.CTk):
 
         self.LogoImage = ctk.CTkImage(res.fetch_image(res.images.cvsu_consult_logo), size=(30, 30))
         self.HomeImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.home_dark), dark_image=res.fetch_image(res.images.nav_ico.home_light), size=(20, 20))
-        self.FacultyImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.faculty_dark), dark_image=res.fetch_image(res.images.nav_ico.faculty_light), size=(20, 20))
         self.CalendarImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.calendar_dark), dark_image=res.fetch_image(res.images.nav_ico.calendar_light), size=(20, 20))
-        self.ConsultationImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.consultation_dark), dark_image=res.fetch_image(res.images.nav_ico.consultation_light), size=(20, 20))
+        self.HistoryImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.history_dark), dark_image=res.fetch_image(res.images.nav_ico.history_light), size=(20, 20))
         self.SettingImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.settings_dark), dark_image=res.fetch_image(res.images.nav_ico.settings_light), size=(20, 20))
         self.MenuSliderImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.menu_dark), dark_image=res.fetch_image(res.images.nav_ico.menu_light), size=(20, 20))
 
@@ -56,7 +47,7 @@ class StudentApp(ctk.CTk):
 
         # Window Configurations
         self.geometry(f"{res.constants.WIN_WIDTH}x{res.constants.WIN_HEIGHT}")
-        self.title(f"Welcome, {self.user_data['username']}.")
+        self.title(f"CvSu Consult - Welcome, teacher {self.user_data['username']}")
         self.iconbitmap(res.images.window_icon)
 
         # set grid layout 1x2
@@ -66,7 +57,7 @@ class StudentApp(ctk.CTk):
         # Slide Panel | Navigation - Implementation and Configurations
         self.SlidePanel = ctk.CTkFrame(self, corner_radius=0, fg_color= self.THEME_GREEN)
         self.SlidePanel.grid(row=0, column=0, sticky="nsw")
-        self.SlidePanel.grid_rowconfigure(7, weight=1)
+        self.SlidePanel.grid_rowconfigure(1, weight=1)
         self.SlidePanel.grid_columnconfigure(1, weight=1)
 
         # Slide Panel | Burger as Label
@@ -81,18 +72,14 @@ class StudentApp(ctk.CTk):
         # Slide panel | Dashboard/Home Button
         self.ToDashboard = ctk.CTkButton(self.SlidePanel, corner_radius=0, width=10, height=40, border_spacing=10, text="Dashboard", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.HomeImage, anchor="w", command=lambda: self.SelectedPanel("dashboard"))
         self.ToDashboard.grid(row=2, column=0, sticky="ew")
-        
-        # Slide panel | Faculty Member Button
-        self.ToFaculty = ctk.CTkButton(self.SlidePanel, corner_radius=0, width=10, height=40, border_spacing=10, text="Faculty Schedules", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.FacultyImage, anchor="w", command=lambda: self.SelectedPanel("faculty"))
-        self.ToFaculty.grid(row=3, column=0, sticky="ew")
 
         # Slide panel | Calendar Button
         self.ToCalendar = ctk.CTkButton(self.SlidePanel, corner_radius=0, width=10, height=40, border_spacing=10, text="Calendar", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.CalendarImage, anchor="w", command=lambda: self.SelectedPanel("calendar"))
         self.ToCalendar.grid(row=4, column=0, sticky="ew")
 
-        # Slide panel | Consultations Button
-        self.ToConsultation = ctk.CTkButton(self.SlidePanel, corner_radius=0, width=10, height=40, border_spacing=10, text="My Consultations", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.ConsultationImage, anchor="w", command=lambda: self.SelectedPanel("consultation"))
-        self.ToConsultation.grid(row=5, column=0, sticky="ew")
+        # Slide panel | History Button
+        self.ToHistory = ctk.CTkButton(self.SlidePanel, corner_radius=0, width=10, height=40, border_spacing=10, text="History", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.HistoryImage, anchor="w", command=lambda: self.SelectedPanel("history"))
+        self.ToHistory.grid(row=5, column=0, sticky="ew")
 
         # Slide panel | Settings Button
         self.ToSettings = ctk.CTkButton(self.SlidePanel, corner_radius=0, width=10, height=40, border_spacing=10, text="Settings", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.SettingImage, anchor="w", command=lambda: self.SelectedPanel("settings"))
@@ -109,12 +96,10 @@ class StudentApp(ctk.CTk):
 
         # Dashboard | Home Panel - Implementation and Configurations on ./_dashboard.py
         self.DashboardPanel = DashboardFrame(master=self, corner_radius=0, fg_color="transparent")
-        # Faculty | Faculty Schedule Panel - Implementation and Configurations on ./_faculty.py
-        self.FacultyPanel = FacultyFrame(master=self, corner_radius=0, fg_color="transparent")
         # Calendar | Calendar Panel - Implementation and Configurations on ./_calendar.py
         self.CalendarPanel = CalendarFrame(master=self, corner_radius=0, fg_color="transparent")
         # Consultation | Consultation Panel - Implementation and Configurations on ./_consultation.py
-        self.ConsultationPanel = ConsultationFrame(master=self, corner_radius=0, fg_color="transparent")
+        self.HistoryPanel = HistoryFrame(master=self, corner_radius=0, fg_color="transparent")
         # Settings | Settings Panel - Implementation and Configurations on ./_settings.py
         self.SettingsPanel = SettingFrame(master=self, corner_radius=0, fg_color="transparent")
 
@@ -127,9 +112,8 @@ class StudentApp(ctk.CTk):
             self.BurgerBtn.grid(row=0, column=0, sticky="e")
             self.SlidePanelTitle.configure(text=" CvSU Consult ", anchor="center")
             self.ToDashboard.configure(text="Dashboard", anchor="w")
-            self.ToFaculty.configure(text="Faculty Schedules", anchor="w")
             self.ToCalendar.configure(text="Calendar", anchor="w")
-            self.ToConsultation.configure(text="My Consultations", anchor="w")
+            self.ToHistory.configure(text="My History", anchor="w")
             self.ToSettings.configure(text="Settings", anchor="w")
             self.Logout.configure(text="Logout", anchor="w")
             self.Logout.grid(row=8, column=0, pady=5, padx=5, sticky="s")
@@ -141,9 +125,8 @@ class StudentApp(ctk.CTk):
             self.BurgerBtn.grid(row=0, column=0, sticky="ew")
             self.SlidePanelTitle.configure(text="", anchor="center")
             self.ToDashboard.configure(text=None, anchor="center")
-            self.ToFaculty.configure(text=None, anchor="center")
             self.ToCalendar.configure(text=None, anchor="center")
-            self.ToConsultation.configure(text=None, anchor="center")
+            self.ToHistory.configure(text=None, anchor="center")
             self.ToSettings.configure(text=None, anchor="center")
             self.Logout.configure(text=None, anchor="center")
             self.Logout.grid_forget()
@@ -162,7 +145,7 @@ class StudentApp(ctk.CTk):
     def SelectedPanel(self, name):
 
         # Clean selected frame on call
-        frames = [self.ToDashboard, self.ToFaculty, self.ToCalendar, self.ToConsultation, self.ToSettings]
+        frames = [self.ToDashboard, self.ToCalendar, self.ToHistory, self.ToSettings]
         for f in frames:
             f.configure(fg_color="transparent")
 
@@ -175,14 +158,6 @@ class StudentApp(ctk.CTk):
         else:
             self.DashboardPanel.grid_forget()
 
-        if name == "faculty":
-            # Display
-            self.FacultyPanel.grid(row=0, column=1, sticky="nsew")
-            # Show as "selected button"
-            self.ToFaculty.configure(fg_color=("gray75", "gray25"))
-        else:
-            self.FacultyPanel.grid_forget()
-
         if name == "calendar":
             # Display
             self.CalendarPanel.grid(row=0, column=1, sticky="nsew")
@@ -191,13 +166,13 @@ class StudentApp(ctk.CTk):
         else:
             self.CalendarPanel.grid_forget()
 
-        if name == "consultation":
+        if name == "history":
             # Display
-            self.ConsultationPanel.grid(row=0, column=1, sticky="nsew")
+            self.HistoryPanel.grid(row=0, column=1, sticky="nsew")
             # Show as "selected button"
-            self.ToConsultation.configure(fg_color=("gray75", "gray25"))
+            self.ToHistory.configure(fg_color=("gray75", "gray25"))
         else:
-            self.ConsultationPanel.grid_forget()
+            self.HistoryPanel.grid_forget()
 
         if name == "settings":
             # Display

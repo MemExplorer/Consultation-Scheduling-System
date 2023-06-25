@@ -32,10 +32,6 @@ class DashboardFrame(ctk.CTkFrame):
         
         """ End of resource pathing """
 
-        # Size of the scalable window
-        self.WIDTH = self.master.WIDTH
-        self.HEIGHT = self.master.HEIGHT
-
         # Styling as row-stretch
         self.grid_columnconfigure(0, weight=5)
         self.grid_rowconfigure(1, weight=1)
