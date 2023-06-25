@@ -4,6 +4,7 @@ Reference frame for main_init.py
 """
 
 import customtkinter as ctk
+import tkinter as tk
 import models.resources as res
 
 class DashboardFrame(ctk.CTkFrame):
@@ -15,13 +16,6 @@ class DashboardFrame(ctk.CTkFrame):
         # user data defined by the master
         self.user_data = self.master.user_data
 
-        # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
-        self.THEME_GREEN = self.master.THEME_GREEN
-        self.THEME_DARKGREEN = self.master.THEME_DARKGREEN
-        self.THEME_BLACK = self.master.THEME_BLACK
-        self.THEME_WHITE = self.master.THEME_WHITE
-
-
         # load images with light and dark mode image
         """ File directory pathing for images """
         self.FacultyImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.faculty_dark), dark_image=res.fetch_image(res.images.nav_ico.faculty_light), size=(80, 80))
@@ -29,7 +23,6 @@ class DashboardFrame(ctk.CTkFrame):
         self.ConsultationImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.consultation_dark), dark_image=res.fetch_image(res.images.nav_ico.consultation_light), size=(80, 80))
         self.NotifImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.notif_dark), dark_image=res.fetch_image(res.images.nav_ico.notif_light), size=(20, 20))
         self.AlertNotifImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.alert_notif_dark), dark_image=res.fetch_image(res.images.nav_ico.alert_notif_light), size=(20, 20))
-        
         """ End of resource pathing """
 
         # Styling as row-stretch

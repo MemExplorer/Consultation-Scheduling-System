@@ -48,7 +48,7 @@ class StudentApp(ctk.CTk):
 
         # Window Configurations
         self.geometry(f"{res.constants.WIN_WIDTH}x{res.constants.WIN_HEIGHT}")
-        self.title(f"CvSu Consult - Welcome, teacher {self.user_data['username']}")
+        self.title(f"CvSu Consult - Welcome back.")
         self.iconbitmap(res.images.window_icon)
 
         # set grid layout 1x2
