@@ -31,6 +31,7 @@ class DashboardFrame(ctk.CTkFrame):
 
         # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
         self.THEME_GREEN = self.master.THEME_GREEN
+        self.THEME_YELLOW = self.master.THEME_YELLOW
         self.THEME_DARKGREEN = self.master.THEME_DARKGREEN
         self.DEFAULT = self.master.DEFAULT
 
@@ -45,7 +46,7 @@ class DashboardFrame(ctk.CTkFrame):
         self.WelcomeLabel.grid(row=0, column=0, pady=20, padx=10, sticky="w")
 
         # DashWrapper | Notifications
-        self.NotifIcon = ctk.CTkButton(self.DashWrapper, text=None, image=self.NotifImage, width=5, fg_color="transparent", hover_color="#Fdf0d5")
+        self.NotifIcon = ctk.CTkButton(self.DashWrapper, text=None, image=self.NotifImage, width=5, fg_color="transparent", hover_color=self.THEME_YELLOW)
         self.NotifIcon.grid(row=0, column=1, padx=10, pady=10, sticky="e")
 
         # Inner dashboard wrapper for grouping the dashboard utilities
@@ -61,19 +62,19 @@ class DashboardFrame(ctk.CTkFrame):
         self.InnerInnerDashWrapper.grid_rowconfigure(0, weight=1)
 
         # Yet another inner wrapper for containing navigations
-        self.FacultyDashWrapper = ctk.CTkFrame(self.InnerInnerDashWrapper, fg_color="#Fdf0d5", width=160, height=185, corner_radius=5)
+        self.FacultyDashWrapper = ctk.CTkFrame(self.InnerInnerDashWrapper, fg_color=self.THEME_YELLOW, width=160, height=185, corner_radius=5)
         self.FacultyDashWrapper.grid(row=0, column=0, padx=20, pady=0)
         self.FacultyDashWrapper.grid_columnconfigure(0, weight=1)
         self.FacultyDashWrapper.grid_rowconfigure(3, weight=2)
 
         # Yet another inner wrapper for containing navigations
-        self.CalendarDashWrapper = ctk.CTkFrame(self.InnerInnerDashWrapper, fg_color="#Fdf0d5")
+        self.CalendarDashWrapper = ctk.CTkFrame(self.InnerInnerDashWrapper, fg_color=self.THEME_YELLOW)
         self.CalendarDashWrapper.grid(row=0, column=1, padx=20, pady=0)
         self.CalendarDashWrapper.grid_columnconfigure(0, weight=1)
         self.CalendarDashWrapper.grid_rowconfigure(3, weight=2)
 
         # Yet another inner wrapper for containing navigations
-        self.ConsultationDashWrapper = ctk.CTkFrame(self.InnerInnerDashWrapper, fg_color="#Fdf0d5")
+        self.ConsultationDashWrapper = ctk.CTkFrame(self.InnerInnerDashWrapper, fg_color=self.THEME_YELLOW)
         self.ConsultationDashWrapper.grid(row=0, column=2, padx=20, pady=0)
         self.ConsultationDashWrapper.grid_columnconfigure(0, weight=1)
         self.ConsultationDashWrapper.grid_rowconfigure(3, weight=2)

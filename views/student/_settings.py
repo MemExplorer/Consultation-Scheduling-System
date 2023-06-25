@@ -30,11 +30,12 @@ class SettingFrame(ctk.CTkFrame):
 
         # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
         self.THEME_GREEN = self.master.THEME_GREEN
+        self.THEME_YELLOW = self.master.THEME_YELLOW
         self.THEME_DARKGREEN = self.master.THEME_DARKGREEN
         self.DEFAULT = self.master.DEFAULT
 
         # TitleWrapper for grouping the title bars
-        self.TitleWrapper = ctk.CTkFrame(master=self, fg_color="transparent")
+        self.TitleWrapper = ctk.CTkFrame(master=self, fg_color=self.THEME_GREEN)
         self.TitleWrapper.grid(row=0, columnspan=1, padx=20, pady=10, ipady=10, sticky="nsew")
         self.TitleWrapper.grid_columnconfigure(0, weight=1)
 
@@ -45,3 +46,8 @@ class SettingFrame(ctk.CTkFrame):
         # TitleWrapper | Notifications
         self.NotifIcon = ctk.CTkButton(self.TitleWrapper, text=None, image=self.NotifImage, width=5, fg_color="transparent", hover_color="#Fdf0d5")
         self.NotifIcon.grid(row=0, column=1, padx=10, pady=10, sticky="e")
+
+        # MainWrapper
+        self.MainWrapper = ctk.CTkFrame(master=self, fg_color=self.THEME_GREEN)
+        self.MainWrapper.grid(row=1, columnspan=1, padx=20, pady=10, sticky="nsew")
+        self.MainWrapper.grid_columnconfigure(0, weight=1)
