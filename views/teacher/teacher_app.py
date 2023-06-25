@@ -42,6 +42,7 @@ class StudentApp(ctk.CTk):
         self.HistoryImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.history_dark), dark_image=res.fetch_image(res.images.nav_ico.history_light), size=(20, 20))
         self.SettingImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.settings_dark), dark_image=res.fetch_image(res.images.nav_ico.settings_light), size=(20, 20))
         self.MenuSliderImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.menu_dark), dark_image=res.fetch_image(res.images.nav_ico.menu_light), size=(20, 20))
+        self.LogoutImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.logout_dark), dark_image=res.fetch_image(res.images.nav_ico.logout_light), size=(20, 20))
 
         """ End of resource pathing """
 
@@ -65,7 +66,6 @@ class StudentApp(ctk.CTk):
         self.BurgerBtn.grid(row=0, column=0, sticky="e")
 
         # Slide Panel | Title as Label
-
         self.SlidePanelTitle = ctk.CTkLabel(self.SlidePanel, width=10, text=" CvSU Consult ", image=self.LogoImage, compound="left", font=ctk.CTkFont(size=15, weight="bold"))
         self.SlidePanelTitle.grid(row=1, column=0, padx=20, pady=20, sticky="nw")
 
@@ -91,7 +91,7 @@ class StudentApp(ctk.CTk):
 
         # Slide panel | Logout Button
 
-        self.Logout = ctk.CTkButton(self.SlidePanel, width=10, corner_radius=0, height=10, border_spacing=10, text="Logout", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), anchor="w", command=lambda: self.logout_handler())
+        self.Logout = ctk.CTkButton(self.SlidePanel, image=self.LogoutImage, width=10, corner_radius=0, height=10, border_spacing=10, text="Logout", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), anchor="w", command=lambda: self.logout_handler())
         self.Logout.grid(row=8, column=0, pady=5, padx=5, sticky="s")
 
         # Dashboard | Home Panel - Implementation and Configurations on ./_dashboard.py
@@ -129,7 +129,6 @@ class StudentApp(ctk.CTk):
             self.ToHistory.configure(text=None, anchor="center")
             self.ToSettings.configure(text=None, anchor="center")
             self.Logout.configure(text=None, anchor="center")
-            self.Logout.grid_forget()
 
             self.ThemeMode.configure(values=[])
             self.ThemeMode.grid_forget()

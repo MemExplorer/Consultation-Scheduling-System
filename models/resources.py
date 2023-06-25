@@ -53,8 +53,8 @@ class images:
         sort_light = _image_nav_path +  "sort-light.png"
         user_profile_dark = _image_nav_path +  "user-profile-dark.png"
         user_profile_light = _image_nav_path +  "user-profile-light.png"
-        
-
+        logout_dark = _image_nav_path +  "logout-dark.png"
+        logout_light = _image_nav_path +  "logout-light.png"
     #ico
     window_icon = _image_path + "window-icon.ico"
 
