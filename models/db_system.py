@@ -25,35 +25,22 @@ class DBSystem(DBConnect):
     def __init__(self) -> None:
         super().__init__()
 
-    def SearchUserByEmail(self, email:str) -> list | bool:
-    
-            # Get existing user information if any, returns False on error attempt.
-            # returns {grouped_data: dict, None}
-            grouped_data = self.QueryAccountData()
-            for idx in range(len(grouped_data)):
-                    if grouped_data[idx]["email"] == email:
-                        return grouped_data[idx]
+    def SearchUserByEmail(self, email:str) -> list | None:
+        # Get existing user information if any.
+        # returns {grouped_data: dict, None: None}
+        grouped_data = self.QueryAccountData()
+        for idx in range(len(grouped_data)):
+                if grouped_data[idx]["email"] == email:
+                    return grouped_data[idx]
 
-            
-    def SearchIfExistsByEmail(self, email:str) -> list | bool:
+    def SearchUserByUsername(self, username:str) -> list | None:
+        # Get existing user information if any.
+        # returns {grouped_data: dict, None: None}
+        grouped_data = self.QueryAccountData()
+        for idx in range(len(grouped_data)):
+                if grouped_data[idx]["username"] == username:
+                    return grouped_data[idx]
 
-        # Get existing user information if any, returns False on error attempt.
-        try:
-                result = [list(data) for data in self.QueryAccountData() if email in data][0]
-                return True
-        except:
-                return False
-            
-    def SearchIfExistsByUsername(self, username:str) -> list | bool:
-
-        # Get existing user information if any, returns False on error attempt.
-        try:
-                result = [list(data) for data in self.QueryAccountData() if username in data][0]
-                return True
-        except:
-                return False
-
-        
 
     def QueryAccountData(self) -> list:
         
@@ -89,3 +76,5 @@ if __name__ == "__main__":
     db_instance = DBSystem()
     print(db_instance.SearchUserByEmail("teacherdo.com")) # passed
     print(db_instance.SearchUserByEmail("johndoe@gmail.com")) # passed
+    print(db_instance.SearchUserByEmail("teacherdoe@gmail.com")) # passed
+    print(db_instance.SearchUserByUsername("John Doe"))

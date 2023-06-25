@@ -31,7 +31,7 @@ class SignUpFrame(ctk.CTkFrame):
         self.titleLabel.grid(rowspan=1, columnspan=5, padx=10, pady=20, sticky="nsew")
 
                 # Name Label
-        self.err_label = ctk.CTkLabel(self, text=" ", text_color="red", font=("Roboto", 15))
+        self.err_label = ctk.CTkLabel(self, text=None, text_color="red", font=("Roboto", 15))
         self.err_label.grid(row=2, columnspan=5, padx=5, pady=20, sticky="nsew")
 
         # Name Label
@@ -114,19 +114,19 @@ class SignUpFrame(ctk.CTkFrame):
         # regex expression for email validation
         regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
 
-        # Lambda expressions for simple functions needed for this method
+        # Lambda expressions for simplified functions needed for this method
         get_role = lambda: "S" if self.roleVar.get() == "Student" else "T"
         format_str = lambda: (fname.title(), lname.title(), username.title())
-        check_if_existing_username = lambda: False if _dbsystem.SearchIfExistsByUsername(username=username) else True
+        not_existing_username = lambda: True if (_dbsystem.SearchUserByUsername(username=username) == None) else False
         valid_email = lambda: True if re.fullmatch(regex, email) else False
-        not_existing_email = lambda: True if _dbsystem.SearchIfExistsByEmail(email=email) else True
+        not_existing_email = lambda: True if (_dbsystem.SearchUserByEmail(email=email) == None) else False
 
         fname = self.firstNameEntry.get()
         lname = self.lastNameEntry.get()
         username = self.usernameEntry.get()
         password = self.passwordEntry.get()
         cpass = self.confirmPasswordEntry.get()
-        email = self.emailEntry.get()
+        email = self.emailEntry.get().lower()
         role = get_role()
 
         # Format String Completion
@@ -135,9 +135,10 @@ class SignUpFrame(ctk.CTkFrame):
         # Check if all fields are filled.
         not_Empty = (fname != '' and lname != '' and username != '' and password != '')
         password_Matched = (password == cpass)
-        isValid_Email = (valid_email() and not_existing_email)
-        isExisting_User = check_if_existing_username()
+        isValid_Email = (valid_email() and not_existing_email())
+        isExisting_User = not_existing_username()
         valid_account = (not_Empty and isExisting_User and password_Matched and email != '' and isValid_Email)
+        print(not_Empty, password_Matched, isValid_Email, isExisting_User, valid_account)
 
         if not not_Empty:
             self.err_label.configure(text="Fields are empty.")
