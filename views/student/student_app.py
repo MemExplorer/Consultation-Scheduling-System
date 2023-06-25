@@ -111,7 +111,7 @@ class StudentApp(ctk.CTk):
         self.Logout.grid(row=8, column=0, pady=5, padx=5, sticky="s")
 
         # Dashboard | Home Panel - Implementation and Configurations on ./_dashboard.py
-        self.DashboardPanel = DashboardFrame(master=self, corner_radius=0, fg_color="transparent")
+        self.DashboardPanel = DashboardFrame(master=self, corner_radius=0, fg_color=('white', 'black'))
         # Faculty | Faculty Schedule Panel - Implementation and Configurations on ./_faculty.py
         self.FacultyPanel = FacultyFrame(master=self, corner_radius=0, fg_color="transparent")
         # Calendar | Calendar Panel - Implementation and Configurations on ./_calendar.py
