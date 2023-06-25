@@ -9,7 +9,7 @@ from views.teacher import teacher_app
 from views.student import student_app
 from models.db_system import DBSystem
 from models._cryptography import Security
-import base64
+import models.resources as res
 from PIL import Image
 
 ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
@@ -81,8 +81,7 @@ class LogInFrame(ctk.CTkFrame):
 
         #File directory pathing for images
         
-        image_path = "./resources/images/CvSU Consult Logo.png"
-        self.logo_image = ctk.CTkImage(Image.open(image_path), size=(48, 48))
+        self.logo_image = ctk.CTkImage(res.fetch_image(res.images.cvsu_consult_logo), size=(48, 48))
 
         #space 
         self.space1 = ctk.CTkLabel(self, text=None)
@@ -113,7 +112,6 @@ class LogInFrame(ctk.CTkFrame):
         self.Email_lbl.grid(row=7, column=0, padx=55, pady=0, sticky="w")
         self.Email = ctk.CTkEntry(self, placeholder_text="Enter your Email", width=285)
         self.Email.grid(row=8, column=0, padx=10, pady=0)
-
 
         #Password Label and Entry
         self.Password_lbl = ctk.CTkLabel(self, text="Password:")

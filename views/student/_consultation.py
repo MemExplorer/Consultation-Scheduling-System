@@ -4,7 +4,6 @@ Reference frame for main_init.py
 """
 
 import customtkinter as ctk
-import tkinter as tk
 import models.resources as res
 
 class ConsultationFrame(ctk.CTkFrame):

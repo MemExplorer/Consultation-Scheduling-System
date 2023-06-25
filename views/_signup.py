@@ -82,7 +82,6 @@ class SignUpFrame(ctk.CTkFrame):
         self.confirmPasswordEntry = ctk.CTkEntry(self, show="*", placeholder_text="Confirm Password")
         self.confirmPasswordEntry.grid(row=6, column=3, padx=10, pady=10)
 
-
         # Role Label
         self.roleLabel = ctk.CTkLabel(self, text="Role", text_color=("black", "#2B9348"))
         self.roleLabel.grid(row=8, column=0, padx=10, pady=10)

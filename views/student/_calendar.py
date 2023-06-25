@@ -7,7 +7,6 @@ import customtkinter as ctk
 import tkinter as tk
 import models.resources as res
 from tkcalendar import Calendar
-import datetime
 
 class CalendarFrame(ctk.CTkFrame):
 

@@ -14,7 +14,6 @@ init_app is the application interface for login/signup window before the user au
 import customtkinter as ctk
 from views._login import LogInFrame # Based on the run.py path, you cannot run this file alone.
 from views._signup import SignUpFrame # Based on the run.py path, you cannot run this file alone.
-from PIL import ImageTk, Image
 import models.resources as res
 
 ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
@@ -34,8 +33,6 @@ class App(ctk.CTk):
 
         
         #File directory pathing for images
-        
-
         self.logo_image = ctk.CTkImage(res.fetch_image(res.images.login_bg), size=(1920, 1080))
 
 

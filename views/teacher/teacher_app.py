@@ -3,8 +3,6 @@ This is a frame file. You can't run this file as a "__main__".
 """
 
 import customtkinter as ctk
-import os
-from PIL import Image
 from ._dashboard import DashboardFrame
 from ._calendar import CalendarFrame
 from ._history import HistoryFrame
@@ -89,7 +87,6 @@ class StudentApp(ctk.CTk):
         self.ThemeMode.grid(row=7, column=0, padx=5, pady=5, sticky="s")
 
         # Slide panel | Logout Button
-
         self.Logout = ctk.CTkButton(self.SlidePanel, image=self.LogoutImage, width=10, corner_radius=0, height=10, border_spacing=10, text="Logout", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), anchor="w", command=lambda: self.logout_handler())
         self.Logout.grid(row=8, column=0, pady=5, padx=5, sticky="s")
 

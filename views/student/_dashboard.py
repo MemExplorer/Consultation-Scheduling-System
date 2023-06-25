@@ -4,7 +4,6 @@ Reference frame for main_init.py
 """
 
 import customtkinter as ctk
-import tkinter as tk
 import models.resources as res
 
 class DashboardFrame(ctk.CTkFrame):
@@ -34,7 +33,6 @@ class DashboardFrame(ctk.CTkFrame):
         self.THEME_YELLOW = self.master.THEME_YELLOW
         self.THEME_DARKGREEN = self.master.THEME_DARKGREEN
         self.DEFAULT = self.master.DEFAULT
-
 
         # Dashboard wrapper for grouping the dashboard utilities
         self.DashWrapper = ctk.CTkFrame(master=self, fg_color="transparent")
