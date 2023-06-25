@@ -31,11 +31,13 @@ ended_on DATETIME);
 -- Test values for tbl_accounts
 INSERT INTO tbl_accounts (first_name, last_name, username, email, password, role)
 VALUES ('John', 'Doe', 'John Doe', 'johndoe@gmail.com', 'Z0FBQUFBQmtpOGFPWE1jel8xcHJJWlMzRXptZFE4dThLVjhyNmJ3NDdjMjVTbDhhVHV1eFpyTWlkc3A0NVN3VkdPSkVKRkRQZmk1VkJkRUFIdUlBclIwRW9wR2lFYVhyTWc9PQ==', 'S'),
-       ('Teacher', 'Doe', 'Teacher Doe', 'teacherdoe@gmail.com', 'Z0FBQUFBQmtpOGFPWE1jel8xcHJJWlMzRXptZFE4dThLVjhyNmJ3NDdjMjVTbDhhVHV1eFpyTWlkc3A0NVN3VkdPSkVKRkRQZmk1VkJkRUFIdUlBclIwRW9wR2lFYVhyTWc9PQ==', 'T');
+       ('Teacher', 'Doe', 'Teacher Doe', 'teacherdoe@gmail.com', 'Z0FBQUFBQmtpOGFPWE1jel8xcHJJWlMzRXptZFE4dThLVjhyNmJ3NDdjMjVTbDhhVHV1eFpyTWlkc3A0NVN3VkdPSkVKRkRQZmk1VkJkRUFIdUlBclIwRW9wR2lFYVhyTWc9PQ==', 'T'),
+       ('Nortz', 'Alingod', 'Nortz Alingod', 'nortzalingod@gmail.com', 'Z0FBQUFBQmtpOGFPWE1jel8xcHJJWlMzRXptZFE4dThLVjhyNmJ3NDdjMjVTbDhhVHV1eFpyTWlkc3A0NVN3VkdPSkVKRkRQZmk1VkJkRUFIdUlBclIwRW9wR2lFYVhyTWc9PQ==', 'T'),
+       ('Jackie', 'Murallon', 'Jackie Murallon', 'jackiemurallon@gmail.com', 'Z0FBQUFBQmtpOGFPWE1jel8xcHJJWlMzRXptZFE4dThLVjhyNmJ3NDdjMjVTbDhhVHV1eFpyTWlkc3A0NVN3VkdPSkVKRkRQZmk1VkJkRUFIdUlBclIwRW9wR2lFYVhyTWc9PQ==', 'T');
        
 -- Test values for tbl_history
 INSERT INTO tbl_history (task_name, task_description, created_by, requested_to, created_on, status, ended_on)
 VALUES
-    ('Task 1', 'Description 1', 100001, 100002, '2023-06-12 10:00:00', 'Accepted', '2023-06-13 15:30:00'),
-    ('Task 2', 'Description 2', 100001, 100002, '2023-06-13 14:00:00', 'Pending', NULL),
-    ('Task 3', 'Description 3', 100001, 100001, '2023-06-14 12:30:00', 'Ended', '2023-06-15 09:45:00');
+    ('Task 1', 'Description 1', 100000, 100001, '2023-06-12 10:00:00', 'Accepted', '2023-06-13 15:30:00'),
+    ('Task 2', 'Description 2', 100000, 100002, '2023-06-13 14:00:00', 'Pending', NULL),
+    ('Task 3', 'Description 3', 100000, 100003, '2023-06-14 12:30:00', 'Ended', '2023-06-15 09:45:00');
