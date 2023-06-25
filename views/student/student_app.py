@@ -19,6 +19,7 @@ ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark
 
 class StudentApp(ctk.CTk):
 
+
     # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
     THEME_GREEN = ("#95D5B2", "#081c15")
     THEME_DARKGREEN = ("#80B699", "#1F664D")
@@ -26,11 +27,22 @@ class StudentApp(ctk.CTk):
     THEME_WHITE = (0, 0) # None yet
     
     def __init__(self, user_data: list):
+      
         super().__init__()
 
         self.isMinimized = False
         # What is going on?
         self.user_data = user_data
+        
+        # Window Geometry
+        self.WIDTH = 900
+        self.HEIGHT = 600
+
+        # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
+        self.THEME_GREEN = ("#95D5B2", "#081c15")
+        self.THEME_DARKGREEN = ("#80B699", "#1F664D")
+        self.THEME_BLACK = (0, 0) # None yet
+        self.THEME_WHITE = (0, 0) # None yet
 
         # Window Configurations
         self.geometry(f"{res.constants.WIN_WIDTH}x{res.constants.WIN_HEIGHT}")
@@ -51,6 +63,7 @@ class StudentApp(ctk.CTk):
         self.ConsultationImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.consultation_dark), dark_image=res.fetch_image(res.images.nav_ico.consultation_light), size=(20, 20))
         self.SettingImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.settings_dark), dark_image=res.fetch_image(res.images.nav_ico.settings_light), size=(20, 20))
         self.MenuSliderImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.menu_dark), dark_image=res.fetch_image(res.images.nav_ico.menu_light), size=(20, 20))
+
         """ End of resource pathing """
     
         # Slide Panel | Navigation - Implementation and Configurations
@@ -64,6 +77,7 @@ class StudentApp(ctk.CTk):
         self.BurgerBtn.grid(row=0, column=0, sticky="e")
 
         # Slide Panel | Title as Label
+
         self.SlidePanelTitle = ctk.CTkLabel(self.SlidePanel, width=10, text=" CvSU Consult ", image=self.LogoImage, compound="left", font=ctk.CTkFont(size=15, weight="bold"))
         self.SlidePanelTitle.grid(row=1, column=0, padx=20, pady=20, sticky="nw")
 
@@ -92,6 +106,7 @@ class StudentApp(ctk.CTk):
         self.ThemeMode.grid(row=7, column=0, padx=5, pady=5, sticky="s")
 
         # Slide panel | Logout Button
+
         self.Logout = ctk.CTkButton(self.SlidePanel, width=10, corner_radius=0, height=10, border_spacing=10, text="Logout", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), anchor="w", command=lambda: self.logout_handler())
         self.Logout.grid(row=8, column=0, pady=5, padx=5, sticky="s")
 
@@ -202,4 +217,5 @@ def _dangerouslyInit(user_data: list) -> None:
     app.mainloop()
 
 if __name__ == "__main__":
-    _dangerouslyInit([0, "admin", "admin", "adminadmin", "admin@gmail.com", "password", "S"])
+    testing_data = {"account_id": 0, "first_name": "John", "last_name": "Doe", "username": "John Doe", "email": "johndoe@gmail.com", "password": "pass", "role": "S"}
+    _dangerouslyInit(user_data=testing_data)
