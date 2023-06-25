@@ -1,20 +1,15 @@
 import customtkinter
-import os
-from PIL import Image
-
+import models.resources as res
 
 class teacher_app(customtkinter.CTk):
     
-    WIDTH = 900
-    HEIGHT = 600
-
     def __init__(self, user_data: list):
         super().__init__()
 
         self.user_data = user_data
 
         self.title(f"Welcome, {self.user_data[3]}.")
-        self.geometry(f"{self.WIDTH}x{self.HEIGHT}")
+        self.geometry(f"{res.constants.WIN_WIDTH}x{res.constants.WIN_HEIGHT}")
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
@@ -25,17 +20,17 @@ class teacher_app(customtkinter.CTk):
         """ File directory pathing for images
         Need image fixing, should use svg icons for icons due to resolution stretching when scaling. No error found.
         """
-        image_path = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images"))
 
-        self.logo_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "CustomTkinter_logo_single.png")), size=(26, 26))
-        self.large_test_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "Poster.png")), size=(500, 150))
-        self.image_icon_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "image_icon_light.png")), size=(20, 20))
-        self.home_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "home_dark.png")),
-                                                 dark_image=Image.open(os.path.join(image_path, "home_light.png")), size=(20, 20))
-        self.chat_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "chat_dark.png")),
-                                                 dark_image=Image.open(os.path.join(image_path, "chat_light.png")), size=(20, 20))
-        self.add_user_image = customtkinter.CTkImage(light_image=Image.open(os.path.join(image_path, "add_user_dark.png")),
-                                                     dark_image=Image.open(os.path.join(image_path, "add_user_light.png")), size=(20, 20))
+        #images are fetched from resources
+        self.logo_image = customtkinter.CTkImage(res.fetch_image(res.images.customtkinter_logo_single), size=(26, 26))
+        self.large_test_image = customtkinter.CTkImage(res.fetch_image(res.images.poster), size=(500, 150))
+        self.image_icon_image = customtkinter.CTkImage(res.fetch_image(res.images.image_icon_light), size=(20, 20))
+        self.home_image = customtkinter.CTkImage(light_image=res.fetch_image(res.images.home_dark),
+                                                 dark_image=res.fetch_image(res.images.home_light), size=(20, 20))
+        self.chat_image = customtkinter.CTkImage(light_image=res.fetch_image(res.images.chat_dark),
+                                                 dark_image=res.fetch_image(res.images.chat_light), size=(20, 20))
+        self.add_user_image = customtkinter.CTkImage(light_image=res.fetch_image(res.images.add_user_dark),
+                                                     dark_image=res.fetch_image(res.images.add_user_light), size=(20, 20))
 
         """ End of resource pathing """
     

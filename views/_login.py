@@ -48,6 +48,7 @@ class LogInFrame(ctk.CTkFrame):
             user_data = self.auth_instance.SearchUserByEmail(email=email)
 
             if user_data is False:
+                #TODO: Implement proper error message handling (value of self.err_label is not set anywhere in this class)
                 self.err_label.configure(text="Email address doesn't exist")
             else:
                 # Decrypt and compare the user's password with the provided password
@@ -67,6 +68,7 @@ class LogInFrame(ctk.CTkFrame):
                         teacher_app._dangerouslyInit(user_data=user_data)
                         
                 else:
+                    #TODO: Implement proper error message handling (value of self.err_label is not set anywhere in this class)
                     self.err_label.configure(text="Username or password is incorrect.")
 
 

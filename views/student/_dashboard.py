@@ -4,9 +4,7 @@ Reference frame for main_init.py
 """
 
 import customtkinter as ctk
-import tkinter as tk
-import os
-from PIL import ImageTk, Image
+import models.resources as res
 
 class DashboardFrame(ctk.CTkFrame):
 
@@ -21,6 +19,17 @@ class DashboardFrame(ctk.CTkFrame):
 
         # user data defined by the master
         self.user_data = self.master.user_data
+
+
+        # load images with light and dark mode image
+        """ File directory pathing for images """
+        self.FacultyImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.faculty_dark), dark_image=res.fetch_image(res.images.nav_ico.faculty_light), size=(70, 70))
+        self.CalendarImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.calendar_dark), dark_image=res.fetch_image(res.images.nav_ico.calendar_light), size=(70, 70))
+        self.ConsultationImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.consultation_dark), dark_image=res.fetch_image(res.images.nav_ico.consultation_light), size=(70, 70))
+        self.NotifImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.menu_dark), dark_image=res.fetch_image(res.images.nav_ico.menu_light), size=(20, 20))
+        self.AlertNotifImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.notif_dark), dark_image=res.fetch_image(res.images.nav_ico.notif_light), size=(20, 20))
+        
+        """ End of resource pathing """
 
         # Size of the scalable window
         self.WIDTH = self.master.WIDTH
@@ -49,7 +58,7 @@ class DashboardFrame(ctk.CTkFrame):
         self.WelcomeLabel.grid(row=0, column=0, pady=10, padx=10, sticky="w")
 
         # DashWrapper | Notifications
-        self.WelcomeLabel = ctk.CTkButton(self.DashWrapper, text=None, image=self.images["nav-icons"]["NotifImage"], width=5, fg_color=self.THEME_GREEN)
+        self.WelcomeLabel = ctk.CTkButton(self.DashWrapper, text=None, image=self.NotifImage, width=5, fg_color=self.THEME_GREEN)
         self.WelcomeLabel.grid(row=0, column=1, padx=10, pady=10, sticky="e")
 
         # Inner dashboard wrapper for grouping the dashboard utilities
@@ -83,7 +92,7 @@ class DashboardFrame(ctk.CTkFrame):
         self.ConsultationDashWrapper.grid_rowconfigure(3, weight=1)
 
         # Large Faculty Image
-        self.FacultyDashImage = ctk.CTkLabel(self.FacultyDashWrapper, text=None, image=self.images['large-nav-icons']['FacultyImage'])
+        self.FacultyDashImage = ctk.CTkLabel(self.FacultyDashWrapper, text=None, image=self.FacultyImage)
         self.FacultyDashImage.grid(row=0, column=0, padx=5, pady=5)
         # Faculty Label
         self.FacultyDashLabel = ctk.CTkLabel(self.FacultyDashWrapper, text="Faculty Schedule", font=ctk.CTkFont(size=13))
@@ -93,7 +102,7 @@ class DashboardFrame(ctk.CTkFrame):
         self.FacultyDashButton.grid(row=2, column=0, padx=5, pady=5)
 
         # Large Calendar Image
-        self.CalendarDashImage = ctk.CTkLabel(self.CalendarDashWrapper, text=None, image=self.images['large-nav-icons']['CalendarImage'])
+        self.CalendarDashImage = ctk.CTkLabel(self.CalendarDashWrapper, text=None, image=self.CalendarImage)
         self.CalendarDashImage.grid(row=0, column=0, padx=5, pady=5)
         # Calendar Label
         self.CalendarDashLabel = ctk.CTkLabel(self.CalendarDashWrapper, text="Calendar History", font=ctk.CTkFont(size=13))
@@ -103,7 +112,7 @@ class DashboardFrame(ctk.CTkFrame):
         self.CalendarDashButton.grid(row=2, column=0, padx=5, pady=5)
 
         # Large Consultation Image
-        self.ConsultationDashImage = ctk.CTkLabel(self.ConsultationDashWrapper, text=None, image=self.images['large-nav-icons']['ConsultationImage'])
+        self.ConsultationDashImage = ctk.CTkLabel(self.ConsultationDashWrapper, text=None, image=self.ConsultationImage)
         self.ConsultationDashImage.grid(row=0, column=0, padx=5, pady=5)
         # Consultation Label
         self.ConsultationDashLabel = ctk.CTkLabel(self.ConsultationDashWrapper, text="My Consultation", font=ctk.CTkFont(size=13))
