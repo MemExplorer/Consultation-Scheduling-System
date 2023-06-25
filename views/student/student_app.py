@@ -1,6 +1,5 @@
 """ CTK Frame Module
 This is a frame file. You can't run this file as a "__main__".
-Reference frame for main_auth.py
 """
 
 import customtkinter as ctk
@@ -31,12 +30,9 @@ class StudentApp(ctk.CTk):
         super().__init__()
 
         self.isMinimized = False
+
         # What is going on?
         self.user_data = user_data
-        
-        # Window Geometry
-        self.WIDTH = 900
-        self.HEIGHT = 600
 
         # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
         self.THEME_GREEN = ("#95D5B2", "#081c15")
@@ -44,14 +40,6 @@ class StudentApp(ctk.CTk):
         self.THEME_BLACK = (0, 0) # None yet
         self.THEME_WHITE = (0, 0) # None yet
 
-        # Window Configurations
-        self.geometry(f"{res.constants.WIN_WIDTH}x{res.constants.WIN_HEIGHT}")
-        self.title(f"Welcome, {self.user_data['username']}.")
-        self.iconbitmap(res.images.window_icon)
-
-        # set grid layout 1x2
-        self.grid_rowconfigure(0, weight=1)
-        self.grid_columnconfigure(1, weight=1)
 
         # load images with light and dark mode image
         """ File directory pathing for images """
@@ -65,7 +53,16 @@ class StudentApp(ctk.CTk):
         self.MenuSliderImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.menu_dark), dark_image=res.fetch_image(res.images.nav_ico.menu_light), size=(20, 20))
 
         """ End of resource pathing """
-    
+
+        # Window Configurations
+        self.geometry(f"{res.constants.WIN_WIDTH}x{res.constants.WIN_HEIGHT}")
+        self.title(f"Welcome, {self.user_data['username']}.")
+        self.iconbitmap(res.images.window_icon)
+
+        # set grid layout 1x2
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=1)
+
         # Slide Panel | Navigation - Implementation and Configurations
         self.SlidePanel = ctk.CTkFrame(self, corner_radius=0, fg_color= self.THEME_GREEN)
         self.SlidePanel.grid(row=0, column=0, sticky="nsw")

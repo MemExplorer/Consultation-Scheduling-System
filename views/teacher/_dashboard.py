@@ -8,13 +8,13 @@ import models.resources as res
 
 class DashboardFrame(ctk.CTkFrame):
 
-
     def __init__(self, master, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
 
         # user data defined by the master
         self.user_data = self.master.user_data
 
+        
         # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
         self.THEME_GREEN = self.master.THEME_GREEN
         self.THEME_DARKGREEN = self.master.THEME_DARKGREEN
