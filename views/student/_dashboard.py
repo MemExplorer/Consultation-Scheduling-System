@@ -8,17 +8,18 @@ import models.resources as res
 
 class DashboardFrame(ctk.CTkFrame):
 
-    # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
-    THEME_GREEN = ("#95D5B2", "#081c15")
-    THEME_DARKGREEN = ("#80B699", "#1F664D")
-    THEME_BLACK = (0, 0) # None yet
-    THEME_WHITE = (0, 0) # None yet
 
     def __init__(self, master, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
 
         # user data defined by the master
         self.user_data = self.master.user_data
+
+        # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
+        self.THEME_GREEN = self.master.THEME_GREEN
+        self.THEME_DARKGREEN = self.master.THEME_DARKGREEN
+        self.THEME_BLACK = self.master.THEME_BLACK
+        self.THEME_WHITE = self.master.THEME_WHITE
 
 
         # load images with light and dark mode image
@@ -30,10 +31,6 @@ class DashboardFrame(ctk.CTkFrame):
         self.AlertNotifImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.alert_notif_dark), dark_image=res.fetch_image(res.images.nav_ico.alert_notif_light), size=(20, 20))
         
         """ End of resource pathing """
-
-        # Size of the scalable window
-        self.WIDTH = self.master.WIDTH
-        self.HEIGHT = self.master.HEIGHT
 
         # Styling as row-stretch
         self.grid_columnconfigure(0, weight=5)
