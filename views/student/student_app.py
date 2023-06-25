@@ -17,21 +17,22 @@ ctk.set_appearance_mode("light")  # Modes: "System" (standard), "Dark", "Light"
 ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 class StudentApp(ctk.CTk):
-    
-    WIDTH = 900
-    HEIGHT = 600
 
-    # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
-    THEME_GREEN = ("#95D5B2", "#081c15")
-    THEME_DARKGREEN = ("#80B699", "#1F664D")
-    THEME_BLACK = (0, 0) # None yet
-    THEME_WHITE = (0, 0) # None yet
-
-    def __init__(self, user_data: list):
+    def __init__(self, user_data: dict):
         super().__init__()
 
         # What is going on?
         self.user_data = user_data
+        
+        # Window Geometry
+        self.WIDTH = 900
+        self.HEIGHT = 600
+
+        # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
+        self.THEME_GREEN = ("#95D5B2", "#081c15")
+        self.THEME_DARKGREEN = ("#80B699", "#1F664D")
+        self.THEME_BLACK = (0, 0) # None yet
+        self.THEME_WHITE = (0, 0) # None yet
 
         # Window Configurations
         self.title(f"Welcome, {self.user_data['username']}.")
@@ -48,12 +49,34 @@ class StudentApp(ctk.CTk):
         image_path = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images"))
         slider_images = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), "..", "resources", "images", "nav-icons"))
 
-        self.LogoImage = ctk.CTkImage(Image.open(os.path.join(image_path, "CvSU Consult Logo.png")), size=(30, 30))
-        self.HomeImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "home-dark.png")), dark_image=Image.open(os.path.join(slider_images, "home-light.png")), size=(20, 20))
-        self.FacultyImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "faculty-dark.png")), dark_image=Image.open(os.path.join(slider_images, "faculty-light.png")), size=(20, 20))
-        self.CalendarImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "calendar-dark.png")), dark_image=Image.open(os.path.join(slider_images, "calendar-light.png")), size=(20, 20))
-        self.ConsultationImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "consultation-dark.png")), dark_image=Image.open(os.path.join(slider_images, "consultation-light.png")), size=(20, 20))
-        self.SettingImage = ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "settings-dark.png")), dark_image=Image.open(os.path.join(slider_images, "settings-light.png")), size=(20, 20))
+        self.images = {
+            "images":{
+                "LogoImage": ctk.CTkImage(Image.open(os.path.join(image_path, "CvSU Consult Logo.png")), size=(30, 30)),
+            },
+
+            "nav-icons":{
+                "HomeImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "home-dark.png")), dark_image=Image.open(os.path.join(slider_images, "home-light.png")), size=(20, 20)),
+                "FacultyImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "faculty-dark.png")), dark_image=Image.open(os.path.join(slider_images, "faculty-light.png")), size=(20, 20)),
+                "CalendarImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "calendar-dark.png")), dark_image=Image.open(os.path.join(slider_images, "calendar-light.png")), size=(20, 20)),
+                "ConsultationImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "consultation-dark.png")), dark_image=Image.open(os.path.join(slider_images, "consultation-light.png")), size=(20, 20)),
+                "SettingImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "settings-dark.png")), dark_image=Image.open(os.path.join(slider_images, "settings-light.png")), size=(20, 20)),
+                "LogoutImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "logout-dark.png")), dark_image=Image.open(os.path.join(slider_images, "logout-light.png")), size=(20, 20)),
+                "NotifImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "notif-dark.png")), dark_image=Image.open(os.path.join(slider_images, "notif-light.png")), size=(20, 20)),
+                "AlertNotifImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "alert-notif-dark.png")), dark_image=Image.open(os.path.join(slider_images, "alert-notif-light.png")), size=(20, 20))
+            },
+
+            "large-nav-icons":{
+                "HomeImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "home-dark.png")), dark_image=Image.open(os.path.join(slider_images, "home-light.png")), size=(70, 70)),
+                "FacultyImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "faculty-dark.png")), dark_image=Image.open(os.path.join(slider_images, "faculty-light.png")), size=(70, 70)),
+                "CalendarImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "calendar-dark.png")), dark_image=Image.open(os.path.join(slider_images, "calendar-light.png")), size=(70, 70)),
+                "ConsultationImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "consultation-dark.png")), dark_image=Image.open(os.path.join(slider_images, "consultation-light.png")), size=(70, 70)),
+                "SettingImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "settings-dark.png")), dark_image=Image.open(os.path.join(slider_images, "settings-light.png")), size=(70, 70)),
+                "LogoutImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "logout-dark.png")), dark_image=Image.open(os.path.join(slider_images, "logout-light.png")), size=(70, 70)),
+                "NotifImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "notif-dark.png")), dark_image=Image.open(os.path.join(slider_images, "notif-light.png")), size=(70, 70)),
+                "AlertNotifImage": ctk.CTkImage(light_image=Image.open(os.path.join(slider_images, "alert-notif-dark.png")), dark_image=Image.open(os.path.join(slider_images, "alert-notif-light.png")), size=(70, 70))
+            }
+        }
+
         """ End of resource pathing """
     
         # Slide Panel | Navigation - Implementation and Configurations
@@ -64,28 +87,28 @@ class StudentApp(ctk.CTk):
 
 
         # Slide Panel | Title as Label
-        self.SlidePanelTitle = ctk.CTkLabel(self.SlidePanel, text=" CvSU Consult ", image=self.LogoImage, compound="left", font=ctk.CTkFont(size=15, weight="bold"))
+        self.SlidePanelTitle = ctk.CTkLabel(self.SlidePanel, text=" CvSU Consult ", image=self.images["images"]["LogoImage"], compound="left", font=ctk.CTkFont(size=15, weight="bold"))
         self.SlidePanelTitle.grid(row=0, column=0, padx=20, pady=20, sticky="nw")
 
 
         # Slide panel | Dashboard/Home Button
-        self.ToDashboard = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Dashboard", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.HomeImage, anchor="w", command=lambda: self.SelectedPanel("dashboard"))
+        self.ToDashboard = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Dashboard", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.images["nav-icons"]["HomeImage"], anchor="w", command=lambda: self.SelectedPanel("dashboard"))
         self.ToDashboard.grid(row=1, column=0, sticky="ew")
         
         # Slide panel | Faculty Member Button
-        self.ToFaculty = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Faculty Schedules", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.FacultyImage, anchor="w", command=lambda: self.SelectedPanel("faculty"))
+        self.ToFaculty = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Faculty Schedules", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.images["nav-icons"]["FacultyImage"], anchor="w", command=lambda: self.SelectedPanel("faculty"))
         self.ToFaculty.grid(row=2, column=0, sticky="ew")
 
         # Slide panel | Calendar Button
-        self.ToCalendar = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Calendar", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.CalendarImage, anchor="w", command=lambda: self.SelectedPanel("calendar"))
+        self.ToCalendar = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Calendar", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.images["nav-icons"]["CalendarImage"], anchor="w", command=lambda: self.SelectedPanel("calendar"))
         self.ToCalendar.grid(row=3, column=0, sticky="ew")
 
         # Slide panel | Consultations Button
-        self.ToConsultation = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="My Consultations", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.ConsultationImage, anchor="w", command=lambda: self.SelectedPanel("consultation"))
+        self.ToConsultation = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="My Consultations", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.images["nav-icons"]["ConsultationImage"], anchor="w", command=lambda: self.SelectedPanel("consultation"))
         self.ToConsultation.grid(row=4, column=0, sticky="ew")
 
         # Slide panel | Settings Button
-        self.ToSettings = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Settings", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.SettingImage, anchor="w", command=lambda: self.SelectedPanel("settings"))
+        self.ToSettings = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=40, border_spacing=10, text="Settings", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), image=self.images["nav-icons"]["SettingImage"], anchor="w", command=lambda: self.SelectedPanel("settings"))
         self.ToSettings.grid(row=5, column=0, sticky="ew")
 
         # Slide panel | Theme Dropdown
@@ -93,7 +116,7 @@ class StudentApp(ctk.CTk):
         self.ThemeMode.grid(row=6, column=0, padx=5, pady=5, sticky="s")
 
         # Slide panel | Logout Button
-        self.Logout = ctk.CTkButton(self.SlidePanel, corner_radius=0, height=10, border_spacing=10, text="Logout", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), anchor="w", command=lambda: self.destroy())
+        self.Logout = ctk.CTkButton(self.SlidePanel, image=self.images["nav-icons"]["LogoutImage"], corner_radius=0, height=10, border_spacing=10, text="Logout", fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"), anchor="w", command=lambda: self.destroy())
         self.Logout.grid(row=7, column=0, pady=5, padx=5, sticky="s")
 
         # Dashboard | Home Panel - Implementation and Configurations on ./_dashboard.py
@@ -166,4 +189,5 @@ def _dangerouslyInit(user_data: list) -> None:
     app.mainloop()
 
 if __name__ == "__main__":
-    _dangerouslyInit([0, "admin", "admin", "adminadmin", "admin@gmail.com", "password", "S"])
+    testing_data = {"account_id": 0, "first_name": "John", "last_name": "Doe", "username": "John Doe", "email": "johndoe@gmail.com", "password": "pass", "role": "S"}
+    _dangerouslyInit(user_data=testing_data)
