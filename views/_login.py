@@ -44,7 +44,14 @@ class LogInFrame(ctk.CTkFrame):
             self.auth_instance = DBSystem()
             self.crypt = Security()
 
-            # Fetch user data from the database
+            user_data = self.auth_instance.SearchUserByEmail(email="johndoe@gmail.com")
+
+            init_app.init.destroy()
+                        
+            # Callable instance of the student class
+            student_app._dangerouslyInit(user_data=user_data)
+            
+            """ # Fetch user data from the database
             user_data = self.auth_instance.SearchUserByEmail(email=email)
 
             if user_data is None:
@@ -69,7 +76,7 @@ class LogInFrame(ctk.CTkFrame):
                         
                 else:
                     # Fixed: Implement proper error message handling (value of self.err_label is not set anywhere in this class)
-                    self.err_label.configure(text="Username or password is incorrect.")
+                    self.err_label.configure(text="Username or password is incorrect.") """
 
 
         #File directory pathing for images
