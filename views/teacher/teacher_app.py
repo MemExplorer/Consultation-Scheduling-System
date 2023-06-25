@@ -29,8 +29,7 @@ class StudentApp(ctk.CTk):
         # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
         self.THEME_GREEN = ("#95D5B2", "#081c15")
         self.THEME_DARKGREEN = ("#80B699", "#1F664D")
-        self.THEME_BLACK = (0, 0) # None yet
-        self.THEME_WHITE = (0, 0) # None yet
+        self.DEFAULT = ('white', 'black')
 
 
         # load images with light and dark mode image
@@ -186,7 +185,3 @@ class StudentApp(ctk.CTk):
 def _dangerouslyInit(user_data: list) -> None:
     app = StudentApp(user_data=user_data)
     app.mainloop()
-
-if __name__ == "__main__":
-    testing_data = {"account_id": 0, "first_name": "John", "last_name": "Doe", "username": "John Doe", "email": "johndoe@gmail.com", "password": "pass", "role": "S"}
-    _dangerouslyInit(user_data=testing_data)

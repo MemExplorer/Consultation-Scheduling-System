@@ -28,8 +28,7 @@ class ConsultationFrame(ctk.CTkFrame):
         # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
         self.THEME_GREEN = self.master.THEME_GREEN
         self.THEME_DARKGREEN = self.master.THEME_DARKGREEN
-        self.THEME_BLACK = self.master.THEME_BLACK
-        self.THEME_WHITE = self.master.THEME_WHITE
+        self.DEFAULT = self.master.DEFAULT
 
         # TitleWrapper for grouping the title bars
         self.TitleWrapper = ctk.CTkFrame(master=self, fg_color="transparent")
