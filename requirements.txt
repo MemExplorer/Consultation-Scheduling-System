@@ -7,3 +7,4 @@ ttkthemes
 cryptography
 pyinstaller
 pillow
+tkcalendar

@@ -6,6 +6,8 @@ Reference frame for main_init.py
 import customtkinter as ctk
 import tkinter as tk
 import models.resources as res
+from tkcalendar import Calendar
+import datetime
 
 class CalendarFrame(ctk.CTkFrame):
 
@@ -48,3 +50,7 @@ class CalendarFrame(ctk.CTkFrame):
         self.MainWrapper = ctk.CTkFrame(master=self, fg_color=self.THEME_GREEN)
         self.MainWrapper.grid(row=1, columnspan=1, padx=20, pady=10, sticky="nsew")
         self.MainWrapper.grid_columnconfigure(0, weight=1)
+
+        # Add calendar widget
+        self.calendar = Calendar(self.MainWrapper)
+        self.calendar.pack(expand=True, fill=tk.BOTH)

@@ -24,7 +24,7 @@ task_description VARCHAR(60) NOT NULL,
 created_by INT REFERENCES tbl_accounts(account_id),
 requested_to INT REFERENCES tbl_accounts(account_id),
 created_on DATETIME, 
-status ENUM("Accepted", "Pending", "Ended") NOT NULL, 
+status ENUM("Accepted", "Rejected", "Pending", "Ended") NOT NULL, 
 ended_on DATETIME);
 
 
@@ -39,5 +39,6 @@ VALUES ('John', 'Doe', 'John Doe', 'johndoe@gmail.com', 'Z0FBQUFBQmtpOGFPWE1jel8
 INSERT INTO tbl_history (task_name, task_description, created_by, requested_to, created_on, status, ended_on)
 VALUES
     ('Task 1', 'Description 1', 100000, 100001, '2023-06-12 10:00:00', 'Accepted', '2023-06-13 15:30:00'),
-    ('Task 2', 'Description 2', 100000, 100002, '2023-06-13 14:00:00', 'Pending', NULL),
-    ('Task 3', 'Description 3', 100000, 100003, '2023-06-14 12:30:00', 'Ended', '2023-06-15 09:45:00');
+    ('Task 2', 'Description 2', 100000, 100002, '2023-06-13 14:00:00', 'Rejected', NULL),
+    ('Task 3', 'Description 3', 100000, 100002, '2023-06-13 14:00:00', 'Pending', NULL),
+    ('Task 4', 'Description 3', 100000, 100003, '2023-06-14 12:30:00', 'Ended', '2023-06-15 09:45:00');
