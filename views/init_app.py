@@ -36,7 +36,7 @@ class App(ctk.CTk):
         #File directory pathing for images
         
 
-        self.logo_image = ctk.CTkImage(res.fetch_image(res.images.login_bg), size=(res.constants.WIN_WIDTH, res.constants.WIN_HEIGHT))
+        self.logo_image = ctk.CTkImage(res.fetch_image(res.images.login_bg), size=(1920, 1080))
 
 
         #Background Image
