@@ -26,8 +26,8 @@ class DashboardFrame(ctk.CTkFrame):
         self.FacultyImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.faculty_dark), dark_image=res.fetch_image(res.images.nav_ico.faculty_light), size=(70, 70))
         self.CalendarImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.calendar_dark), dark_image=res.fetch_image(res.images.nav_ico.calendar_light), size=(70, 70))
         self.ConsultationImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.consultation_dark), dark_image=res.fetch_image(res.images.nav_ico.consultation_light), size=(70, 70))
-        self.NotifImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.menu_dark), dark_image=res.fetch_image(res.images.nav_ico.menu_light), size=(20, 20))
-        self.AlertNotifImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.notif_dark), dark_image=res.fetch_image(res.images.nav_ico.notif_light), size=(20, 20))
+        self.NotifImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.notif_dark), dark_image=res.fetch_image(res.images.nav_ico.notif_light), size=(20, 20))
+        self.AlertNotifImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.alert_notif_dark), dark_image=res.fetch_image(res.images.nav_ico.alert_notif_light), size=(20, 20))
         
         """ End of resource pathing """
 
@@ -45,8 +45,6 @@ class DashboardFrame(ctk.CTkFrame):
         self.THEME_BLACK = self.master.THEME_BLACK
         self.THEME_WHITE = self.master.THEME_WHITE
 
-        # Images from master
-        self.images = self.master.images
 
         # Dashboard wrapper for grouping the dashboard utilities
         self.DashWrapper = ctk.CTkFrame(master=self, fg_color=self.THEME_GREEN)
@@ -58,8 +56,8 @@ class DashboardFrame(ctk.CTkFrame):
         self.WelcomeLabel.grid(row=0, column=0, pady=10, padx=10, sticky="w")
 
         # DashWrapper | Notifications
-        self.WelcomeLabel = ctk.CTkButton(self.DashWrapper, text=None, image=self.NotifImage, width=5, fg_color=self.THEME_GREEN)
-        self.WelcomeLabel.grid(row=0, column=1, padx=10, pady=10, sticky="e")
+        self.NotifIcon = ctk.CTkButton(self.DashWrapper, text=None, image=self.NotifImage, width=5, fg_color=self.THEME_GREEN)
+        self.NotifIcon.grid(row=0, column=1, padx=10, pady=10, sticky="e")
 
         # Inner dashboard wrapper for grouping the dashboard utilities
         self.InnerDashWrapper = ctk.CTkFrame(self.DashWrapper, fg_color=self.THEME_DARKGREEN)

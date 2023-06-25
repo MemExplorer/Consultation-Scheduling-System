@@ -38,7 +38,11 @@ class images:
         calendar_light = _image_nav_path + "calendar-light.png"
         consultation_light = _image_nav_path + "consultation-light.png"
         settings_light = _image_nav_path + "settings-light.png"
-        menu_light =_image_nav_path +  "menu-light.png"
+        menu_light = _image_nav_path +  "menu-light.png"
+        notif_dark = _image_nav_path +  "notif-dark.png"
+        alert_notif_dark = _image_nav_path +  "alert-notif-dark.png"
+        notif_light = _image_nav_path +  "notif-light.png"
+        alert_notif_light = _image_nav_path +  "alert-notif-light.png"
 
     #ico
     window_icon = _image_path + "window-icon.ico"
