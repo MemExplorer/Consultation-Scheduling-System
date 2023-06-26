@@ -30,7 +30,6 @@ class App(ctk.CTk):
         self.title("CvSU-Carmona Campus Consultation Scheduling System")
         self.iconbitmap(res.images.window_icon)
         self.configure(fg_color="white")
-
         
         #File directory pathing for images
         self.logo_image = ctk.CTkImage(res.fetch_image(res.images.login_bg), size=(1920, 1080))

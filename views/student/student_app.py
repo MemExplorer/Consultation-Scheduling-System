@@ -10,6 +10,7 @@ from ._faculty import FacultyFrame
 from ._calendar import CalendarFrame
 from ._consultation import ConsultationFrame
 from ._settings import SettingFrame
+from models.db_system import DBSystem
 from .. import init_app
 import models.resources as res
 
@@ -22,14 +23,14 @@ class StudentApp(ctk.CTk):
       
         super().__init__()
 
+        self.db_instance = DBSystem()
         self.isMinimized = False
-
         # What is going on?
         self.user_data = user_data
 
         # Theme design, because I can't setup json file for custom theme installation using set_default_theme.
         self.THEME_GREEN = ("#95D5B2", "#081c15")
-        self.THEME_YELLOW = ("#Fdf0d5", "#Fdf0d5")
+        self.THEME_YELLOW = ("#Fdf0d5", "#081c15")
         self.THEME_DARKGREEN = ("#80B699", "#1F664D")
         self.DEFAULT = ('white', '#242424')
 
@@ -179,6 +180,7 @@ class StudentApp(ctk.CTk):
             self.CalendarPanel.grid(row=0, column=1, sticky="nsew")
             # Show as "selected button"
             self.ToCalendar.configure(fg_color=("gray75", "gray25"))
+            
         else:
             self.CalendarPanel.grid_forget()
 

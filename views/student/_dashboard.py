@@ -15,6 +15,9 @@ class DashboardFrame(ctk.CTkFrame):
         # user data defined by the master
         self.user_data = self.master.user_data
 
+        # Instance of the database inherit from the master application window
+        self.db_instance = self.master.db_instance
+
         # load images with light and dark mode image
         """ File directory pathing for images """
         self.FacultyImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.faculty_dark), dark_image=res.fetch_image(res.images.nav_ico.faculty_light), size=(80, 80))
@@ -40,11 +43,11 @@ class DashboardFrame(ctk.CTkFrame):
         self.DashWrapper.grid_columnconfigure(0, weight=1)
 
         # DashWrapper | Dashboard Welcome Message
-        self.WelcomeLabel = ctk.CTkLabel(self.DashWrapper, text=f"Welcome, {self.user_data['username']}!", text_color="#2B9348", font=ctk.CTkFont(family="Poppins", size=24, weight='bold'))
+        self.WelcomeLabel = ctk.CTkLabel(self.DashWrapper, text=f"Welcome, {self.user_data['username']}!", text_color=("#2B9348", "#Fdf0d5"), font=ctk.CTkFont(family="Poppins", size=24, weight='bold'))
         self.WelcomeLabel.grid(row=0, column=0, pady=20, padx=10, sticky="w")
 
         # DashWrapper | Notifications
-        self.NotifIcon = ctk.CTkButton(self.DashWrapper, text=None, image=self.NotifImage, width=5, fg_color="transparent", hover_color=self.THEME_YELLOW)
+        self.NotifIcon = ctk.CTkButton(self.DashWrapper, text=None, image=self.NotifImage, width=5, fg_color="transparent", hover_color=(self.THEME_YELLOW))
         self.NotifIcon.grid(row=0, column=1, padx=10, pady=10, sticky="e")
 
         # Inner dashboard wrapper for grouping the dashboard utilities
@@ -60,7 +63,7 @@ class DashboardFrame(ctk.CTkFrame):
         self.InnerInnerDashWrapper.grid_rowconfigure(0, weight=1)
 
         # Yet another inner wrapper for containing navigations
-        self.FacultyDashWrapper = ctk.CTkFrame(self.InnerInnerDashWrapper, fg_color=self.THEME_YELLOW, width=160, height=185, corner_radius=5)
+        self.FacultyDashWrapper = ctk.CTkFrame(self.InnerInnerDashWrapper, fg_color=(self.THEME_YELLOW), width=160, height=185, corner_radius=5)
         self.FacultyDashWrapper.grid(row=0, column=0, padx=20, pady=0)
         self.FacultyDashWrapper.grid_columnconfigure(0, weight=1)
         self.FacultyDashWrapper.grid_rowconfigure(3, weight=2)
@@ -81,7 +84,7 @@ class DashboardFrame(ctk.CTkFrame):
         self.FacultyDashImage = ctk.CTkLabel(self.FacultyDashWrapper, text=None, image=self.FacultyImage)
         self.FacultyDashImage.grid(row=0, column=0, padx=5, pady=10)
         # Faculty Label
-        self.FacultyDashLabel = ctk.CTkLabel(self.FacultyDashWrapper, text="Faculty Schedule", font=ctk.CTkFont(size=13, weight='bold'), text_color="#55A630")
+        self.FacultyDashLabel = ctk.CTkLabel(self.FacultyDashWrapper, text="Faculty Schedule", font=ctk.CTkFont(size=13, weight='bold'), text_color=("#2B9348", "#Fdf0d5"))
         self.FacultyDashLabel.grid(row=1, column=0, padx=25, pady=0)
         # Faculty Label
         self.FacultyDashButton = ctk.CTkButton(self.FacultyDashWrapper, text="View All",command=lambda: self.master.SelectedPanel('faculty'), width=100, height=25, corner_radius=5, fg_color="#2B9348", hover_color="#55A630", font=ctk.CTkFont(size=12))
@@ -91,7 +94,7 @@ class DashboardFrame(ctk.CTkFrame):
         self.CalendarDashImage = ctk.CTkLabel(self.CalendarDashWrapper, text=None, image=self.CalendarImage)
         self.CalendarDashImage.grid(row=0, column=0, padx=5, pady=10)
         # Calendar Label
-        self.CalendarDashLabel = ctk.CTkLabel(self.CalendarDashWrapper, text="Calendar History", font=ctk.CTkFont(size=13, weight='bold'), text_color="#55A630")
+        self.CalendarDashLabel = ctk.CTkLabel(self.CalendarDashWrapper, text="Calendar History", font=ctk.CTkFont(size=13, weight='bold'), text_color=("#2B9348", "#Fdf0d5"))
         self.CalendarDashLabel.grid(row=1, column=0, padx=25, pady=0)
         # Calendar Button
         self.CalendarDashButton = ctk.CTkButton(self.CalendarDashWrapper, text="View All", command=lambda: self.master.SelectedPanel('faculty'), width=100, height=25, corner_radius=5, fg_color="#2B9348", hover_color="#55A630", font=ctk.CTkFont(size=12))
@@ -101,7 +104,7 @@ class DashboardFrame(ctk.CTkFrame):
         self.ConsultationDashImage = ctk.CTkLabel(self.ConsultationDashWrapper, text=None, image=self.ConsultationImage)
         self.ConsultationDashImage.grid(row=0, column=0, padx=5, pady=10)
         # Consultation Label
-        self.ConsultationDashLabel = ctk.CTkLabel(self.ConsultationDashWrapper, text="My Consultation", font=ctk.CTkFont(size=13, weight='bold'), text_color="#55A630")
+        self.ConsultationDashLabel = ctk.CTkLabel(self.ConsultationDashWrapper, text="My Consultations", font=ctk.CTkFont(size=13, weight='bold'), text_color=("#2B9348", "#Fdf0d5"))
         self.ConsultationDashLabel.grid(row=1, column=0, padx=25, pady=0)
         # Consultation Button
         self.ConsultationDashButton = ctk.CTkButton(self.ConsultationDashWrapper, text="View All", command=lambda: self.master.SelectedPanel('faculty'), width=100, height=25, corner_radius=5, fg_color="#2B9348", hover_color="#55A630", font=ctk.CTkFont(size=12))
@@ -113,7 +116,7 @@ class DashboardFrame(ctk.CTkFrame):
         self.ConWrapper.grid_columnconfigure(0, weight=1)
 
         # ConWrapper | Upcoming Consultations Label
-        self.UpcomingConsultationsLabel = ctk.CTkLabel(self.ConWrapper, text="Upcoming Consultations", text_color="#2B9348", font=ctk.CTkFont(family="Poppins", size=20, weight='bold'))
+        self.UpcomingConsultationsLabel = ctk.CTkLabel(self.ConWrapper, text="Upcoming Consultations", text_color=("#2B9348", "#Fdf0d5"), font=ctk.CTkFont(family="Poppins", size=20, weight='bold'))
         self.UpcomingConsultationsLabel.grid(row=0, column=0, pady=20, padx=20, sticky="w")
 
         # ConWrapper | View Details Label

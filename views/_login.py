@@ -17,22 +17,7 @@ ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark
 
 #Log In Frame class
 class LogInFrame(ctk.CTkFrame):
-
-    # Frame Methods
-    def ToSignUp(self) -> None:
-        self.destroy()
-
-        # New instance created because of the destroy() destroying the defined value of SignIn_frame in the init_app
-        _signupframe = init_app.SignUpFrame(master=init_app.init, fg_color="#Fdf0d5")
-        _signupframe.place(relx=0.5, rely=0.5, anchor="center")
-
-    # Frame Methods
-    def ToResetPass(self) -> None:
-        self.destroy()
-
         
-        
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
@@ -44,14 +29,9 @@ class LogInFrame(ctk.CTkFrame):
             self.auth_instance = DBSystem()
             self.crypt = Security()
 
-            user_data = self.auth_instance.SearchUserByEmail(email="johndoe@gmail.com")
 
-            init_app.init.destroy()
-                        
-            # Callable instance of the student class
-            student_app._dangerouslyInit(user_data=user_data)
             
-            """ # Fetch user data from the database
+            # Fetch user data from the database
             user_data = self.auth_instance.SearchUserByEmail(email=email)
 
             if user_data is None:
@@ -76,7 +56,7 @@ class LogInFrame(ctk.CTkFrame):
                         
                 else:
                     # Fixed: Implement proper error message handling (value of self.err_label is not set anywhere in this class)
-                    self.err_label.configure(text="Username or password is incorrect.") """
+                    self.err_label.configure(text="Username or password is incorrect.")
 
 
         #File directory pathing for images
@@ -148,3 +128,14 @@ class LogInFrame(ctk.CTkFrame):
         self.space3 = ctk.CTkLabel(self, text=None)
         self.space3.grid(row=17, column=0, padx=0, pady=1)
         
+    # Frame Methods
+    def ToSignUp(self) -> None:
+        self.destroy()
+
+        # New instance created because of the destroy() destroying the defined value of SignIn_frame in the init_app
+        _signupframe = init_app.SignUpFrame(master=init_app.init, fg_color="#Fdf0d5")
+        _signupframe.place(relx=0.5, rely=0.5, anchor="center")
+
+    # Frame Methods
+    def ToResetPass(self) -> None:
+        self.destroy()

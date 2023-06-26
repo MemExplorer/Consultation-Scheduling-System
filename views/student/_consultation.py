@@ -14,6 +14,9 @@ class ConsultationFrame(ctk.CTkFrame):
         # user data defined by the master
         self.user_data = self.master.user_data
 
+        # Instance of the database inherit from the master application window
+        self.db_instance = self.master.db_instance
+
         # load images with light and dark mode image
         """ File directory pathing for images """
         self.NotifImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.notif_dark), dark_image=res.fetch_image(res.images.nav_ico.notif_light), size=(20, 20))

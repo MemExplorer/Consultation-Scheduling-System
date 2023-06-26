@@ -1,6 +1,5 @@
-""" Reference
-Test Authentication on XAMPP and mysql-connector module.
-Ignore on build.
+""" Reference:
+Querying Module for database design of the system.
 """
 import mysql.connector
 from mysql.connector import Error
@@ -20,19 +19,22 @@ class DBConnect:
 
 
 
-
+# Implementation class for database design
 class DBSystem(DBConnect):
     def __init__(self) -> None:
         super().__init__()
 
+    # Searching User in the csystem.sql tbl_account
     def SearchUserByEmail(self, email:str) -> list | None:
-        # Get existing user information if any.
-        # returns {grouped_data: dict, None: None}
+        """  Get existing user information if any.
+        returns {grouped_data: dict, None: None} 
+        """
         grouped_data = self.QueryAccountData()
         for idx in range(len(grouped_data)):
                 if grouped_data[idx]["email"] == email:
                     return grouped_data[idx]
-
+                
+    # Self-explanatory method for searching user
     def SearchUserByUsername(self, username:str) -> list | None:
         # Get existing user information if any.
         # returns {grouped_data: dict, None: None}
@@ -42,39 +44,72 @@ class DBSystem(DBConnect):
                     return grouped_data[idx]
 
 
-    def QueryAccountData(self) -> list:
+
+    def QueryAccountData(self) -> list | None:
+        """ Reference:
+         Query data on tbl_accounts """
         
         with self.db.cursor() as cursor:
             # SQL Query
-            self.search_sql = "SELECT * FROM tbl_accounts"
-            cursor.execute(self.search_sql)
+            query_script = "SELECT * FROM tbl_accounts"
+            cursor.execute(query_script)
             findings = cursor.fetchall()
 
             #  Get the column names
             legend = [column[0] for column in cursor.description]
 
             # Making a list of dictionaries to represent data
-            results = []
-            for data in findings:
-                row_dict = dict(zip(legend, data))
-                results.append(row_dict)
-            return results
+            return [dict(zip(legend, idx)) for idx in findings]
         
     def RegisterUserAccount(self, fname: str, lname: str, username:str, email: str, password: str, role: str) -> None:
+            """ Reference:
+             Inserting validated user information to the database. """
             
             with self.db.cursor() as cursor:
 
                 # SQL Query
-                self.insert_query = f"INSERT INTO tbl_accounts (first_name, last_name, username, email, password, role) VALUES ('{fname}', '{lname}', '{username}', '{email}', '{password}', '{role}')"
+                query_script = f"INSERT INTO tbl_accounts (first_name, last_name, username, email, password, role) VALUES ('{fname}', '{lname}', '{username}', '{email}', '{password}', '{role}')"
 
-                cursor.execute(self.insert_query)
+                cursor.execute(query_script)
                 self.db.commit()
 
+    def FetchFacultyNames(self, asc: bool = True) -> list | None:
+         
+        """ Reference:
+        For querying faculty members and their usernames
 
-# Testing purposes
-if __name__ == "__main__":
-    db_instance = DBSystem()
-    print(db_instance.SearchUserByEmail("teacherdo.com")) # passed
-    print(db_instance.SearchUserByEmail("johndoe@gmail.com")) # passed
-    print(db_instance.SearchUserByEmail("teacherdoe@gmail.com")) # passed
-    print(db_instance.SearchUserByUsername("John Doe"))
+        Return(s):
+            list: A list of usernames stored in the database.
+            None: None 
+        """
+
+        with self.db.cursor() as cursor:
+            
+            # SQL query
+            query_script = f"SELECT tbl_accounts.username FROM tbl_accounts WHERE role = 'T'"
+            cursor.execute(query_script)
+            names_data = [data[0] for data in cursor.fetchall()] 
+
+            if asc:
+                return sorted(names_data)
+            else:
+                return names_data
+        
+    def FetchFacultySchedules(self) -> list | None:
+        
+        """Reference:
+        For querying faculty members schedule, joined table values for tbl_accounts and tbl_faculty
+        """
+        
+        with self.db.cursor() as cursor:
+            
+            # SQL query
+            query_script = f"SELECT tbl_accounts.username, tbl_faculty.* FROM tbl_accounts RIGHT JOIN tbl_faculty ON tbl_accounts.account_id = tbl_faculty.teacher_id"
+            cursor.execute(query_script)
+            data = cursor.fetchall()
+
+            #Get the column names
+            legend = [column[0] for column in cursor.description]
+
+            # Making a list of dictionaries to represent data
+            return [dict(zip(legend, idx)) for idx in data]
