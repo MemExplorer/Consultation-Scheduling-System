@@ -138,8 +138,7 @@ class SignUpFrame(ctk.CTkFrame):
         isValid_Email = (valid_email() and not_existing_email())
         isExisting_User = not_existing_username()
         valid_account = (not_Empty and isExisting_User and password_Matched and email != '' and isValid_Email)
-        print(not_Empty, password_Matched, isValid_Email, isExisting_User, valid_account)
-
+        
         if not not_Empty:
             self.err_label.configure(text="Fields are empty.")
         elif not password_Matched:
@@ -159,7 +158,6 @@ class SignUpFrame(ctk.CTkFrame):
 
             # Commit to the database
             _dbsystem.RegisterUserAccount(fname=fname, lname=lname, username=username, email=email, password=base64_encryption, role=role)
-            print(_dbsystem.QueryAccountData())
 
             # Redirecting to the login frame
             self.ToLogin()

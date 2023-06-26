@@ -17,22 +17,7 @@ ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark
 
 #Log In Frame class
 class LogInFrame(ctk.CTkFrame):
-
-    # Frame Methods
-    def ToSignUp(self) -> None:
-        self.destroy()
-
-        # New instance created because of the destroy() destroying the defined value of SignIn_frame in the init_app
-        _signupframe = init_app.SignUpFrame(master=init_app.init, fg_color="#Fdf0d5")
-        _signupframe.place(relx=0.5, rely=0.5, anchor="center")
-
-    # Frame Methods
-    def ToResetPass(self) -> None:
-        self.destroy()
-
         
-        
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
@@ -150,3 +135,14 @@ class LogInFrame(ctk.CTkFrame):
         self.space3 = ctk.CTkLabel(self, text=None)
         self.space3.grid(row=17, column=0, padx=0, pady=1)
         
+    # Frame Methods
+    def ToSignUp(self) -> None:
+        self.destroy()
+
+        # New instance created because of the destroy() destroying the defined value of SignIn_frame in the init_app
+        _signupframe = init_app.SignUpFrame(master=init_app.init, fg_color="#Fdf0d5")
+        _signupframe.place(relx=0.5, rely=0.5, anchor="center")
+
+    # Frame Methods
+    def ToResetPass(self) -> None:
+        self.destroy()

@@ -16,6 +16,9 @@ class FacultyFrame(ctk.CTkFrame):
         # user data defined by the master
         self.user_data = self.master.user_data
 
+        # Instance of the database inherit from the master application window
+        self.db_instance = self.master.db_instance
+
         # load images with light and dark mode image
         """ File directory pathing for images """
         self.FacultyImage = ctk.CTkImage(light_image=res.fetch_image(res.images.nav_ico.faculty_dark), dark_image=res.fetch_image(res.images.nav_ico.faculty_light), size=(80, 80))
